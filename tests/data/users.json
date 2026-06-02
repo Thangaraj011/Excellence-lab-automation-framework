@@ -1,0 +1,47 @@
+{
+    "admin": {
+      "id": "dd1b255c-05be-49bb-8c1e-033212d12d93",
+      "email": "janakjit.sethi@searce.com",
+      "name": "Janakjit Singh Sethi",
+      "role_type": "MANAGER",
+      "system_role": "ADMIN"
+    },
+    "user": {
+      "id": "e5e07c8a-e5a3-497b-9f22-d8dac520cdda",
+      "email": "thangaraj.r@searce.com",
+      "name": "Thangaraj R",
+      "role_type": "INDIVIDUAL_CONTRIBUTOR",
+      "system_role": "USER"
+    },
+    "managerDirect": {
+      "id": "c78ef7af-ce9c-494a-bd67-8deb7401358f",
+      "email": "vinay.singh@searce.com",
+      "name": "Vinay Kumar Singh",
+      "role_type": "MANAGER",
+      "system_role": "USER"
+    },
+    "managerIndirect": {
+      "id": "368e9f7e-361f-442c-a79d-c1819c9cedcf",
+      "email": "tarun.sareen@searce.com",
+      "name": "Tarun Sareen",
+      "role_type": "MANAGER",
+      "system_role": "USER"
+    },
+    "dev": {
+      "id": "49de49c4-202c-4a48-8165-4be634e06b9d",
+      "email": "treshank.prasad@searce.com",
+      "name": "Treshank Prasad",
+      "role_type": "INDIVIDUAL_CONTRIBUTOR",
+      "system_role": "USER"
+    },
+
+     "adminManager": {
+      "id": "6a3d4c8e-c3ee-43d6-af57-deccb01c3274",
+      "email": "sameer.kumar@searce.com",
+      "name": "Sameer Kumar",
+      "role_type": "MANAGER",
+      "system_role": "ADMIN"
+      }
+  
+  }
+  

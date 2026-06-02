@@ -1,0 +1,17 @@
+Base BE URL: https://learning-buddy-dev-backend-service-346514237201.us-central1.run.app/
+Base FE URL: https://learning-buddy-dev-frontend-service-346514237201.us-central1.run.app/
+Employee Username: user
+Manager Username: managerIndirect
+Generated Token: Promise {
+  <rejected> Error: Invalid user role provided: userRole. Please check users.json keys.
+      at GenericUtils.generateJWT (/Users/thangaraj.r/Documents/playwright-pom-framework/tests/utils/GenericUtils.js:14:19)
+      at /Users/thangaraj.r/Documents/playwright-pom-framework/tests/specs/excellencelabtest1.spec.js:14:45
+      at /Users/thangaraj.r/Documents/playwright-pom-framework/node_modules/playwright/lib/worker/workerProcessEntry.js:3045:9
+      at /Users/thangaraj.r/Documents/playwright-pom-framework/node_modules/playwright/lib/worker/workerProcessEntry.js:2537:11
+      at TimeoutManager.withRunnable (/Users/thangaraj.r/Documents/playwright-pom-framework/node_modules/playwright/lib/worker/workerProcessEntry.js:1816:14)
+      at TestInfoImpl._runWithTimeout (/Users/thangaraj.r/Documents/playwright-pom-framework/node_modules/playwright/lib/worker/workerProcessEntry.js:2535:7)
+      at /Users/thangaraj.r/Documents/playwright-pom-framework/node_modules/playwright/lib/worker/workerProcessEntry.js:3043:7
+      at WorkerMain._runTest (/Users/thangaraj.r/Documents/playwright-pom-framework/node_modules/playwright/lib/worker/workerProcessEntry.js:3016:5)
+      at WorkerMain.runTestGroup (/Users/thangaraj.r/Documents/playwright-pom-framework/node_modules/playwright/lib/worker/workerProcessEntry.js:2911:9)
+      at process.<anonymous> (/Users/thangaraj.r/Documents/playwright-pom-framework/node_modules/playwright/lib/common/index.js:1955:25)
+}

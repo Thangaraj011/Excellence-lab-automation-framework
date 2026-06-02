@@ -1,0 +1,4 @@
+Base BE URL: https://learning-buddy-dev-backend-service-346514237201.us-central1.run.app/
+Base FE URL: https://learning-buddy-dev-frontend-service-346514237201.us-central1.run.app/
+Employee Username: user
+Manager Username: managerIndirect

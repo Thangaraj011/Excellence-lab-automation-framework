@@ -1,0 +1,6 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","20828","log in with valid credentials firefox","","2026-06-01","passed","2026-06-01","Authentication Tests","homepage.spec.js","",""
+"","210","seed","","2026-06-01","passed","2026-06-01","Test group","seed.spec.ts","",""
+"","19879","log in with valid credentials webkit","","2026-06-01","passed","2026-06-01","Authentication Tests","homepage.spec.js","",""
+"","3192","test","","2026-06-01","passed","2026-06-01","","test-1.spec.ts","",""
+"","13704","User should be able to log in with valid credentials","","2026-06-01","passed","2026-06-01","Authentication Tests","homepage.spec.js","",""
