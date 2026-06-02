@@ -8,7 +8,6 @@
     "test1": "npx playwright test tests/specs/excellencelabtest1.spec.js",
     "posttest": "npx allure serve allure-results",
     "test:smoke": "npx playwright test --tag @smoke",
-    "postinstall": "npx allure serve allure-results",
     "test:ci": "npx playwright test --tag @CICD; npx allure serve allure-results"
   },
   "keywords": [],
