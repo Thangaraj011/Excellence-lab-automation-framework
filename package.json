@@ -6,9 +6,8 @@
   "scripts": {
     "test": "npx playwright test",
     "test1": "npx playwright test tests/specs/excellencelabtest1.spec.js",
-    "posttest": "npx allure serve allure-results",
-    "test:smoke": "npx playwright test --tag @smoke",
-    "test:ci": "npx playwright test --tag @CICD; npx allure serve allure-results"
+    "test:smoke": "npx playwright test --grep @smoke",
+    "test:ci": "npx playwright test tests/specs/excellencelabtest1.spec.js"
   },
   "keywords": [],
   "author": "",
