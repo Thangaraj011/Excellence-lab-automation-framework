@@ -14,11 +14,11 @@ export class BaseTest {
   async getBrowser(broswerType) {
     switch (broswerType) {
       case 'chromium':
-        return await chromium.launch({ headless: false });
+        return await chromium.launch();
       case 'firefox':
-        return await firefox.launch({ headless: false });
+        return await firefox.launch();
       case 'webkit':
-        return await webkit.launch({ headless: false });
+        return await webkit.launch();
       default:
         throw new Error(`Unsupported browser type: ${broswerType}`);
     }
