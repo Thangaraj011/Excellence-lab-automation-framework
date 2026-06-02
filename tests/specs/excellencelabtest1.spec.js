@@ -15,7 +15,6 @@ test.describe('Authentication Tests', () => {
     }, token);
     await page2.reload();
     await page2.waitForLoadState('networkidle');
-    await page2.pause();
   });
 
 
