@@ -2,11 +2,9 @@ const { defineConfig, devices } = require('@playwright/test');
 const path = require('path');
 const dotenv = require('dotenv');
 
-dotenv.config({ path: path.resolve(__dirname, '.env') });
 const environment = process.env.ENV || 'dev';
-console.log(`Loading environment variables from ${path.resolve(__dirname, 'tests/configs/', '.env.${environment}')}`);
 
-dotenv.config({ 
+dotenv.config({
   path: path.resolve(__dirname, `tests/configs/.env.${environment}`),
   override: true
 });

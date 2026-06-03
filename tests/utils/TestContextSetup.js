@@ -4,20 +4,20 @@ import { GenericUtils } from './GenericUtils';
 
 export class TestContextSetup {
 
-    constructor(url, browserType) {
+    constructor(testInfo) {
         this.baseTest = new BaseTest();
         this.context = null;
         this.page = null;
         this.poManager = null;
         this.context = null;
-
+        this.testInfo = testInfo;
     }
     async init(url, browserType) {
         const {context, page} = await this.baseTest.launchBroswer(url, browserType);
         this.context = context;
         this.page = page;
         this.poManager = new POManager(this.page);
-        this.genericUtils = new GenericUtils(this.context);
+        this.genericUtils = new GenericUtils(this.context, this.testInfo);
         return this.page; 
     }
 
