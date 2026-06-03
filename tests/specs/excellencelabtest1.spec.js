@@ -14,7 +14,6 @@ test.describe('Authentication Tests', () => {
     await contextSetup.genericUtils.setupAuthCookie(token);
     await page2.reload();
     await page2.waitForLoadState('networkidle');
-
   });
 
 });
