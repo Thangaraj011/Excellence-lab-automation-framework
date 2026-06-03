@@ -1,4 +1,0 @@
-Base BE URL: undefined
-Base FE URL: undefined
-Employee Username: undefined
-Manager Username: undefined

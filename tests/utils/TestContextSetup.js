@@ -9,13 +9,15 @@ export class TestContextSetup {
         this.context = null;
         this.page = null;
         this.poManager = null;
+        this.context = null;
+
     }
     async init(url, browserType) {
         const {context, page} = await this.baseTest.launchBroswer(url, browserType);
         this.context = context;
         this.page = page;
         this.poManager = new POManager(this.page);
-        this.genericUtils = new GenericUtils();
+        this.genericUtils = new GenericUtils(this.context);
         return this.page; 
     }
 
