@@ -1,0 +1,22 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: excellencelabtest1.spec.js >> Authentication Tests >> Employee Homepage validation
+- Location: tests/specs/excellencelabtest1.spec.js:6:7
+
+# Error details
+
+```
+Test timeout of 30000ms exceeded.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e2]: "{\"message\":\"Learning Buddy API\",\"version\":\"v1\",\"status\":\"running\",\"timestamp\":\"2026-06-04T11:19:25.924Z\",\"endpoints\":{\"health\":\"/health\",\"metrics\":\"/metrics\",\"auth\":\"/auth\",\"users\":\"/api/v1/users\",\"learningHistory\":\"/api/v1/learning-history\",\"learningResources\":\"/api/v1/learning-resources\",\"recommendedCourses\":\"/api/v1/recommended-courses\",\"jobRoles\":\"/api/v1/job-roles\",\"businessUnits\":\"/api/v1/business-units\",\"jobCategories\":\"/api/v1/job-categories\",\"skills\":\"/api/v1/skills\",\"skillCategories\":\"/api/v1/skill-categories\",\"contentCatalogue\":\"/api/v1/content-catalogue\",\"contentCatalogueAssignments\":\"/api/v1/content-catalogue/assignments\",\"jobCategorySkills\":\"/api/v1/job-category-skills\",\"jobCategoryLearningPlans\":\"/api/v1/job-category-learning-plans\",\"jobCategoryLearningPaths\":\"/api/v1/job-category-learning-paths\",\"bulkAssignment\":\"/api/v1/bulk-assignment\",\"assignmentHistory\":\"/api/v1/assignment-history\",\"courses\":\"/api/v1/courses\",\"team\":\"/api/v1/team\",\"specificAssignments\":\"/api/v1/specific-assignments\",\"learningPaths\":\"/api/v1/learning-paths\",\"exportExcel\":\"/api/v1/export-excel\",\"contentMetadata\":\"/api/v1/content-metadata\",\"aiRecommendations\":\"/api/v1/ai-recommendations\",\"feedback\":\"/api/v1/feedback\",\"profile\":\"/api/v1/profile\",\"dataSync\":\"/api/v1/data-sync\",\"dataSyncAdmin\":\"/api/v1/data-sync/admin\",\"assignmentReminders\":\"/api/v1/assignment-reminders\",\"adminDirectoryPolicy\":\"/api/v1/admin/directory-policy\",\"adminAuditLogs\":\"/api/v1/admin/audit-logs\",\"adminAuditLogsExport\":\"/api/v1/admin/audit-logs/export\",\"adminAnalytics\":\"/api/v1/admin/analytics/daily-active-users\"}}"
+```

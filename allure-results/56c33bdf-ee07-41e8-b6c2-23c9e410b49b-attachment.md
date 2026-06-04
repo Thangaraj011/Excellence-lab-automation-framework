@@ -1,0 +1,1466 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: excellencelabtest1.spec.js >> Authentication Tests >> Employee Homepage validation
+- Location: tests/specs/excellencelabtest1.spec.js:6:7
+
+# Error details
+
+```
+ReferenceError: contentNames is not defined
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - complementary [ref=e5]:
+      - generic [ref=e7]:
+        - link "EL Logo Excellence Lab" [ref=e9] [cursor=pointer]:
+          - /url: /homepage
+          - generic [ref=e10]:
+            - img "EL Logo" [ref=e11]
+            - heading "Excellence Lab" [level=4] [ref=e12]
+        - generic [ref=e13]:
+          - link "home Homepage" [ref=e14] [cursor=pointer]:
+            - /url: /homepage
+            - button "home Homepage" [ref=e15]:
+              - img "home" [ref=e17]:
+                - img [ref=e18]
+              - generic [ref=e20]: Homepage
+          - link "clock-circle Learning Records" [ref=e21] [cursor=pointer]:
+            - /url: /history
+            - button "clock-circle Learning Records" [ref=e22]:
+              - img "clock-circle" [ref=e24]:
+                - img [ref=e25]
+              - generic [ref=e28]: Learning Records
+          - link "file-text Content Catalogue" [ref=e29] [cursor=pointer]:
+            - /url: /content-catalogue
+            - button "file-text Content Catalogue" [ref=e30]:
+              - img "file-text" [ref=e32]:
+                - img [ref=e33]
+              - generic [ref=e35]: Content Catalogue
+        - generic [ref=e36]:
+          - link "My profile" [ref=e37] [cursor=pointer]:
+            - /url: /my-profile
+            - img [ref=e39]
+            - generic [ref=e40]: Thangaraj R
+          - generic [ref=e41]:
+            - link "form Feedback" [ref=e42] [cursor=pointer]:
+              - /url: /user-feedback
+              - button "form Feedback" [ref=e43]:
+                - img "form" [ref=e45]:
+                  - img [ref=e46]
+                - generic [ref=e49]: Feedback
+            - button "menu-fold Minimize" [ref=e50] [cursor=pointer]:
+              - img "menu-fold" [ref=e52]:
+                - img [ref=e53]
+              - generic [ref=e55]: Minimize
+            - button "logout Logout" [ref=e56] [cursor=pointer]:
+              - img "logout" [ref=e58]:
+                - img [ref=e59]
+              - generic [ref=e61]: Logout
+    - main [ref=e63]:
+      - generic [ref=e67]:
+        - heading "Homepage" [level=4] [ref=e68]
+        - generic [ref=e69]:
+          - tablist [ref=e70]:
+            - generic [ref=e72]:
+              - tab "Assigned Courses" [selected] [ref=e74] [cursor=pointer]
+              - tab "AI Recommendations" [ref=e76] [cursor=pointer]
+          - tabpanel "Assigned Courses" [ref=e79]:
+            - generic [ref=e81]:
+              - generic [ref=e82]:
+                - generic [ref=e85]: Learning Progress
+                - generic [ref=e87]:
+                  - generic [ref=e89]:
+                    - application [ref=e92]
+                    - generic:
+                      - generic: "58"
+                      - generic: Total Assigned
+                  - generic [ref=e105]:
+                    - generic [ref=e108]: 49 Assigned
+                    - generic [ref=e111]: 6 In Progress
+                    - generic [ref=e114]: 3 Completed
+              - generic [ref=e115]:
+                - generic [ref=e117]:
+                  - generic [ref=e118]: Learning Trend
+                  - button "Expand chart" [ref=e120] [cursor=pointer]:
+                    - img "fullscreen" [ref=e122]:
+                      - img [ref=e123]
+                - application [ref=e129]:
+                  - generic [ref=e176]:
+                    - generic [ref=e177]:
+                      - generic [ref=e179]: Dec
+                      - generic [ref=e181]: Jan
+                      - generic [ref=e183]: Feb
+                      - generic [ref=e185]: Mar
+                      - generic [ref=e187]: Apr
+                      - generic [ref=e189]: May
+                      - generic [ref=e191]: Jun
+                    - generic [ref=e192]:
+                      - generic [ref=e194]: "0"
+                      - generic [ref=e196]: "5"
+                      - generic [ref=e198]: "10"
+                      - generic [ref=e200]: "18"
+            - generic [ref=e201]:
+              - generic [ref=e202]:
+                - textbox "Search" [ref=e203]
+                - img "search" [ref=e205]:
+                  - img [ref=e206]
+              - generic [ref=e208]:
+                - generic [ref=e209]:
+                  - generic: Skill category
+                  - combobox [ref=e210]
+                - img "down" [ref=e212]:
+                  - img [ref=e213]
+              - generic [ref=e215]:
+                - generic [ref=e216]:
+                  - generic: Skill Name
+                  - combobox [ref=e217]
+                - img "down" [ref=e219]:
+                  - img [ref=e220]
+              - generic [ref=e222]:
+                - textbox "Due Date" [ref=e224]
+                - generic "to" [ref=e226]:
+                  - img "swap-right" [ref=e227]:
+                    - img [ref=e228]
+                - textbox "Due Date" [ref=e231]
+                - generic:
+                  - img "calendar":
+                    - img
+            - generic [ref=e234]:
+              - strong [ref=e236]: Quick Filters
+              - generic [ref=e237]:
+                - generic [ref=e238]:
+                  - generic [ref=e239]: Priority
+                  - generic "Filter by priority" [ref=e240]:
+                    - generic [ref=e241] [cursor=pointer]: Optional
+                    - generic [ref=e242] [cursor=pointer]: Mandatory
+                - generic [ref=e243]:
+                  - generic [ref=e244]: Status
+                  - generic "Filter by status" [ref=e245]:
+                    - generic [ref=e246] [cursor=pointer]: Assigned
+                    - generic [ref=e247] [cursor=pointer]: In Progress
+            - generic [ref=e248]:
+              - generic [ref=e250]:
+                - generic [ref=e254]:
+                  - generic [ref=e255]:
+                    - generic [ref=e257]:
+                      - img "crown" [ref=e258]:
+                        - img [ref=e259]
+                      - text: Assigned By Manager
+                    - generic [ref=e262]: 11 Content
+                  - generic [ref=e263]:
+                    - generic "Sort courses" [ref=e265] [cursor=pointer]:
+                      - generic [ref=e266]:
+                        - generic: Sort by
+                        - combobox "Sort courses" [ref=e267]
+                      - img "down" [ref=e269]:
+                        - img [ref=e270]
+                    - button "Collapse section" [expanded] [ref=e273] [cursor=pointer]:
+                      - img "up" [ref=e275]:
+                        - img [ref=e276]
+                - generic [ref=e280]:
+                  - generic [ref=e283] [cursor=pointer]:
+                    - generic [ref=e284]:
+                      - generic [ref=e286]:
+                        - generic [ref=e287]: Due
+                        - generic [ref=e288]: 31-05-2026
+                      - generic [ref=e290]:
+                        - status "Assigned learning path" [ref=e291]:
+                          - img [ref=e292]:
+                            - img [ref=e293]
+                          - generic [ref=e295]: Learning Path
+                        - button "Click the card to open the learning path" [disabled] [ref=e297]:
+                          - generic:
+                            - img:
+                              - img
+                    - generic [ref=e298]:
+                      - generic [ref=e300]: Learning path Practice Program 2026
+                      - generic [ref=e302]:
+                        - generic [ref=e303]:
+                          - generic [ref=e305]: Administration, Code Review & Quality Assurance, Consulting & Business Development Initiatives, Stakeholder & Client Partnership, Cloud Engineering Core, User-defined, System Design & Architecture, Sales Cycle, Revenue & Lifecycle Management, Treasury, Accounts Payables, Tax & Compliance, Corporate Governance, Audit, Risk & Assurance, Tech Governance, Sales Performance Steering, Commercial Governance and FinOps, Software Development Lifecycle (SDLC) Management, Continuous Integration & Continuous Deployment (CI/CD), Financial Strategic Enablement, Workforce Planning, Talent Acquisition, Employee Experience & Lifecycle Management, HR Software, Strategic Business Partnering & Governance, Learning Enablement, Crowd Entertainment, AI Fluency, Magician Beginner
+                          - generic [ref=e307]: "Mobility Management, Code Review Methodologies and Test-Driven Development (TDD) Practices, Consultative Selling, Effective Communication, Emotional Management, Stakeholder Management, Automation & Infrastructure as Code (IaC), Cloud Architecture & Solution Design, Selenium Webdriver, Playwright Automation, QC best Strandards, Software Quality, Google Cloud Run Serverless Workshop, Develop Serverless Applications on Cloud Run, Develop Serverless Apps with Firebase, Postman API, terraform, Design Systems Management: Building, documenting, and maintaining scalable component libraries that align with development, Information Architecture (IA): Crafting complex sitemaps, user flows, and taxonomy for large scale enterprise or SaaS products., AI-Driven UX (GenAI): Learning how to design for AI agents, prompt engineering for interfaces, and handling \"uncertainty\" in AI outputs., Motion Design for UX: Using motion to guide user behavior and provide feedback, rather than just for delightt, CSS, Tailwind CSS, Cloud Spanner, Cloud Datastream, cloud dataform, dbt, airbyte, ELT Tools, Biguery, Cloud Storage, Storage transfer service and bigquery data transfer service, SQL, tableau, Genrative AI, Langgraph, Agentic frameworks, Cloud-Agnostic System Design, Automation & IaC, Effective Communication & Active Listening, Order-to-Cash (O2C), Dispute Resolution with Client & OEMs, Working Capital Optimization, Revenue Leakage Identification, Tracking & Documentation, Contractual Compliance, Treasury, Supplier Alignment, Tax Operations, Transfer Pricing (TP) Mastery, Tax Advocacy & Litigation, Regulatory Intelligence, Statutory Filings & Company Law, Policy & Ethics Framework, Audit Execution, Risk Architecture, Evidence Evaluation & Analytical Review, Data Handling, Console, Programming, Revenue Forecasting, Sales Dashboarding & Reporting, Sales Incentive Management (SIP), Agile/Scrum Methodologies, Devops, Responsive & Multimodal Design: Designing seamless experiences across mobile, desktop, Continuous Integration & Continuous Deployment (CI/CD), Sales Process Compliance, Strategy Support & Knowledge Management, Account Planning Assurance, Reviews, Workforce Planning, JD Creation, Market Research, Headhunting, Candidate Screening, Interview Coordination & Stakeholder Management, Candidate Negotiation, Pre-boarding Engagement, Onboarding, Policies & SOPs, Offboarding, AppsScript, Culture & Community (HAPPIER), Grievance & Query Resolution, People Connects & Pulse Sensing, Organizational Design (OD), HR Analytics, Policy Architecture, Succession Planning, Performance Tracking, Organizational Gap Mapping, Role-wise Learning, Certification Tracking & Reporting, Leadership Advisory, Voucher & Resource Management, Selenium Grid, Selenium Interface, Rest Assured, seleium interface, Vanishing Magic, Shape Shifting Magic, Confusion Magic, Test Category Delete, test tategory Delete, Test, Deal Desk & Proposal Auditing, pupeteer, Ant Design, regression testing, Ground Magician, Puppeteer"
+                        - separator [ref=e308]
+                        - generic [ref=e309]:
+                          - generic [ref=e310]: Mandatory
+                          - generic [ref=e311]: Assigned by Manager
+                  - generic [ref=e314] [cursor=pointer]:
+                    - generic [ref=e315]:
+                      - generic [ref=e317]:
+                        - generic [ref=e318]: Due
+                        - generic [ref=e319]: 30-06-2026
+                      - generic [ref=e321]:
+                        - status "Assigned learning path" [ref=e322]:
+                          - img [ref=e323]:
+                            - img [ref=e324]
+                          - generic [ref=e326]: Learning Path
+                        - button "Click the card to open the learning path" [disabled] [ref=e328]:
+                          - generic:
+                            - img:
+                              - img
+                    - generic [ref=e329]:
+                      - generic [ref=e331]: AI Engineering | Technical Expert Badges
+                      - generic [ref=e333]:
+                        - generic [ref=e334]:
+                          - generic [ref=e336]: GenAI, Data Science, Cloud Engineering Core
+                          - generic [ref=e338]: Secure API Service, AI, Automation & IaC
+                        - separator [ref=e339]
+                        - generic [ref=e340]:
+                          - generic [ref=e341]: Mandatory
+                          - generic [ref=e342]: Assigned by Manager
+                  - generic [ref=e345] [cursor=pointer]:
+                    - generic [ref=e346]:
+                      - generic [ref=e348]:
+                        - generic [ref=e349]: Due
+                        - generic [ref=e350]: 30-05-2026
+                      - generic [ref=e352]:
+                        - status "Assigned learning path" [ref=e353]:
+                          - img [ref=e354]:
+                            - img [ref=e355]
+                          - generic [ref=e357]: Learning Path
+                        - button "Click the card to open the learning path" [disabled] [ref=e359]:
+                          - generic:
+                            - img:
+                              - img
+                    - generic [ref=e360]:
+                      - generic [ref=e362]: Thangaraj Testing sample 1
+                      - generic [ref=e364]:
+                        - generic [ref=e365]:
+                          - generic [ref=e367]: GenAI, Data Science, Cloud Engineering Core
+                          - generic [ref=e369]: Secure API Service, AI, Automation & IaC
+                        - separator [ref=e370]
+                        - generic [ref=e371]:
+                          - generic [ref=e372]: Mandatory
+                          - generic [ref=e373]: Assigned by Manager
+                  - generic [ref=e376] [cursor=pointer]:
+                    - generic [ref=e377]:
+                      - generic [ref=e379]:
+                        - generic [ref=e380]: Due
+                        - generic [ref=e381]: 28-05-2026
+                      - generic [ref=e383]:
+                        - status "Assigned learning path" [ref=e384]:
+                          - img [ref=e385]:
+                            - img [ref=e386]
+                          - generic [ref=e388]: Learning Path
+                        - button "Click the card to open the learning path" [disabled] [ref=e390]:
+                          - generic:
+                            - img "step-forward":
+                              - img
+                    - generic [ref=e391]:
+                      - generic [ref=e393]: Learning path new case
+                      - generic [ref=e395]:
+                        - generic [ref=e396]:
+                          - generic [ref=e398]: Software Development Lifecycle (SDLC) Management
+                          - generic [ref=e400]: Agile/Scrum Methodologies
+                        - separator [ref=e401]
+                        - generic [ref=e402]:
+                          - generic [ref=e403]: Mandatory
+                          - generic [ref=e404]: Assigned by Manager
+                  - generic [ref=e407] [cursor=pointer]:
+                    - generic [ref=e408]:
+                      - generic [ref=e410]:
+                        - generic [ref=e411]: Due
+                        - generic [ref=e412]: 31-05-2026
+                      - generic [ref=e414]:
+                        - status "Assigned learning path" [ref=e415]:
+                          - img [ref=e416]:
+                            - img [ref=e417]
+                          - generic [ref=e419]: Learning Path
+                        - button "Click the card to open the learning path" [disabled] [ref=e421]:
+                          - generic:
+                            - img "step-forward":
+                              - img
+                    - generic [ref=e422]:
+                      - generic [ref=e424]: New Magic Learning path 2026 99
+                      - generic [ref=e426]:
+                        - generic [ref=e427]:
+                          - generic [ref=e429]: Crowd Entertainment
+                          - generic [ref=e431]: Shape Shifting Magic
+                        - separator [ref=e432]
+                        - generic [ref=e433]:
+                          - generic [ref=e434]: Mandatory
+                          - generic [ref=e435]: Assigned by Manager
+                  - generic [ref=e438] [cursor=pointer]:
+                    - generic [ref=e439]:
+                      - generic [ref=e441]:
+                        - generic [ref=e442]: Due
+                        - generic [ref=e443]: 31-05-2026
+                      - generic [ref=e445]:
+                        - status "Assigned learning path" [ref=e446]:
+                          - img [ref=e447]:
+                            - img [ref=e448]
+                          - generic [ref=e450]: Learning Path
+                        - button "Click the card to open the learning path" [disabled] [ref=e452]:
+                          - generic:
+                            - img "step-forward":
+                              - img
+                    - generic [ref=e453]:
+                      - generic [ref=e455]: Typewriting Skills Learning 2026
+                      - generic [ref=e457]:
+                        - generic [ref=e458]:
+                          - generic [ref=e460]: Software Development
+                          - generic [ref=e462]: Python Basics
+                        - separator [ref=e463]
+                        - generic [ref=e464]:
+                          - generic [ref=e465]: Mandatory
+                          - generic [ref=e466]: Assigned by Manager
+                  - generic [ref=e469] [cursor=pointer]:
+                    - generic [ref=e470]:
+                      - generic [ref=e472]:
+                        - generic [ref=e473]: Due
+                        - generic [ref=e474]: 28-05-2026
+                      - generic [ref=e476]:
+                        - status "Individual Content" [ref=e477]:
+                          - img [ref=e478]:
+                            - img [ref=e479]
+                          - generic [ref=e481]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e483]:
+                          - img "step-forward" [ref=e485]:
+                            - img [ref=e486]
+                    - generic [ref=e488]:
+                      - generic [ref=e490]: Major comedy show 2026
+                      - generic [ref=e493]:
+                        - generic [ref=e494]: Mandatory
+                        - generic [ref=e495]: Assigned by Manager
+                  - generic [ref=e498] [cursor=pointer]:
+                    - generic [ref=e499]:
+                      - generic [ref=e501]:
+                        - generic [ref=e502]: Due
+                        - generic [ref=e503]: 31-05-2026
+                      - generic [ref=e505]:
+                        - status "Individual Content" [ref=e506]:
+                          - img [ref=e507]:
+                            - img [ref=e508]
+                          - generic [ref=e510]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e512]:
+                          - img "step-forward" [ref=e514]:
+                            - img [ref=e515]
+                    - generic [ref=e517]:
+                      - generic [ref=e519]: "Software Architecture: REST API Design - The Complete Guide | Udemy"
+                      - generic [ref=e521]:
+                        - generic [ref=e522]:
+                          - generic [ref=e524]: System Design & Architecture
+                          - generic [ref=e526]: Microservices Architecture Design
+                        - separator [ref=e527]
+                        - generic [ref=e528]:
+                          - generic [ref=e529]: Mandatory
+                          - generic [ref=e530]: Assigned by Manager
+                  - generic [ref=e533] [cursor=pointer]:
+                    - generic [ref=e534]:
+                      - generic [ref=e536]:
+                        - generic [ref=e537]: Due
+                        - generic [ref=e538]: 28-05-2026
+                      - generic [ref=e540]:
+                        - status "Individual Content" [ref=e541]:
+                          - img [ref=e542]:
+                            - img [ref=e543]
+                          - generic [ref=e545]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e547]:
+                          - img "step-forward" [ref=e549]:
+                            - img [ref=e550]
+                    - generic [ref=e552]:
+                      - generic [ref=e554]: Master Control Override Horizon Zero Dawn
+                      - generic [ref=e556]:
+                        - generic [ref=e557]:
+                          - generic [ref=e559]: Crowd Entertainment, System Design & Architecture, Cloud Engineering Core, Software Development Lifecycle (SDLC) Management, Code Review & Quality Assurance, Programming Proficiency
+                          - generic [ref=e561]: Vanishing Magic, Microservices Architecture Design, High-Level Design (HLD) & Low-Level Design (LLD), Cloud Architecture & Solution Design, Architecture Best Practices and Frameworks, Automation & IaC, Agile/Scrum Methodologies, Code Review Methodologies and Test-Driven Development (TDD) Practices, Software Development
+                        - separator [ref=e562]
+                        - generic [ref=e563]:
+                          - generic [ref=e564]: Optional
+                          - generic [ref=e565]: Assigned by Admin and Manager
+                  - generic [ref=e568] [cursor=pointer]:
+                    - generic [ref=e569]:
+                      - generic [ref=e571]:
+                        - generic [ref=e572]: Due
+                        - generic [ref=e573]: 23-05-2026
+                      - generic [ref=e575]:
+                        - status "Assigned learning path" [ref=e576]:
+                          - img [ref=e577]:
+                            - img [ref=e578]
+                          - generic [ref=e580]: Learning Path
+                        - button "Click the card to open the learning path" [disabled] [ref=e582]:
+                          - generic:
+                            - img "step-forward":
+                              - img
+                    - generic [ref=e583]:
+                      - generic [ref=e585]: Test sample learning 28723
+                      - generic [ref=e588]:
+                        - generic [ref=e589]: Optional
+                        - generic [ref=e590]: Assigned by Manager
+                  - generic [ref=e593] [cursor=pointer]:
+                    - generic [ref=e594]:
+                      - generic [ref=e596]:
+                        - generic [ref=e597]: Due
+                        - generic [ref=e598]: 31-05-2026
+                      - generic [ref=e600]:
+                        - status "Individual Content" [ref=e601]:
+                          - img [ref=e602]:
+                            - img [ref=e603]
+                          - generic [ref=e605]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e607]:
+                          - img "step-forward" [ref=e609]:
+                            - img [ref=e610]
+                    - generic [ref=e612]:
+                      - generic [ref=e614]: Global security measures 2026
+                      - generic [ref=e616]:
+                        - generic [ref=e617]:
+                          - generic [ref=e619]: Administration
+                          - generic [ref=e621]: Security Management
+                        - separator [ref=e622]
+                        - generic [ref=e623]:
+                          - generic [ref=e624]: Optional
+                          - generic [ref=e625]: Assigned by Manager
+              - generic [ref=e627]:
+                - generic [ref=e631]:
+                  - generic [ref=e632]:
+                    - generic [ref=e634]:
+                      - img "user" [ref=e635]:
+                        - img [ref=e636]
+                      - text: Assigned By Admin
+                    - generic [ref=e639]: 44 Content
+                  - generic [ref=e640]:
+                    - generic "Sort courses" [ref=e642] [cursor=pointer]:
+                      - generic [ref=e643]:
+                        - generic: Sort by
+                        - combobox "Sort courses" [ref=e644]
+                      - img "down" [ref=e646]:
+                        - img [ref=e647]
+                    - button "Collapse section" [expanded] [ref=e650] [cursor=pointer]:
+                      - img "up" [ref=e652]:
+                        - img [ref=e653]
+                - generic [ref=e657]:
+                  - generic [ref=e660] [cursor=pointer]:
+                    - generic [ref=e661]:
+                      - generic [ref=e663]:
+                        - generic [ref=e664]: Due
+                        - generic [ref=e665]: N/A
+                      - generic [ref=e667]:
+                        - status "Individual Content" [ref=e668]:
+                          - img [ref=e669]:
+                            - img [ref=e670]
+                          - generic [ref=e672]: Individual Content
+                        - button "In progress, mark complete" [ref=e674]:
+                          - img [ref=e676]:
+                            - img [ref=e677]
+                    - generic [ref=e680]:
+                      - generic [ref=e682]: Generative AI Leader | Google Cloud Skills Boost
+                      - generic [ref=e684]:
+                        - generic [ref=e685]:
+                          - generic [ref=e687]: AI Fluency
+                          - generic [ref=e689]: AI Fluency
+                        - separator [ref=e690]
+                        - generic [ref=e691]:
+                          - generic [ref=e692]: Mandatory
+                          - generic [ref=e693]: Assigned by Admin
+                  - generic [ref=e696] [cursor=pointer]:
+                    - generic [ref=e697]:
+                      - generic [ref=e699]:
+                        - generic [ref=e700]: Due
+                        - generic [ref=e701]: N/A
+                      - generic [ref=e703]:
+                        - status "Individual Content" [ref=e704]:
+                          - img [ref=e705]:
+                            - img [ref=e706]
+                          - generic [ref=e708]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e710]:
+                          - img "step-forward" [ref=e712]:
+                            - img [ref=e713]
+                    - generic [ref=e715]:
+                      - generic [ref=e717]: LinkedIn Sales Navigator MASTERCLASS - Tutorial, Tips, Tricks, and Hacks to Find Leads Hands-on demonstration of using the website effectively.
+                      - generic [ref=e719]:
+                        - generic [ref=e720]:
+                          - generic [ref=e722]: Consulting & Business Development Initiatives
+                          - generic [ref=e724]: Sales Execution & Deal Closure
+                        - separator [ref=e725]
+                        - generic [ref=e726]:
+                          - generic [ref=e727]: Mandatory
+                          - generic [ref=e728]: Assigned by Admin
+                  - generic [ref=e731] [cursor=pointer]:
+                    - generic [ref=e732]:
+                      - generic [ref=e734]:
+                        - generic [ref=e735]: Due
+                        - generic [ref=e736]: N/A
+                      - generic [ref=e738]:
+                        - status "Individual Content" [ref=e739]:
+                          - img [ref=e740]:
+                            - img [ref=e741]
+                          - generic [ref=e743]: Individual Content
+                        - button "In progress, mark complete" [ref=e745]:
+                          - img [ref=e747]:
+                            - img [ref=e748]
+                    - generic [ref=e751]:
+                      - generic [ref=e753]: "122. How To Be More Confident and Calm in Your Communication: Managing the \"ABC’s\" of... [Podcast, Stanford Graduate School of Business]"
+                      - generic [ref=e755]:
+                        - generic [ref=e756]:
+                          - generic [ref=e758]: Stakeholder & Client Partnership
+                          - generic [ref=e760]: Effective Communication
+                        - separator [ref=e761]
+                        - generic [ref=e762]:
+                          - generic [ref=e763]: Mandatory
+                          - generic [ref=e764]: Assigned by Admin
+                  - generic [ref=e767] [cursor=pointer]:
+                    - generic [ref=e768]:
+                      - generic [ref=e770]:
+                        - generic [ref=e771]: Due
+                        - generic [ref=e772]: N/A
+                      - generic [ref=e774]:
+                        - status "Individual Content" [ref=e775]:
+                          - img [ref=e776]:
+                            - img [ref=e777]
+                          - generic [ref=e779]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e781]:
+                          - img "step-forward" [ref=e783]:
+                            - img [ref=e784]
+                    - generic [ref=e786]:
+                      - generic [ref=e788]: "Business Communication Skills: Handling Clients & Customers"
+                      - generic [ref=e790]:
+                        - generic [ref=e791]:
+                          - generic [ref=e793]: Stakeholder & Client Partnership
+                          - generic [ref=e795]: Effective Communication
+                        - separator [ref=e796]
+                        - generic [ref=e797]:
+                          - generic [ref=e798]: Mandatory
+                          - generic [ref=e799]: Assigned by Admin
+                  - generic [ref=e802] [cursor=pointer]:
+                    - generic [ref=e803]:
+                      - generic [ref=e805]:
+                        - generic [ref=e806]: Due
+                        - generic [ref=e807]: N/A
+                      - generic [ref=e809]:
+                        - status "Individual Content" [ref=e810]:
+                          - img [ref=e811]:
+                            - img [ref=e812]
+                          - generic [ref=e814]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e816]:
+                          - img "step-forward" [ref=e818]:
+                            - img [ref=e819]
+                    - generic [ref=e821]:
+                      - generic [ref=e823]: Negotiation Skills Masterclass - Business, Contract, Salary [Udemy]
+                      - generic [ref=e825]:
+                        - generic [ref=e826]:
+                          - generic [ref=e828]: Consulting & Business Development Initiatives
+                          - generic [ref=e830]: Sales Execution & Deal Closure
+                        - separator [ref=e831]
+                        - generic [ref=e832]:
+                          - generic [ref=e833]: Mandatory
+                          - generic [ref=e834]: Assigned by Admin
+                  - generic [ref=e837] [cursor=pointer]:
+                    - generic [ref=e838]:
+                      - generic [ref=e840]:
+                        - generic [ref=e841]: Due
+                        - generic [ref=e842]: N/A
+                      - generic [ref=e844]:
+                        - status "Individual Content" [ref=e845]:
+                          - img [ref=e846]:
+                            - img [ref=e847]
+                          - generic [ref=e849]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e851]:
+                          - img "step-forward" [ref=e853]:
+                            - img [ref=e854]
+                    - generic [ref=e856]:
+                      - generic [ref=e858]: "Optimize your Email Deliverability: Content | Heinz Marketing"
+                      - generic [ref=e860]:
+                        - generic [ref=e861]:
+                          - generic [ref=e863]: Consulting & Business Development Initiatives
+                          - generic [ref=e865]: Sales Execution & Deal Closure
+                        - separator [ref=e866]
+                        - generic [ref=e867]:
+                          - generic [ref=e868]: Mandatory
+                          - generic [ref=e869]: Assigned by Admin
+                  - generic [ref=e872] [cursor=pointer]:
+                    - generic [ref=e873]:
+                      - generic [ref=e875]:
+                        - generic [ref=e876]: Due
+                        - generic [ref=e877]: N/A
+                      - generic [ref=e879]:
+                        - status "Individual Content" [ref=e880]:
+                          - img [ref=e881]:
+                            - img [ref=e882]
+                          - generic [ref=e884]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e886]:
+                          - img "step-forward" [ref=e888]:
+                            - img [ref=e889]
+                    - generic [ref=e891]:
+                      - generic [ref=e893]: The Art of Active Listening | The Harvard Business Review Guide
+                      - generic [ref=e895]:
+                        - generic [ref=e896]:
+                          - generic [ref=e898]: Stakeholder & Client Partnership
+                          - generic [ref=e900]: Effective Communication
+                        - separator [ref=e901]
+                        - generic [ref=e902]:
+                          - generic [ref=e903]: Mandatory
+                          - generic [ref=e904]: Assigned by Admin
+                  - generic [ref=e907] [cursor=pointer]:
+                    - generic [ref=e908]:
+                      - generic [ref=e910]:
+                        - generic [ref=e911]: Due
+                        - generic [ref=e912]: N/A
+                      - generic [ref=e914]:
+                        - status "Individual Content" [ref=e915]:
+                          - img [ref=e916]:
+                            - img [ref=e917]
+                          - generic [ref=e919]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e921]:
+                          - img "step-forward" [ref=e923]:
+                            - img [ref=e924]
+                    - generic [ref=e926]:
+                      - generic [ref=e928]: "Customer Profiles: How to Build and Use Them - Qualtrics"
+                      - generic [ref=e930]:
+                        - generic [ref=e931]:
+                          - generic [ref=e933]: Consulting & Business Development Initiatives
+                          - generic [ref=e935]: Sales Execution & Deal Closure
+                        - separator [ref=e936]
+                        - generic [ref=e937]:
+                          - generic [ref=e938]: Mandatory
+                          - generic [ref=e939]: Assigned by Admin
+                  - generic [ref=e942] [cursor=pointer]:
+                    - generic [ref=e943]:
+                      - generic [ref=e945]:
+                        - generic [ref=e946]: Due
+                        - generic [ref=e947]: N/A
+                      - generic [ref=e949]:
+                        - status "Individual Content" [ref=e950]:
+                          - img [ref=e951]:
+                            - img [ref=e952]
+                          - generic [ref=e954]: Individual Content
+                        - button "In progress, mark complete" [ref=e956]:
+                          - img [ref=e958]:
+                            - img [ref=e959]
+                    - generic [ref=e962]:
+                      - generic [ref=e964]: Communicating and Working with Stakeholders | Google Project Management Certificate - YouTube
+                      - generic [ref=e966]:
+                        - generic [ref=e967]:
+                          - generic [ref=e969]: Stakeholder & Client Partnership
+                          - generic [ref=e971]: Stakeholder Management, Effective Communication
+                        - separator [ref=e972]
+                        - generic [ref=e973]:
+                          - generic [ref=e974]: Mandatory
+                          - generic [ref=e975]: Assigned by Admin
+                  - generic [ref=e978] [cursor=pointer]:
+                    - generic [ref=e979]:
+                      - generic [ref=e981]:
+                        - generic [ref=e982]: Due
+                        - generic [ref=e983]: N/A
+                      - generic [ref=e985]:
+                        - status "Individual Content" [ref=e986]:
+                          - img [ref=e987]:
+                            - img [ref=e988]
+                          - generic [ref=e990]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e992]:
+                          - img "step-forward" [ref=e994]:
+                            - img [ref=e995]
+                    - generic [ref=e997]:
+                      - generic [ref=e999]: Competitor Analysis and Market Research - Qualtrics
+                      - generic [ref=e1001]:
+                        - generic [ref=e1002]:
+                          - generic [ref=e1004]: Consulting & Business Development Initiatives
+                          - generic [ref=e1006]: Sales Execution & Deal Closure
+                        - separator [ref=e1007]
+                        - generic [ref=e1008]:
+                          - generic [ref=e1009]: Mandatory
+                          - generic [ref=e1010]: Assigned by Admin
+                  - generic [ref=e1013] [cursor=pointer]:
+                    - generic [ref=e1014]:
+                      - generic [ref=e1016]:
+                        - generic [ref=e1017]: Due
+                        - generic [ref=e1018]: N/A
+                      - generic [ref=e1020]:
+                        - status "Individual Content" [ref=e1021]:
+                          - img [ref=e1022]:
+                            - img [ref=e1023]
+                          - generic [ref=e1025]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1027]:
+                          - img "step-forward" [ref=e1029]:
+                            - img [ref=e1030]
+                    - generic [ref=e1032]:
+                      - generic [ref=e1034]: "AI Boost Bites: Your Edge in the AI-Powered World | Google Cloud Skills Boost"
+                      - generic [ref=e1036]:
+                        - generic [ref=e1037]:
+                          - generic [ref=e1039]: AI Fluency
+                          - generic [ref=e1041]: AI Fluency
+                        - separator [ref=e1042]
+                        - generic [ref=e1043]:
+                          - generic [ref=e1044]: Mandatory
+                          - generic [ref=e1045]: Assigned by Admin
+                  - generic [ref=e1048] [cursor=pointer]:
+                    - generic [ref=e1049]:
+                      - generic [ref=e1051]:
+                        - generic [ref=e1052]: Due
+                        - generic [ref=e1053]: N/A
+                      - generic [ref=e1055]:
+                        - status "Individual Content" [ref=e1056]:
+                          - img [ref=e1057]:
+                            - img [ref=e1058]
+                          - generic [ref=e1060]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1062]:
+                          - img "step-forward" [ref=e1064]:
+                            - img [ref=e1065]
+                    - generic [ref=e1067]:
+                      - generic [ref=e1069]: "Finance: What Managers Need to Know [HBR]"
+                      - generic [ref=e1071]:
+                        - generic [ref=e1072]:
+                          - generic [ref=e1074]: Financial Acumen
+                          - generic [ref=e1076]: Financial Acumen
+                        - separator [ref=e1077]
+                        - generic [ref=e1078]:
+                          - generic [ref=e1079]: Mandatory
+                          - generic [ref=e1080]: Assigned by Admin
+                  - generic [ref=e1083] [cursor=pointer]:
+                    - generic [ref=e1084]:
+                      - generic [ref=e1086]:
+                        - generic [ref=e1087]: Due
+                        - generic [ref=e1088]: N/A
+                      - generic [ref=e1090]:
+                        - status "Individual Content" [ref=e1091]:
+                          - img [ref=e1092]:
+                            - img [ref=e1093]
+                          - generic [ref=e1095]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1097]:
+                          - img "step-forward" [ref=e1099]:
+                            - img [ref=e1100]
+                    - generic [ref=e1102]:
+                      - generic [ref=e1104]: What Does Lead Qualification Mean? | How to Qualify Sales Leads Goes over frameworks used to qualify leads, with examples.
+                      - generic [ref=e1106]:
+                        - generic [ref=e1107]:
+                          - generic [ref=e1109]: Consulting & Business Development Initiatives
+                          - generic [ref=e1111]: Consultative Selling
+                        - separator [ref=e1112]
+                        - generic [ref=e1113]:
+                          - generic [ref=e1114]: Mandatory
+                          - generic [ref=e1115]: Assigned by Admin
+                  - generic [ref=e1118] [cursor=pointer]:
+                    - generic [ref=e1119]:
+                      - generic [ref=e1121]:
+                        - generic [ref=e1122]: Due
+                        - generic [ref=e1123]: N/A
+                      - generic [ref=e1125]:
+                        - status "Individual Content" [ref=e1126]:
+                          - img [ref=e1127]:
+                            - img [ref=e1128]
+                          - generic [ref=e1130]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1132]:
+                          - img "step-forward" [ref=e1134]:
+                            - img [ref=e1135]
+                    - generic [ref=e1137]:
+                      - generic [ref=e1139]: 5 Rules for Communicating Effectively with Executives
+                      - generic [ref=e1141]:
+                        - generic [ref=e1142]:
+                          - generic [ref=e1144]: Stakeholder & Client Partnership
+                          - generic [ref=e1146]: Effective Communication
+                        - separator [ref=e1147]
+                        - generic [ref=e1148]:
+                          - generic [ref=e1149]: Mandatory
+                          - generic [ref=e1150]: Assigned by Admin
+                  - generic [ref=e1153] [cursor=pointer]:
+                    - generic [ref=e1154]:
+                      - generic [ref=e1156]:
+                        - generic [ref=e1157]: Due
+                        - generic [ref=e1158]: N/A
+                      - generic [ref=e1160]:
+                        - status "Individual Content" [ref=e1161]:
+                          - img [ref=e1162]:
+                            - img [ref=e1163]
+                          - generic [ref=e1165]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1167]:
+                          - img "step-forward" [ref=e1169]:
+                            - img [ref=e1170]
+                    - generic [ref=e1172]:
+                      - generic [ref=e1174]: "How to Control Your Emotions During a Difficult Conversation: The Harvard Business Review Guide"
+                      - generic [ref=e1176]:
+                        - generic [ref=e1177]:
+                          - generic [ref=e1179]: Stakeholder & Client Partnership
+                          - generic [ref=e1181]: Effective Communication
+                        - separator [ref=e1182]
+                        - generic [ref=e1183]:
+                          - generic [ref=e1184]: Mandatory
+                          - generic [ref=e1185]: Assigned by Admin
+                  - generic [ref=e1188] [cursor=pointer]:
+                    - generic [ref=e1189]:
+                      - generic [ref=e1191]:
+                        - generic [ref=e1192]: Due
+                        - generic [ref=e1193]: N/A
+                      - generic [ref=e1195]:
+                        - status "Individual Content" [ref=e1196]:
+                          - img [ref=e1197]:
+                            - img [ref=e1198]
+                          - generic [ref=e1200]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1202]:
+                          - img "step-forward" [ref=e1204]:
+                            - img [ref=e1205]
+                    - generic [ref=e1207]:
+                      - generic [ref=e1209]: Master the Art of Questions to Unlock Meaningful Conversations - YouTube In an entertaining & interactive way, demonstrates "intentional communication" and the art of asking right questions.
+                      - generic [ref=e1211]:
+                        - generic [ref=e1212]:
+                          - generic [ref=e1214]: Consulting & Business Development Initiatives, Stakeholder & Client Partnership
+                          - generic [ref=e1216]: Consultative Selling, Stakeholder Management
+                        - separator [ref=e1217]
+                        - generic [ref=e1218]:
+                          - generic [ref=e1219]: Mandatory
+                          - generic [ref=e1220]: Assigned by Admin
+                  - generic [ref=e1223] [cursor=pointer]:
+                    - generic [ref=e1224]:
+                      - generic [ref=e1226]:
+                        - generic [ref=e1227]: Due
+                        - generic [ref=e1228]: N/A
+                      - generic [ref=e1230]:
+                        - status "Individual Content" [ref=e1231]:
+                          - img [ref=e1232]:
+                            - img [ref=e1233]
+                          - generic [ref=e1235]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1237]:
+                          - img "step-forward" [ref=e1239]:
+                            - img [ref=e1240]
+                    - generic [ref=e1242]:
+                      - generic [ref=e1244]: 23 Elevator Pitch Examples to Inspire Your Own [+Templates & Expert Tips]
+                      - generic [ref=e1246]:
+                        - generic [ref=e1247]:
+                          - generic [ref=e1249]: Consulting & Business Development Initiatives
+                          - generic [ref=e1251]: Sales Execution & Deal Closure
+                        - separator [ref=e1252]
+                        - generic [ref=e1253]:
+                          - generic [ref=e1254]: Mandatory
+                          - generic [ref=e1255]: Assigned by Admin
+                  - generic [ref=e1258] [cursor=pointer]:
+                    - generic [ref=e1259]:
+                      - generic [ref=e1261]:
+                        - generic [ref=e1262]: Due
+                        - generic [ref=e1263]: N/A
+                      - generic [ref=e1265]:
+                        - status "Individual Content" [ref=e1266]:
+                          - img [ref=e1267]:
+                            - img [ref=e1268]
+                          - generic [ref=e1270]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1272]:
+                          - img "step-forward" [ref=e1274]:
+                            - img [ref=e1275]
+                    - generic [ref=e1277]:
+                      - generic [ref=e1279]: You Must Understand Your Competition | Wolters Kluwer
+                      - generic [ref=e1281]:
+                        - generic [ref=e1282]:
+                          - generic [ref=e1284]: Consulting & Business Development Initiatives
+                          - generic [ref=e1286]: Sales Execution & Deal Closure, Commercial Account Management
+                        - separator [ref=e1287]
+                        - generic [ref=e1288]:
+                          - generic [ref=e1289]: Mandatory
+                          - generic [ref=e1290]: Assigned by Admin
+                  - generic [ref=e1293] [cursor=pointer]:
+                    - generic [ref=e1294]:
+                      - generic [ref=e1296]:
+                        - generic [ref=e1297]: Due
+                        - generic [ref=e1298]: N/A
+                      - generic [ref=e1300]:
+                        - status "Individual Content" [ref=e1301]:
+                          - img [ref=e1302]:
+                            - img [ref=e1303]
+                          - generic [ref=e1305]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1307]:
+                          - img "step-forward" [ref=e1309]:
+                            - img [ref=e1310]
+                    - generic [ref=e1312]:
+                      - generic [ref=e1314]: The science behind dramatically better conversations | Charles Duhigg | TEDxManchester - YouTube Speaks about the role of precise questions to understand the other person's wishes best. "The matching principle".
+                      - generic [ref=e1316]:
+                        - generic [ref=e1317]:
+                          - generic [ref=e1319]: Consulting & Business Development Initiatives, Stakeholder & Client Partnership
+                          - generic [ref=e1321]: Consultative Selling, Stakeholder Management
+                        - separator [ref=e1322]
+                        - generic [ref=e1323]:
+                          - generic [ref=e1324]: Mandatory
+                          - generic [ref=e1325]: Assigned by Admin
+                  - generic [ref=e1328] [cursor=pointer]:
+                    - generic [ref=e1329]:
+                      - generic [ref=e1331]:
+                        - generic [ref=e1332]: Due
+                        - generic [ref=e1333]: N/A
+                      - generic [ref=e1335]:
+                        - status "Individual Content" [ref=e1336]:
+                          - img [ref=e1337]:
+                            - img [ref=e1338]
+                          - generic [ref=e1340]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1342]:
+                          - img "step-forward" [ref=e1344]:
+                            - img [ref=e1345]
+                    - generic [ref=e1347]:
+                      - generic [ref=e1349]: Fundamentals of Finance & Economics for Businesses – Crash Course
+                      - generic [ref=e1351]:
+                        - generic [ref=e1352]:
+                          - generic [ref=e1354]: Financial Acumen
+                          - generic [ref=e1356]: Financial Acumen
+                        - separator [ref=e1357]
+                        - generic [ref=e1358]:
+                          - generic [ref=e1359]: Mandatory
+                          - generic [ref=e1360]: Assigned by Admin
+                  - generic [ref=e1363] [cursor=pointer]:
+                    - generic [ref=e1364]:
+                      - generic [ref=e1366]:
+                        - generic [ref=e1367]: Due
+                        - generic [ref=e1368]: N/A
+                      - generic [ref=e1370]:
+                        - status "Individual Content" [ref=e1371]:
+                          - img [ref=e1372]:
+                            - img [ref=e1373]
+                          - generic [ref=e1375]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1377]:
+                          - img "step-forward" [ref=e1379]:
+                            - img [ref=e1380]
+                    - generic [ref=e1382]:
+                      - generic [ref=e1384]: "Think Fast, Talk Smart: Communication Techniques - YouTube"
+                      - generic [ref=e1386]:
+                        - generic [ref=e1387]:
+                          - generic [ref=e1389]: Stakeholder & Client Partnership
+                          - generic [ref=e1391]: Effective Communication
+                        - separator [ref=e1392]
+                        - generic [ref=e1393]:
+                          - generic [ref=e1394]: Mandatory
+                          - generic [ref=e1395]: Assigned by Admin
+                  - generic [ref=e1398] [cursor=pointer]:
+                    - generic [ref=e1399]:
+                      - generic [ref=e1401]:
+                        - generic [ref=e1402]: Due
+                        - generic [ref=e1403]: N/A
+                      - generic [ref=e1405]:
+                        - status "Individual Content" [ref=e1406]:
+                          - img [ref=e1407]:
+                            - img [ref=e1408]
+                          - generic [ref=e1410]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1412]:
+                          - img "step-forward" [ref=e1414]:
+                            - img [ref=e1415]
+                    - generic [ref=e1417]:
+                      - generic [ref=e1419]: Mastering Sales Qualification for Effective Lead Conversion | Gong
+                      - generic [ref=e1421]:
+                        - generic [ref=e1422]:
+                          - generic [ref=e1424]: Consulting & Business Development Initiatives
+                          - generic [ref=e1426]: Sales Execution & Deal Closure
+                        - separator [ref=e1427]
+                        - generic [ref=e1428]:
+                          - generic [ref=e1429]: Mandatory
+                          - generic [ref=e1430]: Assigned by Admin
+                  - generic [ref=e1433] [cursor=pointer]:
+                    - generic [ref=e1434]:
+                      - generic [ref=e1436]:
+                        - generic [ref=e1437]: Due
+                        - generic [ref=e1438]: N/A
+                      - generic [ref=e1440]:
+                        - status "Individual Content" [ref=e1441]:
+                          - img [ref=e1442]:
+                            - img [ref=e1443]
+                          - generic [ref=e1445]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1447]:
+                          - img "step-forward" [ref=e1449]:
+                            - img [ref=e1450]
+                    - generic [ref=e1452]:
+                      - generic [ref=e1454]: Prompt Engineering Guide
+                      - generic [ref=e1456]:
+                        - generic [ref=e1457]:
+                          - generic [ref=e1459]: AI Fluency
+                          - generic [ref=e1461]: AI Fluency
+                        - separator [ref=e1462]
+                        - generic [ref=e1463]:
+                          - generic [ref=e1464]: Mandatory
+                          - generic [ref=e1465]: Assigned by Admin
+                  - generic [ref=e1468] [cursor=pointer]:
+                    - generic [ref=e1469]:
+                      - generic [ref=e1471]:
+                        - generic [ref=e1472]: Due
+                        - generic [ref=e1473]: N/A
+                      - generic [ref=e1475]:
+                        - status "Individual Content" [ref=e1476]:
+                          - img [ref=e1477]:
+                            - img [ref=e1478]
+                          - generic [ref=e1480]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1482]:
+                          - img "step-forward" [ref=e1484]:
+                            - img [ref=e1485]
+                    - generic [ref=e1487]:
+                      - generic [ref=e1489]: Challenger Sales Model Summary & Tips | Pipedrive Speaks of pushing the customer to get out of their comfort zone.
+                      - generic [ref=e1491]:
+                        - generic [ref=e1492]:
+                          - generic [ref=e1494]: Consulting & Business Development Initiatives
+                          - generic [ref=e1496]: Consultative Selling
+                        - separator [ref=e1497]
+                        - generic [ref=e1498]:
+                          - generic [ref=e1499]: Mandatory
+                          - generic [ref=e1500]: Assigned by Admin
+                  - generic [ref=e1503] [cursor=pointer]:
+                    - generic [ref=e1504]:
+                      - generic [ref=e1506]:
+                        - generic [ref=e1507]: Due
+                        - generic [ref=e1508]: N/A
+                      - generic [ref=e1510]:
+                        - status "Individual Content" [ref=e1511]:
+                          - img [ref=e1512]:
+                            - img [ref=e1513]
+                          - generic [ref=e1515]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1517]:
+                          - img "step-forward" [ref=e1519]:
+                            - img [ref=e1520]
+                    - generic [ref=e1522]:
+                      - generic [ref=e1524]: How to Build Positioning & Messaging (by an ex-Google PMM) - YouTube Gives a concerete, helpful blueprint for making a value proposition and positioning.
+                      - generic [ref=e1526]:
+                        - generic [ref=e1527]:
+                          - generic [ref=e1529]: Consulting & Business Development Initiatives
+                          - generic [ref=e1531]: Market Research & Pipeline Generation
+                        - separator [ref=e1532]
+                        - generic [ref=e1533]:
+                          - generic [ref=e1534]: Mandatory
+                          - generic [ref=e1535]: Assigned by Admin
+                  - generic [ref=e1538] [cursor=pointer]:
+                    - generic [ref=e1539]:
+                      - generic [ref=e1541]:
+                        - generic [ref=e1542]: Due
+                        - generic [ref=e1543]: N/A
+                      - generic [ref=e1545]:
+                        - status "Individual Content" [ref=e1546]:
+                          - img [ref=e1547]:
+                            - img [ref=e1548]
+                          - generic [ref=e1550]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1552]:
+                          - img "step-forward" [ref=e1554]:
+                            - img [ref=e1555]
+                    - generic [ref=e1557]:
+                      - generic [ref=e1559]: What Will Happen to Marketing in the Age of AI? | Jessica Apotheker | TED - YouTube Shows how AI tools speed up the marketing process, and help us unlock insights.
+                      - generic [ref=e1561]:
+                        - generic [ref=e1562]:
+                          - generic [ref=e1564]: Consulting & Business Development Initiatives
+                          - generic [ref=e1566]: Sales Execution & Deal Closure
+                        - separator [ref=e1567]
+                        - generic [ref=e1568]:
+                          - generic [ref=e1569]: Mandatory
+                          - generic [ref=e1570]: Assigned by Admin
+                  - generic [ref=e1573] [cursor=pointer]:
+                    - generic [ref=e1574]:
+                      - generic [ref=e1576]:
+                        - generic [ref=e1577]: Due
+                        - generic [ref=e1578]: N/A
+                      - generic [ref=e1580]:
+                        - status "Individual Content" [ref=e1581]:
+                          - img [ref=e1582]:
+                            - img [ref=e1583]
+                          - generic [ref=e1585]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1587]:
+                          - img "step-forward" [ref=e1589]:
+                            - img [ref=e1590]
+                    - generic [ref=e1592]:
+                      - generic [ref=e1594]: Building Financial Acumen as a Sales Professional
+                      - generic [ref=e1596]:
+                        - generic [ref=e1597]:
+                          - generic [ref=e1599]: Financial Acumen
+                          - generic [ref=e1601]: Financial Acumen
+                        - separator [ref=e1602]
+                        - generic [ref=e1603]:
+                          - generic [ref=e1604]: Mandatory
+                          - generic [ref=e1605]: Assigned by Admin
+                  - generic [ref=e1608] [cursor=pointer]:
+                    - generic [ref=e1609]:
+                      - generic [ref=e1611]:
+                        - generic [ref=e1612]: Due
+                        - generic [ref=e1613]: N/A
+                      - generic [ref=e1615]:
+                        - status "Individual Content" [ref=e1616]:
+                          - img [ref=e1617]:
+                            - img [ref=e1618]
+                          - generic [ref=e1620]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1622]:
+                          - img "step-forward" [ref=e1624]:
+                            - img [ref=e1625]
+                    - generic [ref=e1627]:
+                      - generic [ref=e1629]: 20 Open-Ended Sales Questions That'll Get Prospects Talking to You
+                      - generic [ref=e1631]:
+                        - generic [ref=e1632]:
+                          - generic [ref=e1634]: Consulting & Business Development Initiatives
+                          - generic [ref=e1636]: Sales Execution & Deal Closure
+                        - separator [ref=e1637]
+                        - generic [ref=e1638]:
+                          - generic [ref=e1639]: Mandatory
+                          - generic [ref=e1640]: Assigned by Admin
+                  - generic [ref=e1643] [cursor=pointer]:
+                    - generic [ref=e1644]:
+                      - generic [ref=e1646]:
+                        - generic [ref=e1647]: Due
+                        - generic [ref=e1648]: N/A
+                      - generic [ref=e1650]:
+                        - status "Individual Content" [ref=e1651]:
+                          - img [ref=e1652]:
+                            - img [ref=e1653]
+                          - generic [ref=e1655]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1657]:
+                          - img "step-forward" [ref=e1659]:
+                            - img [ref=e1660]
+                    - generic [ref=e1662]:
+                      - generic [ref=e1664]: "Effective Communication Skills: Stakeholder Analysis"
+                      - generic [ref=e1666]:
+                        - generic [ref=e1667]:
+                          - generic [ref=e1669]: Stakeholder & Client Partnership
+                          - generic [ref=e1671]: Effective Communication
+                        - separator [ref=e1672]
+                        - generic [ref=e1673]:
+                          - generic [ref=e1674]: Mandatory
+                          - generic [ref=e1675]: Assigned by Admin
+                  - generic [ref=e1678] [cursor=pointer]:
+                    - generic [ref=e1679]:
+                      - generic [ref=e1681]:
+                        - generic [ref=e1682]: Due
+                        - generic [ref=e1683]: N/A
+                      - generic [ref=e1685]:
+                        - status "Individual Content" [ref=e1686]:
+                          - img [ref=e1687]:
+                            - img [ref=e1688]
+                          - generic [ref=e1690]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1692]:
+                          - img "step-forward" [ref=e1694]:
+                            - img [ref=e1695]
+                    - generic [ref=e1697]:
+                      - generic [ref=e1699]: "Cold Calling: How To Turn Prospects Into Customers | Salesforce"
+                      - generic [ref=e1701]:
+                        - generic [ref=e1702]:
+                          - generic [ref=e1704]: Consulting & Business Development Initiatives
+                          - generic [ref=e1706]: Sales Execution & Deal Closure
+                        - separator [ref=e1707]
+                        - generic [ref=e1708]:
+                          - generic [ref=e1709]: Mandatory
+                          - generic [ref=e1710]: Assigned by Admin
+                  - generic [ref=e1713] [cursor=pointer]:
+                    - generic [ref=e1714]:
+                      - generic [ref=e1716]:
+                        - generic [ref=e1717]: Due
+                        - generic [ref=e1718]: N/A
+                      - generic [ref=e1720]:
+                        - status "Individual Content" [ref=e1721]:
+                          - img [ref=e1722]:
+                            - img [ref=e1723]
+                          - generic [ref=e1725]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1727]:
+                          - img "step-forward" [ref=e1729]:
+                            - img [ref=e1730]
+                    - generic [ref=e1732]:
+                      - generic [ref=e1734]: Use Body Language to Rock Your Next Presentation [Stanford GSB]
+                      - generic [ref=e1736]:
+                        - generic [ref=e1737]:
+                          - generic [ref=e1739]: Stakeholder & Client Partnership
+                          - generic [ref=e1741]: Effective Communication
+                        - separator [ref=e1742]
+                        - generic [ref=e1743]:
+                          - generic [ref=e1744]: Mandatory
+                          - generic [ref=e1745]: Assigned by Admin
+                  - generic [ref=e1748] [cursor=pointer]:
+                    - generic [ref=e1749]:
+                      - generic [ref=e1751]:
+                        - generic [ref=e1752]: Due
+                        - generic [ref=e1753]: N/A
+                      - generic [ref=e1755]:
+                        - status "Individual Content" [ref=e1756]:
+                          - img [ref=e1757]:
+                            - img [ref=e1758]
+                          - generic [ref=e1760]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1762]:
+                          - img "step-forward" [ref=e1764]:
+                            - img [ref=e1765]
+                    - generic [ref=e1767]:
+                      - generic [ref=e1769]: Gemini for Google Workspace | Google Cloud Skills Boost
+                      - generic [ref=e1771]:
+                        - generic [ref=e1772]:
+                          - generic [ref=e1774]: AI Fluency
+                          - generic [ref=e1776]: AI Fluency
+                        - separator [ref=e1777]
+                        - generic [ref=e1778]:
+                          - generic [ref=e1779]: Mandatory
+                          - generic [ref=e1780]: Assigned by Admin
+                  - generic [ref=e1783] [cursor=pointer]:
+                    - generic [ref=e1784]:
+                      - generic [ref=e1786]:
+                        - generic [ref=e1787]: Due
+                        - generic [ref=e1788]: N/A
+                      - generic [ref=e1790]:
+                        - status "Individual Content" [ref=e1791]:
+                          - img [ref=e1792]:
+                            - img [ref=e1793]
+                          - generic [ref=e1795]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1797]:
+                          - img "step-forward" [ref=e1799]:
+                            - img [ref=e1800]
+                    - generic [ref=e1802]:
+                      - generic [ref=e1804]: "Daniel Goleman: The 4 domains of emotional intelligence | Daniel Goleman for Big Think+"
+                      - generic [ref=e1806]:
+                        - generic [ref=e1807]:
+                          - generic [ref=e1809]: Stakeholder & Client Partnership
+                          - generic [ref=e1811]: Effective Communication
+                        - separator [ref=e1812]
+                        - generic [ref=e1813]:
+                          - generic [ref=e1814]: Mandatory
+                          - generic [ref=e1815]: Assigned by Admin
+                  - generic [ref=e1818] [cursor=pointer]:
+                    - generic [ref=e1819]:
+                      - generic [ref=e1821]:
+                        - generic [ref=e1822]: Due
+                        - generic [ref=e1823]: N/A
+                      - generic [ref=e1825]:
+                        - status "Individual Content" [ref=e1826]:
+                          - img [ref=e1827]:
+                            - img [ref=e1828]
+                          - generic [ref=e1830]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1832]:
+                          - img "step-forward" [ref=e1834]:
+                            - img [ref=e1835]
+                    - generic [ref=e1837]:
+                      - generic [ref=e1839]: Her Cold Email Strategy Has a 43% OPEN RATE! - YouTube Simple tips to make your email stand out from a sea of emails lying around in the inbox.
+                      - generic [ref=e1841]:
+                        - generic [ref=e1842]:
+                          - generic [ref=e1844]: Consulting & Business Development Initiatives
+                          - generic [ref=e1846]: Sales Execution & Deal Closure
+                        - separator [ref=e1847]
+                        - generic [ref=e1848]:
+                          - generic [ref=e1849]: Mandatory
+                          - generic [ref=e1850]: Assigned by Admin
+                  - generic [ref=e1853] [cursor=pointer]:
+                    - generic [ref=e1854]:
+                      - generic [ref=e1856]:
+                        - generic [ref=e1857]: Due
+                        - generic [ref=e1858]: N/A
+                      - generic [ref=e1860]:
+                        - status "Individual Content" [ref=e1861]:
+                          - img [ref=e1862]:
+                            - img [ref=e1863]
+                          - generic [ref=e1865]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1867]:
+                          - img "step-forward" [ref=e1869]:
+                            - img [ref=e1870]
+                    - generic [ref=e1872]:
+                      - generic [ref=e1874]: How to Write a Great Value Proposition [7 Top Examples + Template]
+                      - generic [ref=e1876]:
+                        - generic [ref=e1877]:
+                          - generic [ref=e1879]: Consulting & Business Development Initiatives
+                          - generic [ref=e1881]: Sales Execution & Deal Closure
+                        - separator [ref=e1882]
+                        - generic [ref=e1883]:
+                          - generic [ref=e1884]: Mandatory
+                          - generic [ref=e1885]: Assigned by Admin
+                  - generic [ref=e1888] [cursor=pointer]:
+                    - generic [ref=e1889]:
+                      - generic [ref=e1891]:
+                        - generic [ref=e1892]: Due
+                        - generic [ref=e1893]: N/A
+                      - generic [ref=e1895]:
+                        - status "Individual Content" [ref=e1896]:
+                          - img [ref=e1897]:
+                            - img [ref=e1898]
+                          - generic [ref=e1900]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1902]:
+                          - img "step-forward" [ref=e1904]:
+                            - img [ref=e1905]
+                    - generic [ref=e1907]:
+                      - generic [ref=e1909]: LinkedIn Sales Navigator for Beginners (Full Course) Goes over a number of features & tools in the program to get what's desired.
+                      - generic [ref=e1911]:
+                        - generic [ref=e1912]:
+                          - generic [ref=e1914]: Consulting & Business Development Initiatives
+                          - generic [ref=e1916]: Sales Execution & Deal Closure
+                        - separator [ref=e1917]
+                        - generic [ref=e1918]:
+                          - generic [ref=e1919]: Mandatory
+                          - generic [ref=e1920]: Assigned by Admin
+                  - generic [ref=e1923] [cursor=pointer]:
+                    - generic [ref=e1924]:
+                      - generic [ref=e1926]:
+                        - generic [ref=e1927]: Due
+                        - generic [ref=e1928]: N/A
+                      - generic [ref=e1930]:
+                        - status "Individual Content" [ref=e1931]:
+                          - img [ref=e1932]:
+                            - img [ref=e1933]
+                          - generic [ref=e1935]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1937]:
+                          - img "step-forward" [ref=e1939]:
+                            - img [ref=e1940]
+                    - generic [ref=e1942]:
+                      - generic [ref=e1944]: How to Get B2B Customer Segmentation Right [+Tips]
+                      - generic [ref=e1946]:
+                        - generic [ref=e1947]:
+                          - generic [ref=e1949]: Consulting & Business Development Initiatives
+                          - generic [ref=e1951]: Sales Execution & Deal Closure
+                        - separator [ref=e1952]
+                        - generic [ref=e1953]:
+                          - generic [ref=e1954]: Mandatory
+                          - generic [ref=e1955]: Assigned by Admin
+                  - generic [ref=e1958] [cursor=pointer]:
+                    - generic [ref=e1959]:
+                      - generic [ref=e1961]:
+                        - generic [ref=e1962]: Due
+                        - generic [ref=e1963]: N/A
+                      - generic [ref=e1965]:
+                        - status "Individual Content" [ref=e1966]:
+                          - img [ref=e1967]:
+                            - img [ref=e1968]
+                          - generic [ref=e1970]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e1972]:
+                          - img "step-forward" [ref=e1974]:
+                            - img [ref=e1975]
+                    - generic [ref=e1977]:
+                      - generic [ref=e1979]: "30 Sales Call Tips: How to Start Conversations so Prospects Don't Hang Up On You"
+                      - generic [ref=e1981]:
+                        - generic [ref=e1982]:
+                          - generic [ref=e1984]: Consulting & Business Development Initiatives
+                          - generic [ref=e1986]: Sales Execution & Deal Closure
+                        - separator [ref=e1987]
+                        - generic [ref=e1988]:
+                          - generic [ref=e1989]: Mandatory
+                          - generic [ref=e1990]: Assigned by Admin
+                  - generic [ref=e1993] [cursor=pointer]:
+                    - generic [ref=e1994]:
+                      - generic [ref=e1996]:
+                        - generic [ref=e1997]: Due
+                        - generic [ref=e1998]: N/A
+                      - generic [ref=e2000]:
+                        - status "Individual Content" [ref=e2001]:
+                          - img [ref=e2002]:
+                            - img [ref=e2003]
+                          - generic [ref=e2005]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e2007]:
+                          - img "step-forward" [ref=e2009]:
+                            - img [ref=e2010]
+                    - generic [ref=e2012]:
+                      - generic [ref=e2014]: "The art of negotiation: Six must-have strategies | LBS - YouTube"
+                      - generic [ref=e2016]:
+                        - generic [ref=e2017]:
+                          - generic [ref=e2019]: Consulting & Business Development Initiatives
+                          - generic [ref=e2021]: Sales Execution & Deal Closure
+                        - separator [ref=e2022]
+                        - generic [ref=e2023]:
+                          - generic [ref=e2024]: Mandatory
+                          - generic [ref=e2025]: Assigned by Admin
+                  - generic [ref=e2028] [cursor=pointer]:
+                    - generic [ref=e2029]:
+                      - generic [ref=e2031]:
+                        - generic [ref=e2032]: Due
+                        - generic [ref=e2033]: 31-05-2026
+                      - generic [ref=e2035]:
+                        - status "Assigned learning path" [ref=e2036]:
+                          - img [ref=e2037]:
+                            - img [ref=e2038]
+                          - generic [ref=e2040]: Learning Path
+                        - button "Click the card to open the learning path" [disabled] [ref=e2042]:
+                          - generic:
+                            - img "step-forward":
+                              - img
+                    - generic [ref=e2043]:
+                      - generic [ref=e2045]: Test sample Learning path Magic 2026
+                      - generic [ref=e2047]:
+                        - generic [ref=e2048]:
+                          - generic [ref=e2050]: Crowd Entertainment
+                          - generic [ref=e2052]: Confusion Magic, Vanishing Magic
+                        - separator [ref=e2053]
+                        - generic [ref=e2054]:
+                          - generic [ref=e2055]: Mandatory
+                          - generic [ref=e2056]: Assigned by Admin
+                  - generic [ref=e2059] [cursor=pointer]:
+                    - generic [ref=e2060]:
+                      - generic [ref=e2062]:
+                        - generic [ref=e2063]: Due
+                        - generic [ref=e2064]: N/A
+                      - generic [ref=e2066]:
+                        - status "Assigned learning path" [ref=e2067]:
+                          - img [ref=e2068]:
+                            - img [ref=e2069]
+                          - generic [ref=e2071]: Learning Path
+                        - button "Click the card to open the learning path" [disabled] [ref=e2073]:
+                          - generic:
+                            - img "step-forward":
+                              - img
+                    - generic [ref=e2074]:
+                      - generic [ref=e2076]: learning path sample 2026
+                      - generic [ref=e2079]:
+                        - generic [ref=e2080]: Mandatory
+                        - generic [ref=e2081]: Assigned by Admin
+                  - generic [ref=e2084] [cursor=pointer]:
+                    - generic [ref=e2085]:
+                      - generic [ref=e2087]:
+                        - generic [ref=e2088]: Due
+                        - generic [ref=e2089]: 29-05-2026
+                      - generic [ref=e2091]:
+                        - status "Individual Content" [ref=e2092]:
+                          - img [ref=e2093]:
+                            - img [ref=e2094]
+                          - generic [ref=e2096]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e2098]:
+                          - img "step-forward" [ref=e2100]:
+                            - img [ref=e2101]
+                    - generic [ref=e2103]:
+                      - generic [ref=e2105]: Introduction to Generative AI [Learning Path]
+                      - generic [ref=e2108]:
+                        - generic [ref=e2109]: Mandatory
+                        - generic [ref=e2110]: Assigned by Admin
+                  - generic [ref=e2113] [cursor=pointer]:
+                    - generic [ref=e2114]:
+                      - generic [ref=e2116]:
+                        - generic [ref=e2117]: Due
+                        - generic [ref=e2118]: 29-05-2026
+                      - generic [ref=e2120]:
+                        - status "Individual Content" [ref=e2121]:
+                          - img [ref=e2122]:
+                            - img [ref=e2123]
+                          - generic [ref=e2125]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e2127]:
+                          - img "step-forward" [ref=e2129]:
+                            - img [ref=e2130]
+                    - generic [ref=e2132]:
+                      - generic [ref=e2134]: Introduction to Generative AI [Learning Path]
+                      - generic [ref=e2137]:
+                        - generic [ref=e2138]: Mandatory
+                        - generic [ref=e2139]: Assigned by Admin
+                  - generic [ref=e2142] [cursor=pointer]:
+                    - generic [ref=e2143]:
+                      - generic [ref=e2145]:
+                        - generic [ref=e2146]: Due
+                        - generic [ref=e2147]: N/A
+                      - generic [ref=e2149]:
+                        - status "Individual Content" [ref=e2150]:
+                          - img [ref=e2151]:
+                            - img [ref=e2152]
+                          - generic [ref=e2154]: Individual Content
+                        - button "Assigned, mark as in progress" [ref=e2156]:
+                          - img "step-forward" [ref=e2158]:
+                            - img [ref=e2159]
+                    - generic [ref=e2161]:
+                      - generic [ref=e2163]: Test sample 2026 001
+                      - generic [ref=e2165]:
+                        - generic [ref=e2166]:
+                          - generic [ref=e2168]: Software Development Lifecycle (SDLC) Management
+                          - generic [ref=e2170]: Agile/Scrum Methodologies
+                        - separator [ref=e2171]
+                        - generic [ref=e2173]: Assigned by Admin
+  - generic [ref=e2174]: "0"
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from '@playwright/test';
+  2  | import { TestContextSetup } from '../utils/TestContextSetup';
+  3  | 
+  4  | test.describe('Authentication Tests', () => {
+  5  |   
+  6  |   test('Employee Homepage validation', {tag: '@smoke'}, async ({},testInfo) => {
+  7  | 
+  8  |     const contextSetup = new TestContextSetup(testInfo);
+  9  |     //const page = await contextSetup.init(`${process.env.BASE_BE_URL}`, 'chromium');
+  10 |     const page = await contextSetup.init(`${process.env.BASE_FE_URL}`, 'chromium');
+  11 |     const token = await contextSetup.genericUtils.generateJWT(process.env.EMP_USERNAME);
+  12 |     // const page2 = await contextSetup.openNewTab();
+  13 |     //await page2.goto(`${process.env.BASE_FE_URL}`);
+  14 |     await contextSetup.genericUtils.setupAuthCookie(token);
+  15 |     await page.reload();
+  16 |     await page.waitForLoadState('domcontentloaded');
+  17 |     const contentName = await contextSetup.poManager._homePage.getContentName();
+  18 |     console.log(contentName);
+> 19 |     expect(contentNames.length).toBeGreaterThan(0);
+     |            ^ ReferenceError: contentNames is not defined
+  20 |   });
+  21 | 
+  22 | });
+```
