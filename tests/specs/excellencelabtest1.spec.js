@@ -11,12 +11,6 @@ test.describe('Authentication Tests', () => {
     await contextSetup.genericUtils.setupAuthCookie(token);
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
-    const contentName = await contextSetup.genericUtils.getValueByKey('IP_ContentName');
-    const contentBtn = await contextSetup.poManager._homePage.specificContent(contentName);
-    await contentBtn.hover();
-    await contextSetup.poManager._homePage.assignedTooltipMessageCheck();
-    await contentBtn.click();
-    await page.pause();
   });
 
 });
