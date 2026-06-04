@@ -3,7 +3,7 @@ import { TestContextSetup } from '../utils/TestContextSetup';
 
 test.describe('Individual Content Status Update Validation', () => {
   
-  test('Individual Content update status to Inprogress', {tag: '@smoke'}, async () => {
+  test('Individual Content update status to Inprogress', {tag: '@smoke'}, async ({}, testInfo) => {
     const contextSetup = new TestContextSetup(testInfo);
     const page = await contextSetup.init(`${process.env.BASE_FE_URL}`, 'chromium');
     const token = await contextSetup.genericUtils.generateJWT(process.env.EMP_USERNAME);
@@ -15,21 +15,47 @@ test.describe('Individual Content Status Update Validation', () => {
     await contentBtn.hover();
     await contextSetup.poManager._homePage.assignedTooltipMessageCheck();
     await contentBtn.click();
+    await contextSetup.poManager._homePage.inProgressToastMessageCheck();
+    await contextSetup.poManager._learningRecordsPage.getLearningRecordsButton().click();
+    await page.waitForLoadState('domcontentloaded');
+    await contextSetup.poManager._learningRecordsPage.screenTitleCheck();
+    const contentTitle = await contextSetup.poManager._learningRecordsPage.getFirstContentTitle();
+    await expect(contentTitle).toHaveText(contentName);
+    await expect(contextSetup.poManager._learningRecordsPage.getContentSource()).toHaveText(contextSetup.genericUtils.getValueByKey('IP_ContentSource'));
+    await expect(contextSetup.poManager._learningRecordsPage.getContentType()).toHaveText(contextSetup.genericUtils.getValueByKey('IP_ContentType'));
+    await expect(contextSetup.poManager._learningRecordsPage.getContentDate()).toHaveText(contextSetup.genericUtils.getValueByKey('IP_ContentDate'));
+    await expect(contextSetup.poManager._learningRecordsPage.getContentStatus()).toHaveText(contextSetup.genericUtils.getValueByKey('IP_ContentStatus'));
     await page.pause();
 
   });
 
-  test('Individual Content update status to Complete', {tag: '@smoke'}, async () => {
-    const contextSetup = new TestContextSetup();
-    const page = await contextSetup.init(`https://rahulshettyacademy.com/practice`, 'firefox');
+  test('Individual Content update status to Complete', {tag: '@smoke'}, async ({}, testInfo) => {
+    const contextSetup = new TestContextSetup(testInfo);
+    const page = await contextSetup.init(`${process.env.BASE_FE_URL}`, 'chromium');
+    const token = await contextSetup.genericUtils.generateJWT(process.env.EMP_USERNAME);
+    await contextSetup.genericUtils.setupAuthCookie(token);
+    await page.reload();
+    await page.waitForLoadState('domcontentloaded');
+    const contentName = await contextSetup.genericUtils.getValueByKey('IP_ContentName');
+    const contentBtn = await contextSetup.poManager._homePage.specificContent(contentName);
+    await contentBtn.hover();
+    await contextSetup.poManager._homePage.inProgressTooltipMessageCheck;
+    await contentBtn.click();
+    await contextSetup.poManager._homePage.confirmCompletionWarningMessageCheck();
+    await contextSetup.poManager._homePage.yesMarkCompleteButton.click();
+    await contextSetup.poManager._homePage.marCompleteToastMessageCheck();
+    await contextSetup.poManager._learningRecordsPage.getLearningRecordsButton().click();
+    await contextSetup.poManager._learningRecordsPage.screenTitleCheck();
+    const contentTitle = await contextSetup.poManager._learningRecordsPage.getFirstContentTitle();
+    await expect(contentTitle).toHaveText(contentName);
+    await expect(contextSetup.poManager._learningRecordsPage.getContentSource()).toHaveText(contextSetup.genericUtils.getValueByKey('IP_ContentSource'));
+    await expect(contextSetup.poManager._learningRecordsPage.getContentType()).toHaveText(contextSetup.genericUtils.getValueByKey('IP_ContentType'));
+    await expect(contextSetup.poManager._learningRecordsPage.getContentDate()).toHaveText(contextSetup.genericUtils.getValueByKey('IP_ContentDate'));
+    await expect(contextSetup.poManager._learningRecordsPage.getContentStatus()).toHaveText(contextSetup.genericUtils.getValueByKey('IP_ContentStatus'));
     await page.pause();
+
   });
 
-  test('log in with valid credentials webkit', async () => {
-    const contextSetup = new TestContextSetup();
-    const page = await contextSetup.init(`https://eventhub.rahulshettyacademy.com/login`, 'webkit');
-    await page.pause();
-
-  });
+  
 
 });

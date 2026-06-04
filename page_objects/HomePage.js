@@ -1,4 +1,4 @@
-import { expect } from "allure-playwright";
+import {expect} from '@playwright/test';
 
 export class HomePage {
   constructor(page) {
@@ -21,9 +21,11 @@ export class HomePage {
     this.contentCard = page.locator('._listColumn_p5zy6_346 ._listTop_p5zy6_354 ._listHeadingWrap_p5zy6_516');
     this.assignedTooltip = page.getByRole('tooltip', { name: 'Mark as in progress' });
     this.inProgressTooltip = page.getByRole('tooltip', { name: 'Mark complete' });
-    this.learningPathTooltip = page.getByRole('tooltip', { name: 'Click the card to open the learning path' })
+    this.learningPathTooltip = page.getByRole('tooltip', { name: 'Click the card to open the learning path' });
     this.inprogressToast = page;
     this.markCompleteToast = page;
+    this.confirmCompleteCancelButton = page.getByRole('button', { name: 'Cancel'});
+    this.yesMarkCompleteButton = page.getByRole('button', { name: 'Yes, mark complete'});
 
   }
 
@@ -113,16 +115,22 @@ export class HomePage {
     await expect(toolTipMessage).toBeVisible();
   }
 
-  async inProgressToastmessageCheck(){
+  async inProgressToastMessageCheck(){
     const toast = await this.inProgressToast;
     await toast.waitFor({ state: 'visible', timeout: 8000 });
     await expect(toast).toHaveText("Mark as in progress");
   }
 
-  async marCompleteToastmessageCheck(){
+  async markCompleteToastMessageCheck(){
     const toast = await this.markCompleteToast;
     await toast.waitFor({ state: 'visible', timeout: 8000 });
     await expect(toast).toHaveText("Mark as Completed");
+  }
+
+  async confirmCompletionWarningMessageCheck(contentName)
+  {
+    await this.page.locator(`//div[text()='Confirm completion']`).toBeVisible();
+    await this.page.locator(`//div[text()='${contentName}']`).toBeVisible();
   }
 
 
