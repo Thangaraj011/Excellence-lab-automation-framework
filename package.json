@@ -6,8 +6,8 @@
   "scripts": {
     "test": "npx playwright test",
     "test1": "npx playwright test tests/specs/excellencelabtest1.spec.js",
-    "test:smoke": "npx playwright test --grep @smoke",
-    "test:ci": "npx playwright test tests/specs/excellencelabtest1.spec.js",
+    "test:smoke": "npx playwright test tests/specs/seed.spec.js",
+    "test:ci": "npx playwright test tests/specs/seed.spec.js",
     "test:report": "playwright test tests/specs/excellencelabtest1.spec.js && npx allure generate allure-results --clean -o allure-report && npx allure open allure-report"
   },
   "keywords": [],

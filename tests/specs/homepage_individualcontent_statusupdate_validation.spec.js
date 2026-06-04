@@ -11,10 +11,10 @@ test.describe('Individual Content Status Update Validation', () => {
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
     const contentName = await contextSetup.genericUtils.getValueByKey('IP_ContentName');
-    const contentBtn = await contextSetup.poManager._homePage.specificContent(contentName);
-    await contentBtn.hover();
+    const contentProgressButton = await contextSetup.poManager._homePage.specificContentProgressButton(contentName);
+    await contentProgressButton.hover();
     await contextSetup.poManager._homePage.assignedTooltipMessageCheck();
-    await contentBtn.click();
+    await contentProgressButton.click();
     await contextSetup.poManager._homePage.inProgressToastMessageCheck();
     await contextSetup.poManager._learningRecordsPage.getLearningRecordsButton().click();
     await page.waitForLoadState('domcontentloaded');
@@ -37,10 +37,10 @@ test.describe('Individual Content Status Update Validation', () => {
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
     const contentName = await contextSetup.genericUtils.getValueByKey('IP_ContentName');
-    const contentBtn = await contextSetup.poManager._homePage.specificContent(contentName);
-    await contentBtn.hover();
+    const contentProgressButton = await contextSetup.poManager._homePage.specificContentProgressButton(contentName);
+    await contentProgressButton.hover();
     await contextSetup.poManager._homePage.inProgressTooltipMessageCheck;
-    await contentBtn.click();
+    await contentProgressButton.click();
     await contextSetup.poManager._homePage.confirmCompletionWarningMessageCheck();
     await contextSetup.poManager._homePage.yesMarkCompleteButton.click();
     await contextSetup.poManager._homePage.marCompleteToastMessageCheck();
@@ -48,10 +48,10 @@ test.describe('Individual Content Status Update Validation', () => {
     await contextSetup.poManager._learningRecordsPage.screenTitleCheck();
     const contentTitle = await contextSetup.poManager._learningRecordsPage.getFirstContentTitle();
     await expect(contentTitle).toHaveText(contentName);
-    await expect(contextSetup.poManager._learningRecordsPage.getContentSource()).toHaveText(contextSetup.genericUtils.getValueByKey('IP_ContentSource'));
-    await expect(contextSetup.poManager._learningRecordsPage.getContentType()).toHaveText(contextSetup.genericUtils.getValueByKey('IP_ContentType'));
-    await expect(contextSetup.poManager._learningRecordsPage.getContentDate()).toHaveText(contextSetup.genericUtils.getValueByKey('IP_ContentDate'));
-    await expect(contextSetup.poManager._learningRecordsPage.getContentStatus()).toHaveText(contextSetup.genericUtils.getValueByKey('IP_ContentStatus'));
+    await expect(contextSetup.poManager._learningRecordsPage.getContentSource(contentName)).toHaveText(contextSetup.genericUtils.getValueByKey('IP_ContentSource'));
+    await expect(contextSetup.poManager._learningRecordsPage.getContentType(contentName)).toHaveText(contextSetup.genericUtils.getValueByKey('IP_ContentType'));
+    await expect(contextSetup.poManager._learningRecordsPage.getContentDate(contentName)).toHaveText(contextSetup.genericUtils.getValueByKey('IP_ContentDate'));
+    await expect(contextSetup.poManager._learningRecordsPage.getContentStatus(contentName)).toHaveText(contextSetup.genericUtils.getValueByKey('IP_ContentStatus'));
     await page.pause();
 
   });

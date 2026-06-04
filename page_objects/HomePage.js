@@ -22,8 +22,8 @@ export class HomePage {
     this.assignedTooltip = page.getByRole('tooltip', { name: 'Mark as in progress' });
     this.inProgressTooltip = page.getByRole('tooltip', { name: 'Mark complete' });
     this.learningPathTooltip = page.getByRole('tooltip', { name: 'Click the card to open the learning path' });
-    this.inprogressToast = page;
-    this.markCompleteToast = page;
+    this.inprogressToast = page.getByText('Marked as in progress');
+    this.markCompleteToast = page.locator('div').filter({ hasText: 'Marked as completed' }).first();
     this.confirmCompleteCancelButton = page.getByRole('button', { name: 'Cancel'});
     this.yesMarkCompleteButton = page.getByRole('button', { name: 'Yes, mark complete'});
 
@@ -95,7 +95,15 @@ export class HomePage {
   // }
 
   async specificContent(contentName) {
+    const btn = this.page.locator(`//span[text()='${contentName}']`);
+    await btn.scrollIntoViewIfNeeded();
+    await btn.first().highlight()
+    await btn.waitFor({ state: 'visible' });
+  }
+
+  async specificContentProgressButton(contentName) {
     const btn = this.page.locator(`//span[text()='${contentName}']/../../../div/div/div/div/button`);
+    await btn.scrollIntoViewIfNeeded();
     await btn.waitFor({ state: 'visible' });
     return btn;
   }
@@ -118,19 +126,17 @@ export class HomePage {
   async inProgressToastMessageCheck(){
     const toast = await this.inProgressToast;
     await toast.waitFor({ state: 'visible', timeout: 8000 });
-    await expect(toast).toHaveText("Mark as in progress");
   }
 
   async markCompleteToastMessageCheck(){
     const toast = await this.markCompleteToast;
     await toast.waitFor({ state: 'visible', timeout: 8000 });
-    await expect(toast).toHaveText("Mark as Completed");
   }
 
   async confirmCompletionWarningMessageCheck(contentName)
   {
-    await this.page.locator(`//div[text()='Confirm completion']`).toBeVisible();
-    await this.page.locator(`//div[text()='${contentName}']`).toBeVisible();
+    await this.page.getByText('Confirm completion').toBeVisible();
+    await this.page.getByLabel('Confirm completion').getByText(`${contentName}']`).toBeVisible();
   }
 
 
