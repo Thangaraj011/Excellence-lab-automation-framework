@@ -76,23 +76,30 @@ export class GenericUtils {
     }
 
     async jsonToMap() {
-        if(!this.jsonObject) {
-            await this.setJsonData();
-        }
-        const convert = (obj) => {
-            const currentMap = new Map();
-            for (const [key, value] of Object.entries(obj)) {
-                if (value !== null && typeof value === "object" && !Array.isArray(value)) {
-                    currentMap.set(key, convert(value));
-                } else {
-                    currentMap.set(key, value);
-                }
-        }
-        return currentMap;   
-        };
-        this.map = await convert(this.jsonObject);
-        return this.map;
+    if (!this.jsonObject) {
+        await this.setJsonData();
     }
+    this.map = new Map();
+    const convert = (obj, currentMap) => {
+        for (const [key, value] of Object.entries(obj)) {
+            if (value !== null && typeof value === "object" && !Array.isArray(value)) {
+                // 1. Create a nested sub-map for structural integrity
+                const subMap = new Map();
+                currentMap.set(key, subMap);
+                if (currentMap !== this.map) {
+                    this.map.set(key, subMap);
+                }
+                convert(value, subMap);
+            } else {
+                currentMap.set(key, value);
+                this.map.set(key, value);
+            }
+        }
+    };
+
+    convert(this.jsonObject, this.map);
+    return this.map;
+}
 
     async getValueByKey(key) {
         if (!this.jsonObject) {

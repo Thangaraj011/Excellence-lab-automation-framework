@@ -9,7 +9,6 @@ export class TestContextSetup {
         this.context = null;
         this.page = null;
         this.poManager = null;
-        this.context = null;
         this.testInfo = testInfo;
     }
     async init(url, browserType) {

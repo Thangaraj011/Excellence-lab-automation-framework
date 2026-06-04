@@ -14,7 +14,6 @@ test.describe('Authentication Tests', () => {
     const contextSetup = new TestContextSetup();
     const page = await contextSetup.init(`https://rahulshettyacademy.com/practice`, 'firefox');
     await page.pause();
-
   });
 
   test('log in with valid credentials webkit', async () => {
