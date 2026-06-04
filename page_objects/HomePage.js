@@ -46,14 +46,28 @@ export class HomePage {
 
   async getManagerAssignedCardNames() {
     await this.assignedByManagerSection.waitFor({ state: 'visible' });
-    const sectionContainer = this.page.locator('div, section, .ant-card', { 
-    hasText: 'Assigned By Manager'}).first();
 
-    const count = await sectionCards.count();
-    if (count === 0) {
-      return this._getCardNamesFollowingHeader(this.assignedByManagerSection);
-    }
-    return (await sectionCards.allTextContents()).map(n => n.trim()).filter(Boolean);
+  const names = await this.assignedByManagerSection.evaluate(headerEl => {
+    // The header <span> lives inside .ant-card-head → .ant-card
+    // The content cards live inside .ant-card-body of that SAME .ant-card
+    const card = headerEl.closest('.ant-card');
+    if (!card) return [];
+
+    const cardBody = card.querySelector('.ant-card-body');
+    if (!cardBody) return [];
+
+    const results = [];
+    cardBody
+      .querySelectorAll('[class*="listHeadingWrap"]')
+      .forEach(node => {
+        const text = node.textContent?.trim();
+        if (text) results.push(text);
+      });
+
+    return results;
+  });
+
+  return names;  
   }
 
 
