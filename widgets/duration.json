@@ -1,1 +1,1 @@
-[{"uid":"ea6aff52d13f82a2","name":"Employee Homepage validation","time":{"start":1780585616779,"stop":1780585616871,"duration":92},"status":"failed","severity":"normal"}]
+[{"uid":"6c05881351c29d49","name":"Employee Homepage validation","time":{"start":1780579531925,"stop":1780579601609,"duration":69684},"status":"passed","severity":"normal"},{"uid":"53fd02d3d797b6bb","name":"Employee Homepage Validation","time":{"start":1780587085649,"stop":1780587086233,"duration":584},"status":"failed","severity":"normal"}]
