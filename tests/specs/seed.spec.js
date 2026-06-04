@@ -9,8 +9,8 @@ import { TestContextSetup } from '../utils/TestContextSetup';
         await page.reload();
         await page.waitForLoadState('domcontentloaded');
         const contentName = await contextSetup.genericUtils.getValueByKey('IP_ContentName');
-        const contentBtn = await contextSetup.poManager._homePage.specificContent(contentName);
-        await contentBtn.hover();
+        const contentProgressButton = await contextSetup.poManager._homePage.specificContentProgressButton(contentName);
+        await contentProgressButton.hover();
         await page.pause();
   });
 
