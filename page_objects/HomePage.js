@@ -3,7 +3,7 @@ import {expect} from '@playwright/test';
 export class HomePage {
   constructor(page) {
     this.page = page;
-    this.titleText = page.getByRole('heading', { name: 'Homepage' });
+    this.homepageTitle = page.getByRole('heading', { name: 'Homepage' });
     this.assignedCoursesTitle =  page.getByRole('tab', { name: 'Assigned Courses' });
     this.aiReccomendationsTitle =  page.getByRole('tab', { name: 'AI Recommendations' });
     this.searchTextbox = page.getByPlaceholder('Search');
@@ -17,7 +17,8 @@ export class HomePage {
     this.statusInProgressButton = page.getByText('In Progress', { exact: true });
     this.assignedByManagerSection = page.getByText('Assigned By Manager', { exact: true });
     this.assignedByAdminSection = page.getByText('Assigned By Admin', { exact: true });
-    this.managerAssigned = page.locator("//span[text()='Assigned By Manager']/../../../../../../../following::div[@class='ant-card-body']");
+    this.managerAssignedContentCards = page.locator(`//span[text()='Assigned By Manager']/../../../../../../../following-sibling::div[@class='ant-card-body']`);
+    this.adminAssignedContentCards = page.locator(`//span[text()='Assigned By Admin']/../../../../../../../following-sibling::div[@class='ant-card-body']`);
     this.contentCard = page.locator('._listColumn_p5zy6_346 ._listTop_p5zy6_354 ._listHeadingWrap_p5zy6_516');
     this.assignedTooltip = page.getByRole('tooltip', { name: 'Mark as in progress' });
     this.inProgressTooltip = page.getByRole('tooltip', { name: 'Mark complete' });
@@ -29,19 +30,24 @@ export class HomePage {
 
   }
 
-  async titleCheck() {
-      await this.titleText.waitFor({ state: 'visible' });
+  async homepageTitleCheck() {
+      await this.homepageTitle.waitFor({ state: 'visible' });
+      await expect(this.assignedCoursesTitle).toBeVisible();
+      await expect(this.aiReccomendationsTitle).toBeVisible();
   }
 
   async searchCourse(courseName) {
+    await this.searchTextbox.waitFor({ state: 'visible' });
     await this.searchTextbox.fill(courseName);
   }
 
   async selectSkillCategory(category) {
+    await this.skillCatgeoryDropdown.waitFor({ state: 'visible' });
     await this.skillCatgeoryDropdown.selectOption({ label: category });
   }
 
   async selectSkillName(skillName) {
+    await this.skillNameDropdown.waitFor({ state: 'visible' });
     await this.skillNameDropdown.selectOption({ label: skillName });
   }
 
@@ -51,50 +57,33 @@ export class HomePage {
     return names.map(n => n.trim()).filter(Boolean);
   }
 
-  // async getManagerAssignedCardNames() {
-  //   await this.assignedByManagerSection.waitFor({ state: 'visible' });
+  async getManagerAssignedCardNames() {
+    await this.assignedByManagerSection.waitFor({ state: 'visible' });
+    const contentsElement = this.page.locator(`//span[text()='Assigned By Manager']/../../../../../../../following-sibling::div[@class='ant-card-body']//div[contains(@class,'_listHeadingWrap_p5zy6_516')]`);
+    await contentsElement.first().waitFor({ state: 'visible' });
+    console.log("********************* Manager Assigned Contents ************************");
+    const managerAssignedContentNames = await contentsElement.allTextContents();
+    return managerAssignedContentNames;
+  }
 
-  // const names = await this.assignedByManagerSection.evaluate(headerEl => {
-  //   // The header <span> lives inside .ant-card-head → .ant-card
-  //   // The content cards live inside .ant-card-body of that SAME .ant-card
-  //   const card = headerEl.closest('.ant-card');
-  //   if (!card) return [];
+    async getAdminAssignedCardNames() {
+    await this.assignedByAdminSection.waitFor({ state: 'visible' });
+    const contentsElement = this.page.locator(`//span[text()='Assigned By Admin']/../../../../../../../following-sibling::div[@class='ant-card-body']//div[contains(@class,'_listHeadingWrap_p5zy6_516')]`);
+    await contentsElement.first().waitFor({ state: 'visible' });
+    console.log("********************* Admin Assigned Contents ************************");
+    const adminAssignedContentNames = await contentsElement.allTextContents();
+    return adminAssignedContentNames;
+  }
 
-  //   const cardBody = card.querySelector('.ant-card-body');
-  //   if (!cardBody) return [];
-
-  //   const results = [];
-  //   cardBody
-  //     .querySelectorAll('[class*="listHeadingWrap"]')
-  //     .forEach(node => {
-  //       const text = node.textContent?.trim();
-  //       if (text) results.push(text);
-  //     });
-
-  //   return results;
-  // });
-
-  // return names;  
-  // }
+  async checkManagerAdminsections(){
+    await this.assignedByManagerSection.waitFor({ state: 'visible' });
+    await expect(this.adminAssignedContentCards).toBeVisible();
+    await expect(this.assignedByAdminSection).toBeVisible();
+    await expect(this.adminAssignedContentCards).toBeVisible();
+  }
 
 
-  // async _getCardNamesFollowingHeader(headerLocator) {
-  //   const names = await headerLocator.evaluate(el => {
-  //     const results = [];
-  //     let sibling = el.closest('[class]')?.nextElementSibling;
-  //     while (sibling) {
-  //       sibling.querySelectorAll('[class*="listHeadingWrap"]').forEach(node => {
-  //         const text = node.textContent?.trim();
-  //         if (text) results.push(text);
-  //       });
-  //       sibling = sibling.nextElementSibling;
-  //     }
-  //     return results;
-  //   });
-  //   return names;
-  // }
-
-  async specificContent(contentName) {
+  async specificContentDisplayCheck(contentName) {
     const btn = this.page.locator(`//span[text()='${contentName}']`);
     await btn.scrollIntoViewIfNeeded();
     await btn.first().highlight()
@@ -136,7 +125,7 @@ export class HomePage {
   async confirmCompletionWarningMessageCheck(contentName)
   {
     await this.page.getByText('Confirm completion').toBeVisible();
-    await this.page.getByLabel('Confirm completion').getByText(`${contentName}']`).toBeVisible();
+    await this.page.getByLabel('Confirm completion').getByText(`${contentName}`).toBeVisible();
   }
 
 

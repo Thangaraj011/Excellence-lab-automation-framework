@@ -11,6 +11,13 @@ test.describe('Excellence Lab Homepage Individual Content Status Update Validati
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
     const contentName = await contextSetup.genericUtils.getValueByKey('IP_ContentName');
+    await contextSetup.poManager._homePage.homepageTitleCheck();
+    await contextSetup.poManager._homePage.checkManagerAdminsections();
+    // const managerAssignedContents = await contextSetup.poManager._homePage.getManagerAssignedCardNames();
+    // console.log(managerAssignedContents);
+    // const adminAssignedContents = await contextSetup.poManager._homePage.getAdminAssignedCardNames();
+    // console.log(adminAssignedContents);
+    await contextSetup.poManager._homePage.specificContentDisplayCheck(contentName);
     const contentProgressButton = await contextSetup.poManager._homePage.specificContentProgressButton(contentName);
     await contentProgressButton.hover();
     await contextSetup.poManager._homePage.assignedTooltipMessageCheck();
@@ -29,7 +36,7 @@ test.describe('Excellence Lab Homepage Individual Content Status Update Validati
 
   });
 
-  test('Individual Content update status to Complete', {tag: '@smoke'}, async ({}, testInfo) => {
+  test.only('Individual Content update status to Complete', {tag: '@smoke'}, async ({}, testInfo) => {
     const contextSetup = new TestContextSetup(testInfo);
     const page = await contextSetup.init(`${process.env.BASE_FE_URL}`, 'chromium');
     const token = await contextSetup.genericUtils.generateJWT(process.env.EMP_USERNAME);
@@ -37,14 +44,18 @@ test.describe('Excellence Lab Homepage Individual Content Status Update Validati
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
     const contentName = await contextSetup.genericUtils.getValueByKey('IP_ContentName');
+    await contextSetup.poManager._homePage.homepageTitleCheck();
+    await contextSetup.poManager._homePage.checkManagerAdminsections();
+    await contextSetup.poManager._homePage.specificContentDisplayCheck(contentName);
     const contentProgressButton = await contextSetup.poManager._homePage.specificContentProgressButton(contentName);
     await contentProgressButton.hover();
-    await contextSetup.poManager._homePage.inProgressTooltipMessageCheck;
+    await contextSetup.poManager._homePage.inProgressTooltipMessageCheck();
     await contentProgressButton.click();
-    await contextSetup.poManager._homePage.confirmCompletionWarningMessageCheck();
+    await contextSetup.poManager._homePage.confirmCompletionWarningMessageCheck(contentName);
     await contextSetup.poManager._homePage.yesMarkCompleteButton.click();
-    await contextSetup.poManager._homePage.marCompleteToastMessageCheck();
+    await contextSetup.poManager._homePage.markCompleteToastMessageCheck();
     await contextSetup.poManager._learningRecordsPage.getLearningRecordsButton().click();
+    await page.waitForLoadState('domcontentloaded');
     await contextSetup.poManager._learningRecordsPage.screenTitleCheck();
     const contentTitle = await contextSetup.poManager._learningRecordsPage.getFirstContentTitle();
     await expect(contentTitle).toHaveText(contentName);
