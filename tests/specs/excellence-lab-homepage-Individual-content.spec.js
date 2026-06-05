@@ -6,7 +6,7 @@ test.describe.serial('Excellence Lab Homepage Individual Content Status Update V
   test('Individual Content update status to Inprogress', {tag: '@smoke'}, async ({}, testInfo) => {
     const contextSetup = new TestContextSetup(testInfo);
     const page = await contextSetup.init(`${process.env.BASE_FE_URL}`, 'chromium');
-    const token = await contextSetup.genericUtils.generateJWT(process.env.EMP_USERNAME);
+    const token = await contextSetup.genericUtils.generateJWT(process.env.EMP_USER);
     await contextSetup.genericUtils.setupAuthCookie(token);
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
@@ -39,7 +39,7 @@ test.describe.serial('Excellence Lab Homepage Individual Content Status Update V
   test('Individual Content update status to Complete', {tag: '@smoke'}, async ({}, testInfo) => {
     const contextSetup = new TestContextSetup(testInfo);
     const page = await contextSetup.init(`${process.env.BASE_FE_URL}`, 'chromium');
-    const token = await contextSetup.genericUtils.generateJWT(process.env.EMP_USERNAME);
+    const token = await contextSetup.genericUtils.generateJWT(process.env.EMP_USER);
     await contextSetup.genericUtils.setupAuthCookie(token);
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
