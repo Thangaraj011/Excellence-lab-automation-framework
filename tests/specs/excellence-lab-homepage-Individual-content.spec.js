@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { TestContextSetup } from '../utils/TestContextSetup';
 
-test.describe('Individual Content Status Update Validation', () => {
+test.describe('Excellence Lab Homepage Individual Content Status Update Validation', () => {
   
   test('Individual Content update status to Inprogress', {tag: '@smoke'}, async ({}, testInfo) => {
     const contextSetup = new TestContextSetup(testInfo);
