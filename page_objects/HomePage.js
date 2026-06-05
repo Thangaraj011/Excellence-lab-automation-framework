@@ -23,7 +23,7 @@ export class HomePage {
     this.assignedTooltip = page.getByRole('tooltip', { name: 'Mark as in progress' });
     this.inProgressTooltip = page.getByRole('tooltip', { name: 'Mark complete' });
     this.learningPathTooltip = page.getByRole('tooltip', { name: 'Click the card to open the learning path' });
-    this.inprogressToast = page.getByText('Marked as in progress');
+    this.inProgressToast = page.getByText('Marked as in progress');
     this.markCompleteToast = page.locator('div').filter({ hasText: 'Marked as completed' }).first();
     this.confirmCompleteCancelButton = page.getByRole('button', { name: 'Cancel'});
     this.yesMarkCompleteButton = page.getByRole('button', { name: 'Yes, mark complete'});
@@ -124,8 +124,8 @@ export class HomePage {
 
   async confirmCompletionWarningMessageCheck(contentName)
   {
-    await this.page.getByText('Confirm completion').toBeVisible();
-    await this.page.getByLabel('Confirm completion').getByText(`${contentName}`).toBeVisible();
+    await expect(this.page.getByText('Confirm completion')).toBeVisible();
+    await expect(this.page.getByLabel('Confirm completion').getByText(`${contentName}`)).toBeVisible();
   }
 
 

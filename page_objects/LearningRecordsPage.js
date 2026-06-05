@@ -17,43 +17,43 @@ export class LearningRecordsPage {
     this.deleteOption = page.locator(`//span[text()='Delete']`);
   }
 
-  async getLearningRecordsButton()
+  getLearningRecordsButton()
   {
-    return await this.learningRecords;
+    return this.learningRecords;
   }
 
   async screenTitleCheck()
   {
-    await expect(this.titleText.textContext()).toBeVisible();
+    await expect(this.titleText).toBeVisible();
   }
 
-  async getFirstContentTitle(){
-    return this.firstContenttitle.textContent();
+  getFirstContentTitle(){
+    return this.firstContenttitle;
   }
 
-  async getContentSource(contentName)
+  getContentSource(contentName)
   {
-    return await this.page.locator(`//tbody/tr/td[contains(@title,'${contentName}}')]//following-sibling::td`).first().textContent();
+    return this.page.locator(`//tbody/tr/td[contains(@title,'${contentName}')]//following-sibling::td`).first();
   }
 
-  async getContentType(contentName)
+  getContentType(contentName)
   {
-    return await this.page.locator(`//tbody/tr/td[contains(@title,'${contentName}}')]//following-sibling::td`).nth(1).textContent();
+    return this.page.locator(`//tbody/tr/td[contains(@title,'${contentName}')]//following-sibling::td`).nth(1);
   }
 
-  async getContentDate(contentName)
+  getContentDate(contentName)
   {
-    return await this.page.locator(`//tbody/tr/td[contains(@title,'${contentName}}')]//following-sibling::td`).nth(2).textContent();
+    return this.page.locator(`//tbody/tr/td[contains(@title,'${contentName}')]//following-sibling::td`).nth(2);
   }
 
-  async getContentStatus(contentName)
+  getContentStatus(contentName)
   {
-    return await this.page.locator(`//tbody/tr/td[contains(@title,'${contentName}}')]//following-sibling::td`).nth(3).textContent();
+    return this.page.locator(`//tbody/tr/td[contains(@title,'${contentName}')]//following-sibling::td`).nth(3);
   }
 
-  async getContentActionIcon(contentName)
+  getContentActionIcon(contentName)
   {
-    return await this.page.locator(`//tbody/tr/td[contains(@title,'${contentName}}')]//following-sibling::td/button`);
+    return this.page.locator(`//tbody/tr/td[contains(@title,'${contentName}')]//following-sibling::td/button`);
   }
 
   async getEditOption()
@@ -65,11 +65,5 @@ export class LearningRecordsPage {
   {
     return this.deleteOption;
   }
-
-
-
-
-
-
 
 }
