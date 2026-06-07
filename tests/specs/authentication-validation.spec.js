@@ -10,8 +10,8 @@ test.describe('User Login Successful Tests', () => {
     await contextSetup.genericUtils.setupAuthCookie(token);
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
-    await contextSetup.poManager.homePage.homepageTitleCheck();
-    await contextSetup.poManager.homePage.checkManagerAdminsections();
+    await contextSetup.poManager.homePage.verifyHomepageLoaded();
+    await contextSetup.poManager.homePage.verifyManagerAndAdminSections();
   });
 
   test('Manager Indirect Login Homepage validation', async ({},testInfo) => {
@@ -21,8 +21,8 @@ test.describe('User Login Successful Tests', () => {
     await contextSetup.genericUtils.setupAuthCookie(token);
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
-    await contextSetup.poManager.homePage.homepageTitleCheck();
-    await contextSetup.poManager.homePage.checkManagerAdminsections();
+    await contextSetup.poManager.homePage.verifyHomepageLoaded();
+    await contextSetup.poManager.homePage.verifyManagerAndAdminSections();
   });
 
   test('Manager Direct Login Homepage validation', async ({},testInfo) => {
@@ -32,8 +32,8 @@ test.describe('User Login Successful Tests', () => {
     await contextSetup.genericUtils.setupAuthCookie(token);
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
-    await contextSetup.poManager.homePage.homepageTitleCheck();
-    await contextSetup.poManager.homePage.checkManagerAdminsections();
+    await contextSetup.poManager.homePage.verifyHomepageLoaded();
+    await contextSetup.poManager.homePage.verifyManagerAndAdminSections();
   });
 
   test('Admin Login Homepage validation', async ({},testInfo) => {
@@ -43,8 +43,8 @@ test.describe('User Login Successful Tests', () => {
     await contextSetup.genericUtils.setupAuthCookie(token);
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
-    await contextSetup.poManager.homePage.homepageTitleCheck();
-    await contextSetup.poManager.homePage.checkManagerAdminsections();
+    await contextSetup.poManager.homePage.verifyHomepageLoaded();
+    await contextSetup.poManager.homePage.verifyManagerAndAdminSections();
   });
 
 
@@ -55,8 +55,8 @@ test.describe('User Login Successful Tests', () => {
     await contextSetup.genericUtils.setupAuthCookie(token);
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
-    await contextSetup.poManager.homePage.homepageTitleCheck();
-    await contextSetup.poManager.homePage.checkManagerAdminsections();
+    await contextSetup.poManager.homePage.verifyHomepageLoaded();
+    await contextSetup.poManager.homePage.verifyManagerAndAdminSections();
   });
 
 
