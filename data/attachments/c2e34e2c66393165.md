@@ -1,0 +1,88 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: authentication-validation.spec.js >> User Login Successful Tests >> Admin Login Homepage validation
+- Location: tests/specs/authentication-validation.spec.js:39:3
+
+# Error details
+
+```
+TypeError: contextSetup.poManager.homePage.homepageTitleCheck is not a function
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from '@playwright/test';
+  2  | import { TestContextSetup } from '../context/TestContextSetup';
+  3  | 
+  4  | test.describe('User Login Successful Tests', () => {
+  5  |   
+  6  |   test('Employee Login Homepage validation', async ({},testInfo) => {
+  7  |     const contextSetup = new TestContextSetup(testInfo);
+  8  |     const page = await contextSetup.init(`${process.env.BASE_URL}`, 'chromium');
+  9  |     const token = await contextSetup.genericUtils.generateJWT(process.env.EMP_USER);
+  10 |     await contextSetup.genericUtils.setupAuthCookie(token);
+  11 |     await page.reload();
+  12 |     await page.waitForLoadState('domcontentloaded');
+  13 |     await contextSetup.poManager.homePage.homepageTitleCheck();
+  14 |     await contextSetup.poManager.homePage.checkManagerAdminsections();
+  15 |   });
+  16 | 
+  17 |   test('Manager Indirect Login Homepage validation', async ({},testInfo) => {
+  18 |     const contextSetup = new TestContextSetup(testInfo);
+  19 |     const page = await contextSetup.init(`${process.env.BASE_URL}`, 'chromium');
+  20 |     const token = await contextSetup.genericUtils.generateJWT(process.env.MANAGER_IND_USER);
+  21 |     await contextSetup.genericUtils.setupAuthCookie(token);
+  22 |     await page.reload();
+  23 |     await page.waitForLoadState('domcontentloaded');
+  24 |     await contextSetup.poManager.homePage.homepageTitleCheck();
+  25 |     await contextSetup.poManager.homePage.checkManagerAdminsections();
+  26 |   });
+  27 | 
+  28 |   test('Manager Direct Login Homepage validation', async ({},testInfo) => {
+  29 |     const contextSetup = new TestContextSetup(testInfo);
+  30 |     const page = await contextSetup.init(`${process.env.BASE_URL}`, 'chromium');
+  31 |     const token = await contextSetup.genericUtils.generateJWT(process.env.MANAGER_DIR_USER);
+  32 |     await contextSetup.genericUtils.setupAuthCookie(token);
+  33 |     await page.reload();
+  34 |     await page.waitForLoadState('domcontentloaded');
+  35 |     await contextSetup.poManager.homePage.homepageTitleCheck();
+  36 |     await contextSetup.poManager.homePage.checkManagerAdminsections();
+  37 |   });
+  38 | 
+  39 |   test('Admin Login Homepage validation', async ({},testInfo) => {
+  40 |     const contextSetup = new TestContextSetup(testInfo);
+  41 |     const page = await contextSetup.init(`${process.env.BASE_URL}`, 'chromium');
+  42 |     const token = await contextSetup.genericUtils.generateJWT(process.env.ADMIN_USER);
+  43 |     await contextSetup.genericUtils.setupAuthCookie(token);
+  44 |     await page.reload();
+  45 |     await page.waitForLoadState('domcontentloaded');
+> 46 |     await contextSetup.poManager.homePage.homepageTitleCheck();
+     |                                           ^ TypeError: contextSetup.poManager.homePage.homepageTitleCheck is not a function
+  47 |     await contextSetup.poManager.homePage.checkManagerAdminsections();
+  48 |   });
+  49 | 
+  50 | 
+  51 |     test('Admin Manager Login Homepage validation', async ({},testInfo) => {
+  52 |     const contextSetup = new TestContextSetup(testInfo);
+  53 |     const page = await contextSetup.init(`${process.env.BASE_URL}`, 'chromium');
+  54 |     const token = await contextSetup.genericUtils.generateJWT(process.env.ADMIN_MANAGER_USER);
+  55 |     await contextSetup.genericUtils.setupAuthCookie(token);
+  56 |     await page.reload();
+  57 |     await page.waitForLoadState('domcontentloaded');
+  58 |     await contextSetup.poManager.homePage.homepageTitleCheck();
+  59 |     await contextSetup.poManager.homePage.checkManagerAdminsections();
+  60 |   });
+  61 | 
+  62 | 
+  63 | 
+  64 | 
+  65 | 
+  66 | });
+```
