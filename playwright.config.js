@@ -1,7 +1,9 @@
-const { defineConfig, devices } = require('@playwright/test');
-const path = require('path');
-const dotenv = require('dotenv');
+import { defineConfig, devices } from '@playwright/test';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const environment = process.env.ENV || 'dev';
 
 dotenv.config({
@@ -14,33 +16,32 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
-  reporter: [['html'],['allure-playwright', { outputFolder: 'allure-results' }]],
+  workers: process.env.CI ? 2 : 4,
+  timeout: 30000,
+  reporter: [['html', { open: 'never' }],['allure-playwright', { outputFolder: 'allure-results' }], ['list'],],
   use: {
-    trace: 'on-first-retry',
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
-    headless: process.env.CI ? true : true
-    //headless: false
+    baseURL:             process.env.BASE_FE_URL,
+    trace:               'on-first-retry',
+    screenshot:          'only-on-failure',
+    video:               'retain-on-failure',
+    headless:            process.env.CI ? true : false, // ← headed locally
+    actionTimeout:       15000,
+    navigationTimeout:   30000,
   },
 
-  // /* Configure projects for major browsers */
   // projects: [
   //   {
   //     name: 'chromium',
   //     use: { ...devices['Desktop Chrome'] },
   //   },
-
   //   {
   //     name: 'firefox',
   //     use: { ...devices['Desktop Firefox'] },
   //   },
-
   //   {
   //     name: 'webkit',
   //     use: { ...devices['Desktop Safari'] },
   //   },
-
   // ],
 
 });

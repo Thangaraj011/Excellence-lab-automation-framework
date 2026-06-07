@@ -1,0 +1,1 @@
+filePath: /Users/thangaraj.r/Documents/playwright-pom-framework/tests/data/Individual_Content_update_status_to_Inprogress_with_custom_fixtures.json

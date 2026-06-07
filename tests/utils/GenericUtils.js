@@ -1,10 +1,17 @@
-import users from '../data/users.json';
+import { fileURLToPath } from 'url';
+import path from'path';
+import fs from 'fs';
 import crypto from 'crypto';
-const fs = require("fs");
-const path = require("path");
+import { createRequire } from 'module';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname  = path.dirname(__filename);
+
+const require = createRequire(import.meta.url);
+const users   = require('../data/users.json');
 
 const SECRET = "j4dFtlJH68pdc9A4";
-const FRONTEND_BASE_URL = process.env.BASE_FE_URL || 'http://localhost:3000';
+const FRONTEND_BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
 
 export class GenericUtils {
     constructor(context, testInfo) {
@@ -63,6 +70,11 @@ export class GenericUtils {
     }
 
     async setJsonData() {
+        // const cleanTitle = this.testInfo.title
+        // .replace(/@\w+/g, '')  // remove @fixtures, @smoke etc
+        // .trim()
+        // .replace(/\s+/g, '_'); 
+
         const fileName = `${this.testInfo.title}.json`;
         const filePath = path.resolve(__dirname, "../data", fileName);
         console.log(`filePath: ${filePath}`);

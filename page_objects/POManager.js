@@ -1,20 +1,21 @@
-import { HomePage } from './HomePage';
-import { LearningRecordsPage } from './LearningRecordsPage';
+import { HomePage } from './HomePage.js';
+import { LearningRecordsPage } from './LearningRecordsPage.js';
 
 export class POManager {
 
   constructor(page) {
     this.page = page;
-    this._homePage = new HomePage(this.page);
-    this._learningRecordsPage = new LearningRecordsPage(this.page);
-  }
-  
-    homepage(){
-    return this._homePage;
+    this._cache = {};
   }
 
-    learningRecordsPage(){
-    return this._learningRecordsPage;
+  _get(key, PageClass) {
+    if (!this._cache[key]) {
+      this._cache[key] = new PageClass(this.page);
+    }
+    return this._cache[key];
   }
+  
+  get homePage()            { return this._get('homePage', HomePage); }
+  get learningRecordsPage() { return this._get('learningRecordsPage', LearningRecordsPage); }
 
 }
