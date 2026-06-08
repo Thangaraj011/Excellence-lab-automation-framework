@@ -1,13 +1,13 @@
 import { test, expect } from '../../fixtures/index.js';
 import {  BasicComponents } from '../../utils/BasicComponents.js';
+import { learningPathData } from '../../data/homepage-learning-path-sample.data.js';
 
 test.describe.serial('Homepage Learning path status update validation', () =>{
-  let learningPathName;
   let todaysDate;
 
   test.beforeEach(async ({ homePage, genericUtils }) => {
     todaysDate = new BasicComponents().getTodaysDate();
-    learningPathName = await genericUtils.getValueByKey('IP_LearningPathName');
+    const { learningPathName } = learningPathData.individualInProgress;
 
     await homePage.verifyHomepageLoaded();
     await homePage.verifyManagerAndAdminSections();
@@ -17,51 +17,49 @@ test.describe.serial('Homepage Learning path status update validation', () =>{
     await homePage.verifyLearningPathDetailsScreen(learningPathName);
   });
 
-  test('Learning path specific individual content status update to Inprogress validation', { tag: ['@LPtests'] }, async ({ authPage, homePage, learningRecordsPage, genericUtils }) => {
-    const individualContentName = await genericUtils.getValueByKey('IP_IndividualContentName');
-    const expectedStatus = await genericUtils.getValueByKey('IP_ContentStatus');
+  test('Learning path specific individual content status update to Inprogress validation', { tag: ['@LPtestsNew'] }, async ({ authPage, homePage, learningRecordsPage, genericUtils }) => {
+    const data = learningPathData.individualInProgress;
 
     await homePage.verifyFiltersOnLearningPathDetailsScreen();
-    await homePage.verifyContentVisible(individualContentName);
+    await homePage.verifyContentVisible(data.contentName);
 
     await test.step('Mark content as In Progress', async () => {
-        const progressButton = await homePage.getContentProgressButton(individualContentName);
+        const progressButton = await homePage.getContentProgressButton(data.contentName);
         await progressButton.hover();
         await homePage.verifyAssignedTooltip();
         await progressButton.click();
         await homePage.verifyInProgressTooltip();
       });
 
-    await learningRecordsPage.verifyInLearningRecords(individualContentName, todaysDate, expectedStatus);
+    await learningRecordsPage.verifyInLearningRecords(data.contentName, todaysDate, data.expectedStatus);
   });
 
 
-  test('Learning path specific individual content status update to Completed validation', { tag: ['@LPtests'] }, async ({ authPage, homePage, learningRecordsPage, genericUtils }) => {
-    const individualContentName = await genericUtils.getValueByKey('IP_IndividualContentName');
-    const expectedStatus = await genericUtils.getValueByKey('IP_ContentStatus');
+  test('Learning path specific individual content status update to Completed validation', { tag: ['@LPtestsNew'] }, async ({ authPage, homePage, learningRecordsPage, genericUtils }) => {
+    const data = learningPathData.individualCompleted;
     const currentProgress = await homePage.getLearningPathProgressPercentage();
 
     await homePage.verifyFiltersOnLearningPathDetailsScreen();
-    await homePage.verifyContentVisible(individualContentName);
+    await homePage.verifyContentVisible(data.contentName);
 
     await test.step('Mark content as Completed', async () => {
-        const progressButton = await homePage.getContentProgressButton(individualContentName);
+        const progressButton = await homePage.getContentProgressButton(data.contentName);
         await progressButton.hover();
         await homePage.verifyInProgressTooltip();
         await progressButton.click();
 
-        await homePage.verifyConfirmCompletionDialog(individualContentName);
+        await homePage.verifyConfirmCompletionDialog(data.contentName);
         await homePage.yesMarkCompleteButton.click();
         await homePage.verifyMarkCompleteToast();
       });
 
     await homePage.expectProgressChanged(currentProgress);
 
-    await learningRecordsPage.verifyInLearningRecords(individualContentName, todaysDate, expectedStatus);
+    await learningRecordsPage.verifyInLearningRecords(data.contentName, todaysDate, data.expectedStatus);
   });
 
-  test('Entire Learning path status update to Completed validation', { tag: ['@LPtests'] }, async ({ authPage, homePage, learningRecordsPage, genericUtils }) => {
-    
+  test('Entire Learning path status update to Completed validation', { tag: ['@LPtestsNew'] }, async ({ authPage, homePage, learningRecordsPage, genericUtils }) => {
+    const data = learningPathData.entirePathCompleted;
     const currentProgress = await homePage.getLearningPathProgressPercentage();
     
     await homePage.verifyFiltersOnLearningPathDetailsScreen();
