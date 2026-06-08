@@ -24,25 +24,15 @@ export default defineConfig({
     trace:               'on-first-retry',
     screenshot:          'only-on-failure',
     video:               'retain-on-failure',
-    headless:            process.env.CI ? true : false, // ← headed locally
+    headless:            process.env.CI ? true : false,
     actionTimeout:       15000,
     navigationTimeout:   30000,
   },
 
-  // projects: [
-  //   {
-  //     name: 'chromium',
-  //     use: { ...devices['Desktop Chrome'] },
-  //   },
-  //   {
-  //     name: 'firefox',
-  //     use: { ...devices['Desktop Firefox'] },
-  //   },
-  //   {
-  //     name: 'webkit',
-  //     use: { ...devices['Desktop Safari'] },
-  //   },
-  // ],
+  projects: [
+    { name: 'dev',     use: { baseURL: process.env.BASE_URL } },
+    { name: 'prod',    use: { baseURL: process.env.BASE_URL } },
+  ],
 
 });
 
