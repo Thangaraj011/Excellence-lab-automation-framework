@@ -40,6 +40,7 @@ export class HomePage {
     
     this.confirmCompleteCancelButton = page.getByRole('button', { name: 'Cancel'});
     this.yesMarkCompleteButton = page.getByRole('button', { name: 'Yes, mark complete'});
+    this.learningPathProgressLocator = this.page.locator('[class*="_pathProgressPercent_"]');
 
   }
 
@@ -164,7 +165,7 @@ export class HomePage {
 
   async getLearningPathProgressPercentage()
   {
-    const progressLocator = this.page.locator('[class*="_pathProgressPercent_"]');
+    const progressLocator = this.learningPathProgressLocator;
     await progressLocator.waitFor({ state: 'visible' });
     const currentProgress = (await progressLocator.textContent())?.trim() ?? '';
     return currentProgress;
@@ -180,7 +181,16 @@ export class HomePage {
   async markAllIndividualContentsToCompleteStatus(contentNames)
   {
     for (const contentName of contentNames) {
-      const progressButton = await this.getContentProgressButton(contentName);
+      const progressButton = this.page.locator(
+      `//span[text()='${contentName}']/../../../div/div/div/div/button`
+    );
+
+      if ((await progressButton.count()) === 0) {
+        console.log(`"${contentName}" already complete (no button) — skipping`);
+        continue;
+      }
+
+      await progressButton.scrollIntoViewIfNeeded();
       await progressButton.hover();
 
       const tooltip = this.page.getByRole('tooltip');
@@ -212,6 +222,10 @@ export class HomePage {
     await this.yesMarkCompleteButton.click();
     await this.verifyMarkCompleteToast();
     await this.markCompleteToast.waitFor({ state: 'hidden' });
+}
+
+  async expectProgressChanged( previousProgress) {
+  await expect(this.learningPathProgressLocator).not.toHaveText(previousProgress);
 }
 
 }

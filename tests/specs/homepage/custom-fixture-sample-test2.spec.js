@@ -25,10 +25,8 @@ test.describe.serial('Homepage Individual Content status update validation with 
       await expect(contentTitle).toHaveText(contentName);
       await expect(learningRecordsPage.getContentSource(contentName))
         .toHaveText(await genericUtils.getValueByKey('IP_ContentSource'));
-    //   await expect(learningRecordsPage.getContentType(contentName))
-    //     .toHaveText(await genericUtils.getValueByKey('IP_ContentType'));
-    //   await expect(learningRecordsPage.getContentDate(contentName))
-    //     .toHaveText(await genericUtils.getValueByKey('IP_ContentDate'));
+      await expect(learningRecordsPage.getContentDate(contentName))
+        .toHaveText(await genericUtils.getValueByKey('IP_ContentDate'));
       await expect(learningRecordsPage.getContentStatus(contentName))
         .toHaveText(await genericUtils.getValueByKey('IP_ContentStatus'));
     }
@@ -60,10 +58,8 @@ test.describe.serial('Homepage Individual Content status update validation with 
       await expect(contentTitle).toHaveText(contentName);
       await expect(learningRecordsPage.getContentSource(contentName))
         .toHaveText(await genericUtils.getValueByKey('IP_ContentSource'));
-    //   await expect(learningRecordsPage.getContentType(contentName))
-    //     .toHaveText(await genericUtils.getValueByKey('IP_ContentType'));
-    //   await expect(learningRecordsPage.getContentDate(contentName))
-    //     .toHaveText(await genericUtils.getValueByKey('IP_ContentDate'));
+      await expect(learningRecordsPage.getContentDate(contentName))
+        .toHaveText(await genericUtils.getValueByKey('IP_ContentDate'));
       await expect(learningRecordsPage.getContentStatus(contentName))
         .toHaveText(await genericUtils.getValueByKey('IP_ContentStatus'));
     }
