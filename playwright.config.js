@@ -20,7 +20,7 @@ export default defineConfig({
   timeout: 30000,
   reporter: [['html', { open: 'never' }],['allure-playwright', { outputFolder: 'allure-results' }], ['list'],],
   use: {
-    baseURL:             process.env.BASE_FE_URL,
+    baseURL:             process.env.BASE_URL,
     trace:               'on-first-retry',
     screenshot:          'only-on-failure',
     video:               'retain-on-failure',
