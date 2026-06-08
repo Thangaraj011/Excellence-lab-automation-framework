@@ -1,4 +1,4 @@
-import { test, expect } from '../fixtures/testFixtures';
+import { test, expect } from '../../fixtures/testFixtures';
 
 test.describe('Login Feature', () => {
 

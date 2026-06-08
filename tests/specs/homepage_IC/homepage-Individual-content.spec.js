@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { TestContextSetup } from '../context/TestContextSetup';
+import { TestContextSetup } from '../../context/TestContextSetup';
 
 test.describe.serial('Homepage Individual Content Status Update Validation', () => {
   

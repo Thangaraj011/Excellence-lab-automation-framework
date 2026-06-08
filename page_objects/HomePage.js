@@ -77,6 +77,43 @@ export class HomePage {
     await expect(content).toBeVisible();
   }
 
+  async openIndividualContent(contentName){
+    await this.page.getByText(`${contentName}`).click();
+
+  }
+
+  async openLearningPath(learningPathName){
+    const content = this.page.getByText(contentName, { exact: true });
+    await content.scrollIntoViewIfNeeded();
+    await expect(content).toBeVisible();
+    await this.page.getByText(`${learningPathName}`).click();
+  }
+
+  async verifyLearningPathDetailsScreen(learningPathName)
+  {
+    await expect(this.page.getByRole('heading', { name: `${learningPathName}` })).toBeVisible();
+    await expect(this.page.locator('.ant-progress-rail')).toBeVisible();
+    const currentProgress = await this.page.locator('._pathProgressPercent_hvo3t_91').textContent();
+    return currentProgress;
+  }
+
+  async verifyFiltersOnLearningPathDetailsScreen(){
+    await expect(page.getByRole('heading', { name: 'Learning Path Content' })).toBeVisible();
+    await expect(page.getByText('Quick Filters')).toBeVisible();
+    await expect(page.getByText('Priority')).toBeVisible();
+    await expect(page.locator('span').filter({ hasText: 'Optional' }).first()).toBeVisible();
+    await expect(page.getByLabel('Filter by priority').getByText('Mandatory')).toBeVisible();
+    await expect(page.getByText('Status')).toBeVisible();
+    await expect(page.locator('span').filter({ hasText: 'Assigned' }).nth(1)).toBeVisible();
+    await expect(page.locator('span').filter({ hasText: 'In Progress' }).first()).toBeVisible();
+    await expect(page.locator('span').filter({ hasText: 'Completed' }).first()).toBeVisible();
+  }
+
+  async getListItems(){
+    const items = await this.page.getByRole('listitem').locator('._listHeading_p5zy6_516').allTextContents();
+    console.log(items);
+  }
+
 
   async searchCourse(courseName) {
     await this.searchTextbox.waitFor({ state: 'visible' });
