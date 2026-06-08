@@ -27,7 +27,9 @@ export class HomePage {
 
     this.managerAssignedContentCards = page.locator(`//span[text()='Assigned By Manager']/../../../../../../../following-sibling::div[@class='ant-card-body']`);
     this.adminAssignedContentCards = page.locator(`//span[text()='Assigned By Admin']/../../../../../../../following-sibling::div[@class='ant-card-body']`);
-    this.contentCard = page.locator('._listColumn_p5zy6_346 ._listTop_p5zy6_354 ._listHeadingWrap_p5zy6_516');
+    this.contentCard = page.locator(
+      '[class*="_listColumn_"] [class*="_listTop_"] [class*="_listHeadingWrap_"]'
+    );
     
     this.assignedTooltip = page.getByRole('tooltip', { name: 'Mark as in progress' });
     this.inProgressTooltip = page.getByRole('tooltip', { name: 'Mark complete' });
@@ -77,42 +79,37 @@ export class HomePage {
     await expect(content).toBeVisible();
   }
 
-  async openIndividualContent(contentName){
-    await this.page.getByText(`${contentName}`).click();
-
-  }
-
-  async openLearningPath(learningPathName){
-    const content = this.page.getByText(contentName, { exact: true });
-    await content.scrollIntoViewIfNeeded();
-    await expect(content).toBeVisible();
-    await this.page.getByText(`${learningPathName}`).click();
-  }
 
   async verifyLearningPathDetailsScreen(learningPathName)
   {
     await expect(this.page.getByRole('heading', { name: `${learningPathName}` })).toBeVisible();
     await expect(this.page.locator('.ant-progress-rail')).toBeVisible();
-    const currentProgress = await this.page.locator('._pathProgressPercent_hvo3t_91').textContent();
-    return currentProgress;
   }
 
   async verifyFiltersOnLearningPathDetailsScreen(){
-    await expect(page.getByRole('heading', { name: 'Learning Path Content' })).toBeVisible();
-    await expect(page.getByText('Quick Filters')).toBeVisible();
-    await expect(page.getByText('Priority')).toBeVisible();
-    await expect(page.locator('span').filter({ hasText: 'Optional' }).first()).toBeVisible();
-    await expect(page.getByLabel('Filter by priority').getByText('Mandatory')).toBeVisible();
-    await expect(page.getByText('Status')).toBeVisible();
-    await expect(page.locator('span').filter({ hasText: 'Assigned' }).nth(1)).toBeVisible();
-    await expect(page.locator('span').filter({ hasText: 'In Progress' }).first()).toBeVisible();
-    await expect(page.locator('span').filter({ hasText: 'Completed' }).first()).toBeVisible();
+    await expect(this.page.getByRole('heading', { name: 'Learning Path Content' })).toBeVisible();
+    await expect(this.page.getByText('Quick Filters')).toBeVisible();
+    await expect(this.page.getByText('Priority')).toBeVisible();
+    await expect(this.page.locator('span').filter({ hasText: 'Optional' }).first()).toBeVisible();
+    await expect(this.page.getByLabel('Filter by priority').getByText('Mandatory')).toBeVisible();
+    await expect(this.page.getByText('Status')).toBeVisible();
+    await expect(this.page.locator('span').filter({ hasText: 'Assigned' }).nth(1)).toBeVisible();
+    await expect(this.page.locator('span').filter({ hasText: 'In Progress' }).first()).toBeVisible();
+    await expect(this.page.locator('span').filter({ hasText: 'Completed' }).first()).toBeVisible();
   }
 
-  async getListItems(){
-    const items = await this.page.getByRole('listitem').locator('._listHeading_p5zy6_516').allTextContents();
-    console.log(items);
+  async openIndividualContent(contentName){
+    await this.page.getByText(contentName).click();
+
   }
+
+  async openLearningPath(learningPathName){
+    const content = this.page.getByText(learningPathName, { exact: true });
+    await content.scrollIntoViewIfNeeded();
+    await expect(content).toBeVisible();
+    await this.page.getByText(learningPathName).click();
+  }
+
 
 
   async searchCourse(courseName) {
@@ -165,5 +162,56 @@ export class HomePage {
     return btn;
   }
 
+  async getLearningPathProgressPercentage()
+  {
+    const progressLocator = this.page.locator('[class*="_pathProgressPercent_"]');
+    await progressLocator.waitFor({ state: 'visible' });
+    const currentProgress = (await progressLocator.textContent())?.trim() ?? '';
+    return currentProgress;
+  }
+
+
+  async getListedIndividualContentNames(){
+    const contentNames = await this.page.locator(`//div[@class='ant-card-body']//div[contains(@class,'_listHeadingWrap_')]`).allTextContents();
+    return contentNames;
+  }
+
+
+  async markAllIndividualContentsToCompleteStatus(contentNames)
+  {
+    for (const contentName of contentNames) {
+      const progressButton = await this.getContentProgressButton(contentName);
+      await progressButton.hover();
+
+      const tooltip = this.page.getByRole('tooltip');
+      await tooltip.waitFor({ state: 'visible' });
+      const message = ((await tooltip.textContent())?.trim() ?? '').toLowerCase();
+
+      if(message.includes('in progress')){
+        await progressButton.click();
+        await this.verifyInProgressToast()
+        await this.inProgressToast.waitFor({ state: 'hidden' });
+
+        await progressButton.hover();
+        await this.verifyInProgressTooltip();
+        await progressButton.click();
+        await this.confirmCompletion(contentName);
+
+      } else if (message.includes('mark complete')){
+        await progressButton.click();
+        await this.confirmCompletion(contentName);
+      }
+  }
+    const finalProgressPercentage = await this.getLearningPathProgressPercentage();
+    expect(finalProgressPercentage).toBe('100%');
+  }
+
+
+  async confirmCompletion(contentName) {
+    await this.verifyConfirmCompletionDialog(contentName);
+    await this.yesMarkCompleteButton.click();
+    await this.verifyMarkCompleteToast();
+    await this.markCompleteToast.waitFor({ state: 'hidden' });
+}
 
 }

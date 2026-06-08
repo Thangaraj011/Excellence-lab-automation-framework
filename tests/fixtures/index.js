@@ -64,6 +64,7 @@ export const test = base.extend({
     await use(new GenericUtils(authPage.context(), testInfo));
   },
 
+
 });
 
 export { expect } from '@playwright/test';

@@ -1,4 +1,4 @@
-import { test, expect } from '../fixtures/index.js';
+import { test, expect } from '../../fixtures/index.js';
 
 test.describe.serial('Homepage Individual Content status update validation with custom fixture sample', () => {
 
