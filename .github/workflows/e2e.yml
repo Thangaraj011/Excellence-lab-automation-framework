@@ -1,0 +1,49 @@
+name: E2E Suite
+on:
+  repository_dispatch:
+    types: [run-e2e]
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        options: [dev, prod]
+      service:
+        type: string
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.client_payload.environment || inputs.environment }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npx playwright install --with-deps
+
+      - name: Resolve targeting
+        id: t
+        run: |
+          ENV="${{ github.event.client_payload.environment || inputs.environment }}"
+          SVC="${{ github.event.client_payload.service || inputs.service }}"
+          # prod = smoke only; everything else = service-tagged tests
+          if [ "$ENV" = "prod" ]; then GREP="@smoke"; else GREP="@${SVC}"; fi
+          echo "env=$ENV"   >> $GITHUB_OUTPUT
+          echo "grep=$GREP" >> $GITHUB_OUTPUT
+
+      - name: Run Playwright
+        env:
+          BASE_URL: ${{ vars.BASE_URL }}
+          API_TOKEN: ${{ secrets.API_TOKEN }}
+        run: npx playwright test --project="${{ steps.t.outputs.env }}" --grep "${{ steps.t.outputs.grep }}"
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report-${{ steps.t.outputs.env }}
+          path: playwright-report/
+          retention-days: 14
