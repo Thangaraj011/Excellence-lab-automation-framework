@@ -29,7 +29,35 @@ test.describe.serial('Home Page filters validation', () =>{
     test.only('Due Date filter validation', {  tag: ['@homepageFilters']}, async({authPage, homePage, genericUtils}) =>{
         
         await homePage.selectDueDates(data.dueDateStart, data.dueDateEnd);
-        await authPage.pause();
+        await homePage.verifyAllDueDatesInRange(data.dueDateStart, data.dueDateEnd)
+    })
+
+    test('Quick filters priority Optional validation', {  tag: ['@homepageFilters']}, async({authPage, homePage, genericUtils}) =>{
+        
+        const data = filtersTestData.searchFilters;
+        await homePage.verifySearchContentVisible(data.searchContentText);
+    })
+
+    test('Quick filters priority Mandatory validation', {  tag: ['@homepageFilters']}, async({authPage, homePage, genericUtils}) =>{
+        
+        const data = filtersTestData.searchFilters;
+        await homePage.verifySearchContentVisible(data.searchContentText);
+    })
+
+    test('Assigned By Manager sort By filter validation', {  tag: ['@homepageFilters']}, async({authPage, homePage, genericUtils}) =>{
+        
+        const data = filtersTestData.searchFilters;
+        await homePage.verifySearchContentVisible(data.searchContentText);
+        const contentNames = await homePage.getManagerAssignedCardNames();
+        await homePage.verifyNamesSorted(contentNames, 'asc');
+    })
+
+    test('Assigned By Admin sort By filter validation', {  tag: ['@homepageFilters']}, async({authPage, homePage, genericUtils}) =>{
+        
+        const data = filtersTestData.searchFilters;
+        await homePage.verifySearchContentVisible(data.searchContentText);
+        const contentNames = await homePage.getAdminAssignedCardNames();
+        await homePage.verifyNamesSorted(contentNames, 'desc');
     })
 
     test('Multiple filter validation', {  tag: ['@homepageFilters']}, async({authPage, homePage, genericUtils}) =>{
@@ -37,6 +65,8 @@ test.describe.serial('Home Page filters validation', () =>{
         const data = filtersTestData.searchFilters;
         await homePage.verifySearchContentVisible(data.searchContentText);
     })
+
+
 
 
 })

@@ -12,6 +12,7 @@ export class HomePage {
     this.skillCatgeoryDropdown = page.locator('.ant-select-content', {  hasText: 'Skill category'});
     this.skillCatgeoryDropdown2 = page.locator('.ant-select-content', {  hasText: 'Skill Name'});
     this.skillNameDropdown = page.locator(`//div[text()='Skill Name']/following-sibling::input`);
+    this.dueDateInputs = page.locator('.ant-picker-input input');
     this.dueDateStart = page.getByPlaceholder('Due Date').and(page.locator('[date-range="start"]'));
     this.dueDateEnd = page.getByPlaceholder('Due Date').and(page.locator('[date-range="end"]'));
 
@@ -31,6 +32,9 @@ export class HomePage {
     this.contentCard = page.locator(
       '[class*="_listColumn_"] [class*="_listTop_"] [class*="_listHeadingWrap_"]'
     );
+
+    this.managerAssignedContentTitles = page.locator(`//span[text()='Assigned By Manager']/../../../../../../../following-sibling::div[@class='ant-card-body']//div[contains(@class,'_listHeadingWrap_')]`)
+    this.adminAssignedContentTitles = page.locator(`//span[text()='Assigned By Admin']/../../../../../../../following-sibling::div[@class='ant-card-body']//div[contains(@class,'_listHeadingWrap_')]`)
     
     this.assignedTooltip = page.getByRole('tooltip', { name: 'Mark as in progress' });
     this.inProgressTooltip = page.getByRole('tooltip', { name: 'Mark complete' });
@@ -53,7 +57,9 @@ export class HomePage {
 
   async verifyManagerAndAdminSections() {
     await expect(this.assignedByManagerSection).toBeVisible();
+    //await expect(this.managerAssignedContentCards).toBeVisible();
     await expect(this.assignedByAdminSection).toBeVisible();
+    //await expect(this.adminAssignedContentCards).toBeVisible();
   }
 
   async verifyAssignedTooltip()     { await expect(this.assignedTooltip).toBeVisible(); }
@@ -173,12 +179,45 @@ export class HomePage {
   }
 
   async selectDueDates(dueDateStart, dueDateEnd) {
-    await this.dueDateStart.fill(dueDateStart);
-    await this.dueDateEnd.fill(dueDateEnd);
-    await this.page.keyboard.press('Enter');
+    await this.dueDateInputs.first().click();
+    await this.dueDateInputs.nth(0).fill(dueDateStart)
+    await this.dueDateStart.nth(0).press('Enter');
+    await this.dueDateInputs.nth(1).fill(dueDateEnd)
+    await this.dueDateStart.nth(1).press('Enter');
     await this.page.locator('[class*="_listDueDate_"]').first().waitFor({ state: 'visible' });
 
   }
+
+  async verifyAllDueDatesInRange(startDate, endDate) {
+  const dueDates = this.page.locator('[class*="_listDueDate_"]');
+  const count = await dueDates.count();
+  for (let i = 0; i < count; i++) {
+    const raw = (await dueDates.nth(i).textContent())?.replace(/\s+/g, ' ').trim();
+    const date = raw.match(/\d{4}-\d{2}-\d{2}/)?.[0];
+    const contentName = (
+        await dueDates.nth(i)
+        .locator("xpath=following::div[@class='_listHeadingWrap_p5zy6_516'][1]")
+        .textContent()
+      )?.replace(/\s+/g, ' ').trim();
+    if (!date || !(date >= startDate && date <= endDate)) {
+      throw new Error(`Due date "${raw}" is not within ${startDate} – ${endDate}`);
+    }
+    console.log(`${contentName} due date is within the given start date ${startDate} and End date ${endDate} range `);
+  }
+}
+
+verifyNamesSorted(names, order = 'asc') {
+  const cleaned = names.map(n => n.replace(/\s+/g, ' ').trim());
+  const compare = (a, b) => a.localeCompare(b, undefined, { sensitivity: 'base', numeric: true });
+
+  const isSorted = cleaned.every((val, i) =>
+    i === 0 || (order === 'asc'
+      ? compare(cleaned[i - 1], val) <= 0
+      : compare(cleaned[i - 1], val) >= 0)
+  );
+
+  expect(isSorted, `Names not in ${order} order:\n${cleaned.join('\n')}`).toBe(true);
+}
 
 
 
@@ -191,18 +230,14 @@ export class HomePage {
 
   async getManagerAssignedCardNames() {
     await this.assignedByManagerSection.waitFor({ state: 'visible' });
-    const cards = this.page.locator(
-      `//span[text()='Assigned By Manager']/../../../../../../../following-sibling::div[@class='ant-card-body']//div[contains(@class,'_listHeadingWrap_')]`
-    );
+    const cards = this.managerAssignedContentTitles();
     await cards.first().waitFor({ state: 'visible' });
     return (await cards.allTextContents()).map(n => n.trim()).filter(Boolean);
   }
 
     async getAdminAssignedCardNames() {
     await this.assignedByAdminSection.waitFor({ state: 'visible' });
-    const cards = this.page.locator(
-      `//span[text()='Assigned By Admin']/../../../../../../../following-sibling::div[@class='ant-card-body']//div[contains(@class,'_listHeadingWrap_')]`
-    );
+    const cards = this.adminAssignedContentTitles()
     await cards.first().waitFor({ state: 'visible' });
     return (await cards.allTextContents()).map(n => n.trim()).filter(Boolean);
   }
