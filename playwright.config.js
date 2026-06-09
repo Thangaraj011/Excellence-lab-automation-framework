@@ -31,7 +31,6 @@ export default defineConfig({
 
   projects: [
     { name: 'dev',     use: { baseURL: process.env.BASE_URL } },
-    { name: 'prod',    use: { baseURL: process.env.BASE_URL } },
   ],
 
 });

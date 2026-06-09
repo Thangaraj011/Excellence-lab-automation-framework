@@ -13,7 +13,7 @@ async function launchBrowser() {
     slowMo:   process.env.SLOW_MO ? parseInt(process.env.SLOW_MO) : 0,
   });
   const context = await browser.newContext({
-    baseURL: process.env.BASE_FE_URL, locale: 'en-US', timezoneId: 'America/New_York',
+    baseURL: process.env.BASE_URL, locale: 'en-US', timezoneId: 'America/New_York',
   });
   return { browser, context };
 }
@@ -48,8 +48,6 @@ export const test = base.extend({
     await context.close();
     await browser.close();
   },
-
-  
 
 
   homePage: async ({ authPage }, use) => {

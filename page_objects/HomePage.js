@@ -9,8 +9,9 @@ export class HomePage {
     this.aiRecommendationsTab =  page.getByRole('tab', { name: 'AI Recommendations' });
 
     this.searchTextbox = page.getByPlaceholder('Search');
-    this.skillCatgeoryDropdown = page.getByRole('combobox', { name: 'Skill category' });
-    this.skillNameDropdown = page.getByRole('combobox', { name: 'Skill Name' });
+    this.skillCatgeoryDropdown = page.locator('.ant-select-content', {  hasText: 'Skill category'});
+    this.skillCatgeoryDropdown2 = page.locator('.ant-select-content', {  hasText: 'Skill Name'});
+    this.skillNameDropdown = page.locator(`//div[text()='Skill Name']/following-sibling::input`);
     this.dueDateStart = page.getByPlaceholder('Due Date').and(page.locator('[date-range="start"]'));
     this.dueDateEnd = page.getByPlaceholder('Due Date').and(page.locator('[date-range="end"]'));
 
@@ -113,20 +114,73 @@ export class HomePage {
 
 
 
-  async searchCourse(courseName) {
+  async verifySearchContentVisible(courseName, contentName) {
     await this.searchTextbox.waitFor({ state: 'visible' });
     await this.searchTextbox.fill(courseName);
+    await this.page.waitForLoadState('domcontentloaded');
+    await this.verifyContentVisible(contentName);
   }
 
-  async selectSkillCategory(category) {
-    await this.skillCatgeoryDropdown.waitFor({ state: 'visible' });
-    await this.skillCatgeoryDropdown.selectOption({ label: category });
+  async verifyOnlySelectedSkillCategoryContentsVisible(skillCategoryValue) {
+    const pills =  this.page.locator('._listPillSkillCategory_p5zy6_654');
+    const count = await pills.count();
+    for(let i=0;i<count;i++){
+      const pill = pills.nth(i);
+      const text = (await pill.textContent())?.replace(/\s+/g, ' ').trim();
+      console.log(`Pill[${i}] text = "${text}"`);
+      const contentName = (
+        await pill
+        .locator("xpath=preceding::div[@class='_listHeadingWrap_p5zy6_516'][1]")
+        .textContent()
+      )?.replace(/\s+/g, ' ').trim();
+      if(!text.includes(skillCategoryValue)){
+        throw new Error(`${contentName} does not have ${skillCategoryValue} as skill category`);
+      }
+      console.log(`${contentName} has skill category ${skillCategoryValue} as skill category`);
+    }
+  }
+
+  async verifyOnlySelectedSkillNameContentsVisible(skillNameValue) {
+    const pills =  this.page.locator('._listPillSkillName_p5zy6_670');
+    const count = await pills.count();
+    for(let i=0;i<count;i++){
+      const pill = pills.nth(i);
+      const text = (await pill.textContent())?.replace(/\s+/g, ' ').trim();
+      console.log(`Pill[${i}] text = "${text}"`);
+      const contentName = (
+        await pill
+        .locator("xpath=preceding::div[@class='_listHeadingWrap_p5zy6_516'][1]")
+        .textContent()
+      )?.replace(/\s+/g, ' ').trim();
+      if(!text.includes(skillNameValue)){
+        throw new Error(`${contentName} does not have ${skillNameValue} as skill name`);
+      }
+      console.log(`${contentName} has skill category ${skillNameValue} as skill name`);
+    }
+  }
+
+  async selectSkillCategory(skillCategory) {
+    await this.skillCatgeoryDropdown.click();
+    await this.page.getByText(skillCategory).click();
+    await this.page.locator('[class*="_listPillSkillCategory_"]').first().waitFor({ state: 'visible' });
   }
 
   async selectSkillName(skillName) {
-    await this.skillNameDropdown.waitFor({ state: 'visible' });
-    await this.skillNameDropdown.selectOption({ label: skillName });
+    await this.skillNameDropdown.fill(skillName);
+    await this.page.locator('.ant-select-item-option').first().click();
+    await this.page.locator('[class*="_listPillSkillName_"]').first().waitFor({ state: 'visible' });
+
   }
+
+  async selectDueDates(dueDateStart, dueDateEnd) {
+    await this.dueDateStart.fill(dueDateStart);
+    await this.dueDateEnd.fill(dueDateEnd);
+    await this.page.keyboard.press('Enter');
+    await this.page.locator('[class*="_listDueDate_"]').first().waitFor({ state: 'visible' });
+
+  }
+
+
 
   async getContentNames(){
     const cards = this.page.locator('[class*="_listHeadingWrap_"]');
