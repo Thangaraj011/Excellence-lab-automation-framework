@@ -1,0 +1,6 @@
+Pill[0] text = "Agile/Scrum Methodologies"
+Learning path new case has skill category Agile/Scrum Methodologies as skill name
+Pill[1] text = "Vanishing Magic, Microservices Architecture Design, High-Level Design (HLD) & Low-Level Design (LLD), Cloud Architecture & Solution Design, Architecture Best Practices and Frameworks, Automation & IaC, Agile/Scrum Methodologies, Code Review Methodologies and Test-Driven Development (TDD) Practices, Software Development"
+Master Control Override Horizon Zero Dawn has skill category Agile/Scrum Methodologies as skill name
+Pill[2] text = "Agile/Scrum Methodologies"
+Test sample 2026 001 has skill category Agile/Scrum Methodologies as skill name
