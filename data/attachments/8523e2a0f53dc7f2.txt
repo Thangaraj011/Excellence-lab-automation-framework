@@ -1,0 +1,239 @@
+[
+  {
+    "id": "2cafe4ce-fdd1-46d2-9f88-2603a181934a",
+    "title": "New Magic Learning path 2026 99",
+    "type": "Learning Path",
+    "provider": "",
+    "priority": "MUST_DO",
+    "suggested_completion_week": null,
+    "assignment_source": "MANAGER",
+    "skills": [
+      {
+        "id": "04056f27-259a-471b-942a-2b30f598061e",
+        "name": "Shape Shifting Magic",
+        "description": "New skill is added.",
+        "category": {
+          "id": "208ca396-2676-4e5c-a9e0-bd7482371777",
+          "name": "Crowd Entertainment"
+        }
+      }
+    ],
+    "suggested_completion_date": "2026-05-31T18:29:59.999Z",
+    "learning_progress_status": "yet_to_start",
+    "content_kind": "assigned_learning_path",
+    "assigned_at": "2026-05-20T09:33:49.217Z"
+  },
+  {
+    "id": "d9de89d8-1e6a-40c3-8893-cfebc9d952c5",
+    "title": "Typewriting Skills Learning 2026",
+    "description": "New Learning path for Typewriting skill development",
+    "type": "Learning Path",
+    "provider": "",
+    "priority": "MUST_DO",
+    "suggested_completion_week": null,
+    "assignment_source": "MANAGER",
+    "skills": [
+      {
+        "id": "22c28927-832f-44f0-bb1f-65aee96125e6",
+        "name": "Python Basics",
+        "description": null,
+        "category": {
+          "id": "a3aa4af0-9997-436f-937f-1d9684e93774",
+          "name": "Software Development"
+        }
+      }
+    ],
+    "suggested_completion_date": "2026-05-31T18:29:59.999Z",
+    "learning_progress_status": "yet_to_start",
+    "content_kind": "assigned_learning_path",
+    "assigned_at": "2026-05-25T11:48:16.669Z"
+  },
+  {
+    "id": "20371a41-827e-401a-8e7b-8156998d0a70",
+    "title": "Major comedy show 2026",
+    "description": "new content added.",
+    "type": "Article",
+    "provider": null,
+    "level": null,
+    "duration_minutes": null,
+    "link": "https://www.browserstack.com/test-reporting-and-analytics/what-is-test-reporting",
+    "resource_code": "CUSTOM-1779446898481",
+    "priority": "MUST_DO",
+    "suggested_completion_week": null,
+    "assignment_source": "MANAGER",
+    "skills": [],
+    "suggested_completion_date": "2026-05-28T18:29:59.999Z",
+    "learning_progress_status": "yet_to_start",
+    "content_kind": "individual"
+  },
+  {
+    "id": "707c49af-63e1-426b-a274-cb308fca6f10",
+    "title": "Software Architecture: REST API Design - The Complete Guide | Udemy",
+    "description": null,
+    "type": "Course",
+    "provider": null,
+    "level": null,
+    "duration_minutes": null,
+    "link": "https://www.udemy.com/course/rest-api-design-the-complete-guide/",
+    "resource_code": null,
+    "priority": "MUST_DO",
+    "suggested_completion_week": null,
+    "assignment_source": "MANAGER",
+    "skills": [
+      {
+        "id": "dc5bbf81-2feb-4b45-bd7a-e18bc480d4ad",
+        "name": "Microservices Architecture Design",
+        "description": "Microservice Understanding: Comprehends how individual components (microservices) interact within larger systems. This is foundational for working effectively in modern cloud-native environments.\nCode Integration: Develops code that seamlessly integrates with existing microservices, ensuring smooth system operation.\nIssue Isolation: Helps quickly identify which specific microservice is causing a problem, aiding efficient debugging.",
+        "category": {
+          "id": "6a4c72b3-bf2e-472b-bcb6-f5f45a49a6ac",
+          "name": "System Design & Architecture"
+        }
+      }
+    ],
+    "suggested_completion_date": "2026-05-31T18:29:59.999Z",
+    "learning_progress_status": "yet_to_start",
+    "content_kind": "individual"
+  },
+  {
+    "id": "66ee3e6e-a156-4611-906b-ab52643fd2f2",
+    "title": "Master Control Override Horizon Zero Dawn",
+    "description": null,
+    "type": "Article",
+    "provider": null,
+    "level": "beginner",
+    "duration_minutes": 11,
+    "link": "https://strangehorizons.com/wordpress/non-fiction/columns/metagames-horizon-zero-dawn-should-get-a-hugo/",
+    "resource_code": "CUSTOM-1779428285912",
+    "priority": "SHOULD_DO",
+    "suggested_completion_week": null,
+    "assignment_source": "ADMIN_AND_MANAGER",
+    "skills": [
+      {
+        "id": "107de18d-9387-4c74-8378-1ba9f3fd54ee",
+        "name": "Vanishing Magic",
+        "description": "New skill added.",
+        "category": {
+          "id": "208ca396-2676-4e5c-a9e0-bd7482371777",
+          "name": "Crowd Entertainment"
+        }
+      },
+      {
+        "id": "dc5bbf81-2feb-4b45-bd7a-e18bc480d4ad",
+        "name": "Microservices Architecture Design",
+        "description": "Microservice Understanding: Comprehends how individual components (microservices) interact within larger systems. This is foundational for working effectively in modern cloud-native environments.\nCode Integration: Develops code that seamlessly integrates with existing microservices, ensuring smooth system operation.\nIssue Isolation: Helps quickly identify which specific microservice is causing a problem, aiding efficient debugging.",
+        "category": {
+          "id": "6a4c72b3-bf2e-472b-bcb6-f5f45a49a6ac",
+          "name": "System Design & Architecture"
+        }
+      },
+      {
+        "id": "0e8c6f6c-b5e1-4f47-9460-e5dea33cebe6",
+        "name": "High-Level Design (HLD) & Low-Level Design (LLD)",
+        "description": "Design Comprehension: Understands how their coding tasks fit into the broader system by interpreting existing HLDs and LLDs. This is crucial for accurate implementation.\nAdherence to Specifications: Develops code that strictly follows the detailed LLD specifications, ensuring component integrity.\nDocumentation Reading: Navigates and extracts information from design documents to guide their development work.",
+        "category": {
+          "id": "6a4c72b3-bf2e-472b-bcb6-f5f45a49a6ac",
+          "name": "System Design & Architecture"
+        }
+      },
+      {
+        "id": "ad5cf7ac-eb04-4a10-8657-98da22ba5f2c",
+        "name": "Cloud Architecture & Solution Design",
+        "description": "The ability to plan, design, and implement scalable, resilient, and cost-effective cloud architectures aligned with business objectives. This involves defining cloud adoption strategies, choosing the right platforms (AWS, Azure, GCP), ensuring high availability, and creating disaster recovery plans.\nSkills:\nCloud Platform Specialization,\nSolution Design Fundamentals,\nCost Optimization.",
+        "category": {
+          "id": "fbf001ee-c8ec-4530-841b-db45dd82499d",
+          "name": "Cloud Engineering Core"
+        }
+      },
+      {
+        "id": "c21ea5cd-acce-4630-b1ca-7f7b261afd5e",
+        "name": "Architecture Best Practices and Frameworks",
+        "description": null,
+        "category": {
+          "id": "fbf001ee-c8ec-4530-841b-db45dd82499d",
+          "name": "Cloud Engineering Core"
+        }
+      },
+      {
+        "id": "93fc86d5-a83d-49ed-9df2-c1b8ceef08ef",
+        "name": "Automation & IaC",
+        "description": null,
+        "category": {
+          "id": "fbf001ee-c8ec-4530-841b-db45dd82499d",
+          "name": "Cloud Engineering Core"
+        }
+      },
+      {
+        "id": "3fb30007-9eea-4f9f-8554-15f3aed944ab",
+        "name": "Agile/Scrum Methodologies",
+        "description": "Independent Contribution: Crucial for managing personal tasks within sprints, estimating effort, and self-organizing effectively.\nProblem Resolution: Enables proactive identification of impediments and collaboration to resolve them, embodying a \"Solver Mindset.\"\nQuality & Adaptability: Supports iterative development and continuous feedback, allowing for quick adaptation to changing requirements.",
+        "category": {
+          "id": "f3ada5cf-02ca-4515-911f-72ac6bbafc85",
+          "name": "Software Development Lifecycle (SDLC) Management"
+        }
+      },
+      {
+        "id": "fe77c3b8-5522-4168-8e26-4b0b643d2b58",
+        "name": "Code Review Methodologies and Test-Driven Development (TDD) Practices",
+        "description": "Learning & Quality: Enables understanding of best practices by observing senior code and applying basic review principles to own code. It's foundational for writing maintainable code and building a Solver Mindset.",
+        "category": {
+          "id": "e759670c-8259-4c74-91b5-7fb7cd799d91",
+          "name": "Code Review & Quality Assurance"
+        }
+      },
+      {
+        "id": "5f49bb38-d2af-4079-814a-667743d64de4",
+        "name": "Software Development",
+        "description": "Directly applies learned syntax and basic language features to complete assigned coding tasks under supervision. \nFocus on writing functional code snippets for specific problems.\nEnables direct contribution to coding tasks as per specifications. It's the primary tool for translating requirements into functional software.\nAllows for understanding existing codebase and adhering to established coding standards from day one.",
+        "category": {
+          "id": "a786bf24-7339-4b32-b8d3-f8fe11c55317",
+          "name": "Programming Proficiency"
+        }
+      }
+    ],
+    "suggested_completion_date": "2026-05-28T18:29:59.999Z",
+    "learning_progress_status": "yet_to_start",
+    "content_kind": "job_category_plan"
+  },
+  {
+    "id": "46b4e67a-aaa9-4188-8491-c31d160949d6",
+    "title": "Test sample learning 28723",
+    "type": "Learning Path",
+    "provider": "",
+    "priority": "SHOULD_DO",
+    "suggested_completion_week": null,
+    "assignment_source": "MANAGER",
+    "skills": [],
+    "suggested_completion_date": "2026-05-23T18:29:59.999Z",
+    "learning_progress_status": "yet_to_start",
+    "content_kind": "assigned_learning_path",
+    "assigned_at": "2026-05-19T13:08:14.650Z"
+  },
+  {
+    "id": "2412d66a-0025-47d5-958f-ced47eb4f196",
+    "title": "Global security measures 2026",
+    "description": "new content ",
+    "type": "Article",
+    "provider": null,
+    "level": null,
+    "duration_minutes": null,
+    "link": "https://www.janes.com/defence-intelligence-insights/defence-and-national-security-analysis/global-security-threats-2026",
+    "resource_code": "CUSTOM-1779954587511",
+    "priority": "SHOULD_DO",
+    "suggested_completion_week": null,
+    "assignment_source": "MANAGER",
+    "skills": [
+      {
+        "id": "a8754e20-6867-40a0-a8f0-2658b85143f5",
+        "name": "Security Management",
+        "description": null,
+        "category": {
+          "id": "ea91ca2a-23c5-46ca-9524-cb81ac11bf4b",
+          "name": "Administration"
+        }
+      }
+    ],
+    "suggested_completion_date": "2026-05-31T18:29:59.999Z",
+    "learning_progress_status": "yet_to_start",
+    "content_kind": "individual"
+  }
+]
