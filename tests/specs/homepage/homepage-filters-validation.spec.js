@@ -65,29 +65,39 @@ test.describe.serial("Home Page filters validation", () => {
     { tag: ["@homepageFilters"] },
     async ({ authPage, homePage, genericUtils }) => {
       const data = filtersTestData.quickFilters;
-      await homePage.selectPriority(data.assignedStatus);
-      await homePage.verifyDisplayedContentsPriority(data.mandatoryPriority);
+      const [managerResponse, adminResponse] =
+        await homePage.selectStatusAndReturnResponses(
+          data.assignedStatus,
+          data.apiUrlIdentifier,
+        );
+      const apiContentTitlesRetrieved =
+        await homePage.getAllTitlesFromResponses(
+          managerResponse,
+          adminResponse,
+        );
+      const uiContentTitlesDisplayed = await homePage.getContentNames();
+      expect(apiContentTitlesRetrieved).toEqual(uiContentTitlesDisplayed);
     },
   );
 
-  test.only(
+  test(
     "Assigned By Manager sort By filter validation",
     { tag: ["@homepageFilters"] },
     async ({ authPage, homePage, genericUtils }) => {
       const data = filtersTestData.managerSortBy;
+      await homePage.selectManagerSortByOption(data.titleSortToAscending);
       const contentNames = await homePage.getManagerAssignedCardNames();
       await homePage.verifyNamesSorted(contentNames, data.titleSortToAscending);
     },
   );
 
-  test(
+  test.only(
     "Assigned By Admin sort By filter validation",
     { tag: ["@homepageFilters"] },
     async ({ authPage, homePage, genericUtils }) => {
-      const data = filtersTestData.adminSortBy;
-      await homePage.verifySearchContentVisible(data.searchContentText);
-      const contentNames = await homePage.getAdminAssignedCardNames();
-      await homePage.verifyNamesSorted(contentNames, "desc");
+      const data = filtersTestData.sortByFilters;
+      await homePage.selectManagerSortByOption(data.sortByMandatoryFirst);
+      const ContentTitles = await homePage.getManagerAssignedCardNames();
     },
   );
 

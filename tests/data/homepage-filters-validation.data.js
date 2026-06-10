@@ -19,20 +19,11 @@ export const filtersTestData = {
     optionalPriority: "Optional",
     mandatoryPriority: PRIORITY_MANDATORY,
     assignedStatus: "Assigned",
+    apiUrlIdentifier: "yet_to_start",
     inProgressStatus: "In Progress",
   },
 
-  managerSortBy: {
-    sortByTitleAscending: TITLE_ASCENDING,
-    sortByTitleDescending: TITLE_DESCENDING,
-    sortByMandatoryFirst: PRIORITY_MANDATORY,
-    sortByDueDateEarlyFirst: EARLY_FIRST,
-    sortByDueDateLateFirst: LATE_FIRST,
-    titleSortToAscending: ASC_SORTTYPE,
-    titleSortToDescending: DESC_SORTTYPE,
-  },
-
-  adminSortBy: {
+  sortByFilters: {
     sortByTitleAscending: TITLE_ASCENDING,
     sortByTitleDescending: TITLE_DESCENDING,
     sortByMandatoryFirst: PRIORITY_MANDATORY,

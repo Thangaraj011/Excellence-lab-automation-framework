@@ -38,9 +38,15 @@ export class HomePage {
     this.assignedByManagerSection = page.getByText("Assigned By Manager", {
       exact: true,
     });
+    this.managerSortByDropdown = page
+      .getByRole("combobox", { name: "Sort courses" })
+      .first();
     this.assignedByAdminSection = page.getByText("Assigned By Admin", {
       exact: true,
     });
+    this.adminSortByDropdown = page
+      .getByRole("combobox", { name: "Sort courses" })
+      .nth(1);
 
     this.managerAssignedContentCards = page.locator(
       `//span[normalize-space()='Assigned By Manager']/ancestor::div[contains(@class,'ant-card')][1]/following-sibling::div[contains(@class,'ant-card-body')]`,
@@ -292,12 +298,67 @@ export class HomePage {
       .waitFor({ state: "visible" });
   }
 
-  async selectStatus(status) {
-    this.page.getByText(status, { exact: true }).click();
+  async selectStatusAndReturnResponses(status, api_status) {
+    const statusFragment = `status=${api_status.toLowerCase()}`;
+
+    const makeMatcher = (source) => (resp) =>
+      resp.url().includes(`source=${source}`) &&
+      resp.url().toLowerCase().includes(statusFragment) &&
+      resp.request().method() === "GET" &&
+      resp.status() === 200;
+
+    const managerPromise = this.page
+      .waitForResponse(makeMatcher("MANAGER"), { timeout: 5000 })
+      .catch(() => null);
+    const adminPromise = this.page
+      .waitForResponse(makeMatcher("ADMIN"), { timeout: 5000 })
+      .catch(() => null);
+
+    await this.page.getByText(status, { exact: true }).click();
     await this.page
-      .locator('[class*="_listPillPriority"]')
+      .locator('[class*="_cardListOnly_"]')
       .first()
       .waitFor({ state: "visible" });
+
+    const [managerResp, adminResp] = await Promise.all([
+      managerPromise,
+      adminPromise,
+    ]);
+    return [managerResp, adminResp];
+  }
+
+  async selectManagerSortByOption(optionText) {
+    await this.managerSortByDropdown.click();
+    await this.page
+      .locator(".ant-select-item-option")
+      .filter({ hasText: optionText })
+      .click();
+    await this.contentCard.first().waitFor({ state: "visible" });
+  }
+
+  async selectAdminSortByOption(optionText) {
+    await this.adminSortByDropdown.click();
+    await this.page
+      .locator(".ant-select-item-option")
+      .filter({ hasText: optionText })
+      .click();
+    await this.contentCard.first().waitFor({ state: "visible" });
+  }
+
+  async getAllTitlesFromResponses(managerResp, adminResp) {
+    const extractTitles = async (resp) => {
+      if (!resp) return [];
+      const body = await resp.json().catch(() => null);
+      const courses = body?.data?.courses;
+      if (!Array.isArray(courses)) return [];
+      return courses.map((c) => c.title.replace(/\s+/g, " ").trim());
+    };
+
+    const managerTitles = await extractTitles(managerResp);
+    const adminTitles = await extractTitles(adminResp);
+    const allTitles = [...managerTitles, ...adminTitles];
+
+    return allTitles;
   }
 
   async verifyAllDueDatesInRange(startDate, endDate) {
@@ -353,19 +414,19 @@ export class HomePage {
     const cards = this.page.locator('[class*="_listHeadingWrap_"]');
     await cards.first().waitFor({ state: "visible" });
     const names = await cards.allTextContents();
-    return names.map((n) => n.trim()).filter(Boolean);
+    return names.map((n) => n.replace(/\s+/g, " ").trim()).filter(Boolean);
   }
 
   async getManagerAssignedCardNames() {
     await this.assignedByManagerSection.waitFor({ state: "visible" });
-    const cards = this.managerAssignedContentTitles();
+    const cards = this.managerAssignedContentTitles;
     await cards.first().waitFor({ state: "visible" });
     return (await cards.allTextContents()).map((n) => n.trim()).filter(Boolean);
   }
 
   async getAdminAssignedCardNames() {
     await this.assignedByAdminSection.waitFor({ state: "visible" });
-    const cards = this.adminAssignedContentTitles();
+    const cards = this.adminAssignedContentTitles;
     await cards.first().waitFor({ state: "visible" });
     return (await cards.allTextContents()).map((n) => n.trim()).filter(Boolean);
   }
