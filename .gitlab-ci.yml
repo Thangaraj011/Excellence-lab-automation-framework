@@ -27,6 +27,7 @@ allure-report:
     - if: $CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master"
       when: always
   script:
+    - apt-get update && apt-get install -y default-jre
     - npx allure-commandline@2 generate allure-results --clean -o allure-report
   artifacts:
     when: always
