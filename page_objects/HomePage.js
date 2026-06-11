@@ -90,6 +90,8 @@ export class HomePage {
     this.learningPathProgressLocator = this.page.locator(
       '[class*="_pathProgressPercent_"]',
     );
+
+    this.profileName = this.page.getByRole('link', { name: 'My profile' }).locator('._userName_k4we4_232');
   }
 
   async verifyHomepageLoaded() {
