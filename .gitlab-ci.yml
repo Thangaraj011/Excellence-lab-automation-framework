@@ -20,7 +20,7 @@ playwright-test:
 
 allure-report:
   stage: report
-  image: mcr.microsoft.com/playwright:v1.609.0
+  image: mcr.microsoft.com/playwright:v1.60.0
   dependencies:
     - playwright-test
   rules:
