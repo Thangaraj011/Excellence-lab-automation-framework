@@ -1,0 +1,109 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: authentication-validation.spec.js >> User Login Successful Tests >> Admin Login Homepage validation
+- Location: tests/specs/authentication-validation.spec.js:42:3
+
+# Error details
+
+```
+Error: expect(locator).toHaveText(expected) failed
+
+Locator:  getByRole('link', { name: 'My profile' }).locator('._userName_k4we4_232')
+Expected: "Sameer Kumar"
+Received: "Janakjit Singh Sethi"
+Timeout:  5000ms
+
+Call log:
+  - Expect "toHaveText" with timeout 5000ms
+  - waiting for getByRole('link', { name: 'My profile' }).locator('._userName_k4we4_232')
+    9 × locator resolved to <span class="_userName_k4we4_232">Janakjit Singh Sethi</span>
+      - unexpected value "Janakjit Singh Sethi"
+
+```
+
+```yaml
+- text: Janakjit Singh Sethi
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from '@playwright/test';
+  2  | import { TestContextSetup } from '../context/TestContextSetup';
+  3  | 
+  4  | test.describe('User Login Successful Tests', () => {
+  5  |   
+  6  |   test('Employee Login Homepage validation', async ({},testInfo) => {
+  7  |     const contextSetup = new TestContextSetup(testInfo);
+  8  |     const page = await contextSetup.init(`${process.env.BASE_URL}`, 'chromium');
+  9  |     const token = await contextSetup.genericUtils.generateJWT(process.env.EMP_USER);
+  10 |     await contextSetup.genericUtils.setupAuthCookie(token);
+  11 |     await page.reload();
+  12 |     await page.waitForLoadState('domcontentloaded');
+  13 |     await expect(contextSetup.poManager.homePage.profileName).toHaveText('Thangaraj R');
+  14 |     await contextSetup.poManager.homePage.verifyHomepageLoaded();
+  15 |     await contextSetup.poManager.homePage.verifyManagerAndAdminSections();
+  16 |   });
+  17 | 
+  18 |   test('Manager Indirect Login Homepage validation', async ({},testInfo) => {
+  19 |     const contextSetup = new TestContextSetup(testInfo);
+  20 |     const page = await contextSetup.init(`${process.env.BASE_URL}`, 'chromium');
+  21 |     const token = await contextSetup.genericUtils.generateJWT(process.env.MANAGER_IND_USER);
+  22 |     await contextSetup.genericUtils.setupAuthCookie(token);
+  23 |     await page.reload();
+  24 |     await page.waitForLoadState('domcontentloaded');
+  25 |     await expect(contextSetup.poManager.homePage.profileName).toHaveText('Tarun Sareen');
+  26 |     await contextSetup.poManager.homePage.verifyHomepageLoaded();
+  27 |     await contextSetup.poManager.homePage.verifyManagerAndAdminSections();
+  28 |   });
+  29 | 
+  30 |   test('Manager Direct Login Homepage validation', async ({},testInfo) => {
+  31 |     const contextSetup = new TestContextSetup(testInfo);
+  32 |     const page = await contextSetup.init(`${process.env.BASE_URL}`, 'chromium');
+  33 |     const token = await contextSetup.genericUtils.generateJWT(process.env.MANAGER_DIR_USER);
+  34 |     await contextSetup.genericUtils.setupAuthCookie(token);
+  35 |     await page.reload();
+  36 |     await page.waitForLoadState('domcontentloaded');
+  37 |     await expect(contextSetup.poManager.homePage.profileName).toHaveText('Vinay Kumar Singh');
+  38 |     await contextSetup.poManager.homePage.verifyHomepageLoaded();
+  39 |     await contextSetup.poManager.homePage.verifyManagerAndAdminSections();
+  40 |   });
+  41 | 
+  42 |   test('Admin Login Homepage validation', async ({},testInfo) => {
+  43 |     const contextSetup = new TestContextSetup(testInfo);
+  44 |     const page = await contextSetup.init(`${process.env.BASE_URL}`, 'chromium');
+  45 |     const token = await contextSetup.genericUtils.generateJWT(process.env.ADMIN_USER);
+  46 |     await contextSetup.genericUtils.setupAuthCookie(token);
+  47 |     await page.reload();
+  48 |     await page.waitForLoadState('domcontentloaded');
+> 49 |     await expect(contextSetup.poManager.homePage.profileName).toHaveText('Sameer Kumar');
+     |                                                               ^ Error: expect(locator).toHaveText(expected) failed
+  50 |     await contextSetup.poManager.homePage.verifyHomepageLoaded();
+  51 |     await contextSetup.poManager.homePage.verifyManagerAndAdminSections();
+  52 |   });
+  53 | 
+  54 | 
+  55 |     test('Admin Manager Login Homepage validation', async ({},testInfo) => {
+  56 |     const contextSetup = new TestContextSetup(testInfo);
+  57 |     const page = await contextSetup.init(`${process.env.BASE_URL}`, 'chromium');
+  58 |     const token = await contextSetup.genericUtils.generateJWT(process.env.ADMIN_MANAGER_USER);
+  59 |     await contextSetup.genericUtils.setupAuthCookie(token);
+  60 |     await page.reload();
+  61 |     await page.waitForLoadState('domcontentloaded');
+  62 |     await expect(contextSetup.poManager.homePage.profileName).toHaveText('Janakjit Singh Sethi');
+  63 |     await contextSetup.poManager.homePage.verifyHomepageLoaded();
+  64 |     await contextSetup.poManager.homePage.verifyManagerAndAdminSections();
+  65 |   });
+  66 | 
+  67 | 
+  68 | 
+  69 | 
+  70 | 
+  71 | });
+```
