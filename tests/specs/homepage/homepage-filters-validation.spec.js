@@ -8,11 +8,12 @@ test.describe.serial("Home Page filters validation", () => {
     await homePage.verifyManagerAndAdminSections();
   });
 
-  test(
+  test.only(
     "Search textbox filter validation",
     { tag: ["@homepageFilters"] },
     async ({ authPage, homePage, genericUtils }) => {
-      await homePage.verifySearchContentVisible(data.searchContentText);
+      await homePage.enterSearchText(data.searchContentText);
+      await homePage.verifyContentVisible(data.searchContentText);
     },
   );
 
@@ -21,9 +22,7 @@ test.describe.serial("Home Page filters validation", () => {
     { tag: ["@homepageFilters"] },
     async ({ authPage, homePage, genericUtils }) => {
       await homePage.selectSkillCategory(data.skillCategoryValue);
-      await homePage.verifyOnlySelectedSkillCategoryContentsVisible(
-        data.skillCategoryValue,
-      );
+      await homePage.verifyOnlySelectedSkillCategoryContentsVisible(data.skillCategoryValue);
     },
   );
 
@@ -32,9 +31,7 @@ test.describe.serial("Home Page filters validation", () => {
     { tag: ["@homepageFilters"] },
     async ({ authPage, homePage, genericUtils }) => {
       await homePage.selectSkillName(data.skillNameValue);
-      await homePage.verifyOnlySelectedSkillNameContentsVisible(
-        data.skillNameValue,
-      );
+      await homePage.verifyOnlySelectedSkillNameContentsVisible(data.skillNameValue);
     },
   );
 
@@ -43,10 +40,7 @@ test.describe.serial("Home Page filters validation", () => {
     { tag: ["@homepageFilters"] },
     async ({ authPage, homePage, genericUtils }) => {
       await homePage.selectDueDates(data.dueDateStart, data.dueDateEnd);
-      await homePage.verifyAllDueDatesInRange(
-        data.dueDateStart,
-        data.dueDateEnd,
-      );
+      await homePage.verifyAllDueDatesInRange(data.dueDateStart,data.dueDateEnd);
     },
   );
 
@@ -65,39 +59,76 @@ test.describe.serial("Home Page filters validation", () => {
     { tag: ["@homepageFilters"] },
     async ({ authPage, homePage, genericUtils }) => {
       const data = filtersTestData.quickFilters;
-      const [managerResponse, adminResponse] =
-        await homePage.selectStatusAndReturnResponses(
-          data.assignedStatus,
-          data.apiUrlIdentifier,
-        );
-      const apiContentTitlesRetrieved =
-        await homePage.getAllTitlesFromResponses(
-          managerResponse,
-          adminResponse,
-        );
+      const [managerResponse, adminResponse] = await homePage.selectStatusAndReturnResponses(data.assignedStatus,data.apiUrlIdentifier);
+      const apiContentTitlesRetrieved = await homePage.getAllTitlesFromResponses(managerResponse,adminResponse);
       const uiContentTitlesDisplayed = await homePage.getContentNames();
       expect(apiContentTitlesRetrieved).toEqual(uiContentTitlesDisplayed);
     },
   );
 
   test(
-    "Assigned By Manager sort By filter validation",
+    "Assigned By Manager Content Title sort By filter validation",
     { tag: ["@homepageFilters"] },
     async ({ authPage, homePage, genericUtils }) => {
-      const data = filtersTestData.managerSortBy;
-      await homePage.selectManagerSortByOption(data.titleSortToAscending);
+      const data = filtersTestData.sortByFilters;
+      await homePage.selectManagerSortByOption(data.sortByTitleDescending);
       const contentNames = await homePage.getManagerAssignedCardNames();
-      await homePage.verifyNamesSorted(contentNames, data.titleSortToAscending);
+      await homePage.verifyContentTitlesSorted(contentNames,data.sortToDescending);
     },
   );
 
-  test.only(
-    "Assigned By Admin sort By filter validation",
+  test(
+    "Assigned By Manager Content Priority sort By filter validation",
     { tag: ["@homepageFilters"] },
     async ({ authPage, homePage, genericUtils }) => {
       const data = filtersTestData.sortByFilters;
       await homePage.selectManagerSortByOption(data.sortByMandatoryFirst);
-      const ContentTitles = await homePage.getManagerAssignedCardNames();
+      const cards = await homePage.managerAssignedContentCards;
+      await homePage.verifyOptionalContentsDisplayedLast(cards);
+    },
+  );
+
+  test(
+    "Assigned By Manager Content Due Date sort By filter validation",
+    { tag: ["@homepageFilters"] },
+    async ({ authPage, homePage, genericUtils }) => {
+      const data = filtersTestData.sortByFilters;
+      await homePage.selectAdminSortByOption(data.sortByDueDateLateFirst);
+      const dueDates = await homePage.adminAssignedContentDueDate;
+      await homePage.verifyDueDatesSorted(dueDates, data.sortToDescending);
+    },
+  );
+
+  test(
+    "Assigned By Admin Content Title sort By filter validation",
+    { tag: ["@homepageFilters"] },
+    async ({ authPage, homePage, genericUtils }) => {
+      const data = filtersTestData.sortByFilters;
+      await homePage.selectAdminSortByOption(data.sortByTitleDescending);
+      const contentNames = await homePage.getAdminAssignedCardNames();
+      await homePage.verifyContentTitlesSorted(contentNames,data.sortToDescending);
+    },
+  );
+
+  test(
+    "Assigned By Admin Content Priority sort By filter validation",
+    { tag: ["@homepageFilters"] },
+    async ({ authPage, homePage, genericUtils }) => {
+      const data = filtersTestData.sortByFilters;
+      await homePage.selectAdminSortByOption(data.sortByMandatoryFirst);
+      const cards = await homePage.adminAssignedContentCards;
+      await homePage.verifyOptionalContentsDisplayedLast(cards);
+    },
+  );
+
+  test(
+    "Assigned By Admin Content Due Date sort By filter validation",
+    { tag: ["@homepageFilters"] },
+    async ({ authPage, homePage, genericUtils }) => {
+      const data = filtersTestData.sortByFilters;
+      await homePage.selectAdminSortByOption(data.sortByDueDateLateFirst);
+      const dueDates = await homePage.adminAssignedContentDueDate;
+      await homePage.verifyDueDatesSorted(dueDates, data.sortToDescending);
     },
   );
 

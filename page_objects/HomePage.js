@@ -1,4 +1,5 @@
 import { expect } from "@playwright/test";
+import { error } from "node:console";
 
 export class HomePage {
   constructor(page) {
@@ -23,12 +24,8 @@ export class HomePage {
       `//div[text()='Skill Name']/following-sibling::input`,
     );
     this.dueDateInputs = page.locator(".ant-picker-input input");
-    this.dueDateStart = page
-      .getByPlaceholder("Due Date")
-      .and(page.locator('[date-range="start"]'));
-    this.dueDateEnd = page
-      .getByPlaceholder("Due Date")
-      .and(page.locator('[date-range="end"]'));
+
+
 
     this.statusAssignedButton = page.getByText("Assigned", { exact: true });
     this.statusInProgressButton = page.getByText("In Progress", {
@@ -41,6 +38,7 @@ export class HomePage {
     this.managerSortByDropdown = page
       .getByRole("combobox", { name: "Sort courses" })
       .first();
+
     this.assignedByAdminSection = page.getByText("Assigned By Admin", {
       exact: true,
     });
@@ -49,21 +47,24 @@ export class HomePage {
       .nth(1);
 
     this.managerAssignedContentCards = page.locator(
-      `//span[normalize-space()='Assigned By Manager']/ancestor::div[contains(@class,'ant-card')][1]/following-sibling::div[contains(@class,'ant-card-body')]`,
+      `//span[normalize-space()='Assigned By Manager']/ancestor::div[contains(@class,'ant-card-bordered')][1]/div[contains(@class,'ant-card-body')]//div[@class='ant-card-body']`,
     );
     this.adminAssignedContentCards = page.locator(
-      `//span[normalize-space()='Assigned By Admin']/ancestor::div[contains(@class,'ant-card')][1]/following-sibling::div[contains(@class,'ant-card-body')]`,
+      `//span[normalize-space()='Assigned By Admin']/ancestor::div[contains(@class,'ant-card-bordered')][1]/div[contains(@class,'ant-card-body')]//div[@class='ant-card-body']`,
     );
     this.contentCard = page.locator(
       '[class*="_listColumn_"] [class*="_listTop_"] [class*="_listHeadingWrap_"]',
     );
 
     this.managerAssignedContentTitles = page.locator(
-      `//span[normalize-space()='Assigned By Manager']/ancestor::div[contains(@class,'ant-card')][1]/following-sibling::div[contains(@class,'ant-card-body')]//div[contains(@class,'_listHeadingWrap_')]`,
+      `//span[normalize-space()='Assigned By Manager']/ancestor::div[contains(@class,'ant-card-bordered')][1]//div[contains(@class,'_listHeadingWrap_')]`,
     );
     this.adminAssignedContentTitles = page.locator(
-      `//span[normalize-space()='Assigned By Admin']/ancestor::div[contains(@class,'ant-card')][1]/following-sibling::div[contains(@class,'ant-card-body')]//div[contains(@class,'_listHeadingWrap_')]`,
+      `//span[normalize-space()='Assigned By Admin']/ancestor::div[contains(@class,'ant-card-bordered')][1]//div[contains(@class,'_listHeadingWrap_')]`,
     );
+
+    this.managerAssignedContentDueDate = page.locator(`//span[normalize-space()='Assigned By Manager']/ancestor::div[contains(@class,'ant-card-bordered')][1]//div[contains(@class,'_listDueRow_')]/span[contains(@class,'_listDueDate_')]`);
+    this.adminAssignedContentDueDate = page.locator(`//span[normalize-space()='Assigned By Admin']/ancestor::div[contains(@class,'ant-card-bordered')][1]//div[contains(@class,'_listDueRow_')]/span[contains(@class,'_listDueDate_')]`);
 
     this.assignedTooltip = page.getByRole("tooltip", {
       name: "Mark as in progress",
@@ -128,11 +129,18 @@ export class HomePage {
     ).toBeVisible();
   }
 
-  async verifyContentVisible(contentName) {
-    const content = this.page.getByText(contentName, { exact: true });
-    await content.scrollIntoViewIfNeeded();
-    await expect(content).toBeVisible();
-  }
+  async verifyContentVisible(searchText) {
+  const cards = this.page.locator('[class*="_listColumn_"] [class*="_listTop_"] [class*="_listHeadingWrap_"]');
+  const titles = await cards.allTextContents();
+  const search = searchText.replace(/\s+/g, " ").trim().toLowerCase();
+  const cardsTitles = titles.map(t => t.replace(/\s+/g, " ").trim().toLowerCase());
+  const failures = cardsTitles.filter(t => !t.includes(search));
+
+  expect(
+    failures,
+    `${failures.length} card(s) did not contain "${searchText}":\n- ${failures.join("\n- ")}`
+  ).toHaveLength(0);
+}
 
   async verifyLearningPathDetailsScreen(learningPathName) {
     await expect(
@@ -165,26 +173,9 @@ export class HomePage {
     ).toBeVisible();
   }
 
-  async openIndividualContent(contentName) {
-    await this.page.getByText(contentName).click();
-  }
-
-  async openLearningPath(learningPathName) {
-    const content = this.page.getByText(learningPathName, { exact: true });
-    await content.scrollIntoViewIfNeeded();
-    await expect(content).toBeVisible();
-    await this.page.getByText(learningPathName).click();
-  }
-
-  async verifySearchContentVisible(courseName, contentName) {
-    await this.searchTextbox.waitFor({ state: "visible" });
-    await this.searchTextbox.fill(courseName);
-    await this.page.waitForLoadState("domcontentloaded");
-    await this.verifyContentVisible(contentName);
-  }
-
   async verifyOnlySelectedSkillCategoryContentsVisible(skillCategoryValue) {
     const pills = this.page.locator("._listPillSkillCategory_p5zy6_654");
+    await pills.first.waitFor({state: 'visible'});
     const count = await pills.count();
     for (let i = 0; i < count; i++) {
       const pill = pills.nth(i);
@@ -212,6 +203,7 @@ export class HomePage {
 
   async verifyOnlySelectedSkillNameContentsVisible(skillNameValue) {
     const pills = this.page.locator("._listPillSkillName_p5zy6_670");
+    await pills.first.waitFor({state: 'visible'});
     const count = await pills.count();
     for (let i = 0; i < count; i++) {
       const pill = pills.nth(i);
@@ -238,6 +230,7 @@ export class HomePage {
 
   async verifyDisplayedContentsPriority(priorityLevel) {
     const pills = this.page.locator('[class*="_listPillPriority"]');
+    await pills.first.waitFor({state: 'visible'});
     const count = await pills.count();
     for (let i = 0; i < count; i++) {
       const pill = pills.nth(i);
@@ -258,6 +251,128 @@ export class HomePage {
       }
       console.log(`${contentName} has priority Level as ${priorityLevel}`);
     }
+  }
+
+  async verifyOptionalContentsDisplayedLast(cards) {
+    await cards.first().waitFor({ state: "visible" });
+    const count = await cards.count();
+
+    const items = [];
+    for (let i = 0; i < count; i++) {
+      const card = cards.nth(i);
+      const title = (await card.locator('[class*="_listHeadingWrap_"]').textContent())
+        ?.replace(/\s+/g, " ").trim();
+      const priority = (await card.locator('[class*="_listPillPriority"]').textContent())
+        ?.replace(/\s+/g, " ").trim().toLowerCase();
+      items.push({ title, priority });
+    }
+
+    const firstOptionalIdx = items.findIndex((it) => it.priority.includes("optional"));
+    const lastMandatoryIdx = items.map((it) => it.priority.includes("mandatory"))
+      .lastIndexOf(true);
+
+    if (firstOptionalIdx === -1 || lastMandatoryIdx === -1) {
+      console.log("Only one priority type present — ordering check trivially passes");
+      return;
+    }
+
+    expect(
+      lastMandatoryIdx < firstOptionalIdx,
+      `Optional content is not displayed last.\n` +
+        items.map((it, i) => `${i}: [${it.priority}] ${it.title}`).join("\n"),
+    ).toBe(true);
+
+    console.log("All optional contents are displayed after mandatory ones");
+}
+
+  async verifyDueDatesSorted(dueDates, order = "asc") {
+    dueDates.first().waitFor({ state: "visible" });
+    const count = await dueDates.count();
+    const dates = [];
+    for (let i = 0; i < count; i++) {
+      const raw = (await dueDates.nth(i).textContent())
+        ?.replace(/\s+/g, " ")
+        .trim();
+      const match = raw?.match(/(\d{2})-(\d{2})-(\d{4})/);
+      if (match) {
+        dates.push(`${match[3]}-${match[2]}-${match[1]}`); // DD-MM-YYYY -> YYYY-MM-DD
+      }
+    }
+
+    console.log(dates.length);
+
+    if (dates.length === 0) {
+      console.log("No due dates present — ordering check skipped");
+      return;
+    }
+
+    if (dates.length === 1) {
+      console.log("Only one due date present — ordering check trivially passes");
+      return;
+    }
+
+    const isSorted = dates.every(
+      (val, i) =>
+        i === 0 ||
+        (order === "asc" ? dates[i - 1] <= val : dates[i - 1] >= val),
+    );
+
+    expect(
+      isSorted,
+      `Due dates are not in ${order} order:\n${dates.join("\n")}`,
+    ).toBe(true);
+
+    console.log(`All due dates are displayed in ${order} order`);
+  }
+
+  async verifyAllDueDatesInRange(startDate, endDate) {
+    const dueDates = this.page.locator('[class*="_listDueDate_"]');
+    await dueDates.first.waitFor({state: "visible"});
+    const count = await dueDates.count();
+    for (let i = 0; i < count; i++) {
+      const raw = (await dueDates.nth(i).textContent())
+        ?.replace(/\s+/g, " ")
+        .trim();
+      const match = raw.match(/(\d{2})-(\d{2})-(\d{4})/);
+      const date = match ? `${match[3]}-${match[2]}-${match[1]}` : undefined;
+      const contentName = (
+        await dueDates
+          .nth(i)
+          .locator(
+            "xpath=following::div[@class='_listHeadingWrap_p5zy6_516'][1]",
+          )
+          .textContent()
+      )
+        ?.replace(/\s+/g, " ")
+        .trim();
+      if (!date || !(date >= startDate && date <= endDate)) {
+        throw new Error(
+          `Due date "${raw}" is not within ${startDate} – ${endDate}`,
+        );
+      }
+      console.log(
+        ` "${contentName}" due date is within the given start date "${startDate}" and End date "${endDate}" range `,
+      );
+    }
+  }
+
+  verifyContentTitlesSorted(names, order = "asc") {
+    const cleaned = names.map((n) => n.replace(/\s+/g, " ").trim());
+    const compare = (a, b) =>
+      a.localeCompare(b, undefined, { sensitivity: "base", numeric: true });
+
+    const isSorted = cleaned.every(
+      (val, i) =>
+        i === 0 ||
+        (order === "asc"
+          ? compare(cleaned[i - 1], val) <= 0
+          : compare(cleaned[i - 1], val) >= 0),
+    );
+
+    expect(
+      isSorted,
+      `Names not in ${order} order:\n${cleaned.join("\n")}`,
+    ).toBe(true);
   }
 
   async selectSkillCategory(skillCategory) {
@@ -329,19 +444,13 @@ export class HomePage {
 
   async selectManagerSortByOption(optionText) {
     await this.managerSortByDropdown.click();
-    await this.page
-      .locator(".ant-select-item-option")
-      .filter({ hasText: optionText })
-      .click();
+    await this.page.locator(`//div[text()='${optionText}']`).click();
     await this.contentCard.first().waitFor({ state: "visible" });
   }
 
   async selectAdminSortByOption(optionText) {
     await this.adminSortByDropdown.click();
-    await this.page
-      .locator(".ant-select-item-option")
-      .filter({ hasText: optionText })
-      .click();
+    await this.page.locator(`//div[text()='${optionText}']`).click();
     await this.contentCard.first().waitFor({ state: "visible" });
   }
 
@@ -361,55 +470,6 @@ export class HomePage {
     return allTitles;
   }
 
-  async verifyAllDueDatesInRange(startDate, endDate) {
-    const dueDates = this.page.locator('[class*="_listDueDate_"]');
-    const count = await dueDates.count();
-    for (let i = 0; i < count; i++) {
-      const raw = (await dueDates.nth(i).textContent())
-        ?.replace(/\s+/g, " ")
-        .trim();
-      const match = raw.match(/(\d{2})-(\d{2})-(\d{4})/);
-      const date = match ? `${match[3]}-${match[2]}-${match[1]}` : undefined;
-      const contentName = (
-        await dueDates
-          .nth(i)
-          .locator(
-            "xpath=following::div[@class='_listHeadingWrap_p5zy6_516'][1]",
-          )
-          .textContent()
-      )
-        ?.replace(/\s+/g, " ")
-        .trim();
-      if (!date || !(date >= startDate && date <= endDate)) {
-        throw new Error(
-          `Due date "${raw}" is not within ${startDate} – ${endDate}`,
-        );
-      }
-      console.log(
-        ` "${contentName}" due date is within the given start date "${startDate}" and End date "${endDate}" range `,
-      );
-    }
-  }
-
-  verifyNamesSorted(names, order = "asc") {
-    const cleaned = names.map((n) => n.replace(/\s+/g, " ").trim());
-    const compare = (a, b) =>
-      a.localeCompare(b, undefined, { sensitivity: "base", numeric: true });
-
-    const isSorted = cleaned.every(
-      (val, i) =>
-        i === 0 ||
-        (order === "asc"
-          ? compare(cleaned[i - 1], val) <= 0
-          : compare(cleaned[i - 1], val) >= 0),
-    );
-
-    expect(
-      isSorted,
-      `Names not in ${order} order:\n${cleaned.join("\n")}`,
-    ).toBe(true);
-  }
-
   async getContentNames() {
     const cards = this.page.locator('[class*="_listHeadingWrap_"]');
     await cards.first().waitFor({ state: "visible" });
@@ -423,6 +483,7 @@ export class HomePage {
     await cards.first().waitFor({ state: "visible" });
     return (await cards.allTextContents()).map((n) => n.trim()).filter(Boolean);
   }
+
 
   async getAdminAssignedCardNames() {
     await this.assignedByAdminSection.waitFor({ state: "visible" });
@@ -506,5 +567,24 @@ export class HomePage {
     await expect(this.learningPathProgressLocator).not.toHaveText(
       previousProgress,
     );
+  }
+
+  async openIndividualContent(contentName) {
+    await this.page.getByText(contentName).click();
+  }
+
+  async openLearningPath(learningPathName) {
+    const content = this.page.getByText(learningPathName, { exact: true });
+    await content.scrollIntoViewIfNeeded();
+    await expect(content).toBeVisible();
+    await this.page.getByText(learningPathName).click();
+  }
+
+  async enterSearchText(searchText) {
+    await this.searchTextbox.waitFor({ state: "visible" });
+    await this.searchTextbox.fill(searchText);
+    await this.contentCard
+      .first()
+      .waitFor({ state: "visible" });
   }
 }
