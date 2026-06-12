@@ -23,6 +23,13 @@ export const test = base.extend({
   authPage: async ({}, use, testInfo) => {
     const {browser,context} = await launchBrowser();
     const page = await context.newPage();
+    const screenSize = await page.evaluate(() => {
+    return {
+      width: window.screen.availWidth,
+      height: window.screen.availHeight
+    };
+  });
+    await page.setViewportSize(screenSize);
     await page.goto(process.env.BASE_URL);
 
     const utils = new GenericUtils(context, testInfo);
@@ -41,6 +48,13 @@ export const test = base.extend({
   plainPage: async ({}, use) => {
     const {browser, context} = await launchBrowser();
     const page = await context.newPage();
+    const screenSize = await page.evaluate(() => {
+    return {
+      width: window.screen.availWidth,
+      height: window.screen.availHeight
+    };
+  });
+    await page.setViewportSize(screenSize);
     await page.goto(process.env.BASE_URL);
 
     await use(page);

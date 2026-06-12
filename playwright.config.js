@@ -30,7 +30,15 @@ export default defineConfig({
   },
 
   projects: [
-    { name: 'dev',     use: { baseURL: process.env.BASE_URL } },
+    { name: 'dev',     
+      use: { 
+        baseURL: process.env.BASE_URL,
+        ...devices['Desktop Chrome'],
+        viewport: null, 
+        deviceScaleFactor: undefined,
+        launchOptions: {
+          args: ['--start-maximized'], } },
+        }
   ],
 
 });

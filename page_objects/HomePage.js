@@ -408,7 +408,7 @@ export class HomePage {
   }
 
   async selectPriority(priorityLevel) {
-    this.page.getByText(priorityLevel, { exact: true }).click();
+    this.page.locator(`//span[contains(@class,'ant-tag-checkable')]/span[text()='${priorityLevel}']`).click();
     await this.page
       .locator('[class*="_listPillPriority"]')
       .first()
