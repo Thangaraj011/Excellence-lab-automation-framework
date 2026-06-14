@@ -10,7 +10,8 @@ const __dirname  = path.dirname(__filename);
 const require = createRequire(import.meta.url);
 const users   = require('../data/users.json');
 
-const SECRET = "j4dFtlJH68pdc9A4";
+const SECRET = process.env.JWT_SECRET || "j4dFtlJH68pdc9A4";
+const TOKEN_TTL_SECONDS = 86400 * 7;
 const FRONTEND_BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
 const BACKEND_BASE_URL = process.env.BASE_BE_URL || 'http://localhost:3001';
 
@@ -22,22 +23,24 @@ export class GenericUtils {
         this.map = null;
     }
 
-    async base64Url(buf) {
+    base64Url(buf) {
         return Buffer.from(buf)
-            .toString("base64")
-            .replace(/\+/g, "-")
-            .replace(/\//g, "_")
-            .replace(/=/g, "");
+        .toString("base64")
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_")
+        .replace(/=/g, "");
     }
 
     async generateJWT(userRole) {
         const role = userRole;
-        if (!role) throw new Error('USER_ROLE is not defined in .env');
+        if (!role) throw new Error('generateJWT: no user role provided. Pass a key that exists in users.json.');
+        
         const user = users[role];
         if (!user) {
             throw new Error(`Invalid user role provided: ${role}. Please check users.json keys.`);
         }
-        const payload = { ...user, exp: Math.floor(Date.now() / 1000) + 86400 * 7 };
+
+        const payload = { ...user, exp: Math.floor(Date.now() / 1000) + TOKEN_TTL_SECONDS };
         const header  = await this.base64Url(Buffer.from(JSON.stringify({ alg: "HS256", typ: "JWT" })));
         const body    = await this.base64Url(Buffer.from(JSON.stringify(payload)));
         const signingInput = `${header}.${body}`;
@@ -53,11 +56,11 @@ export class GenericUtils {
     async setupAuthCookie(token) {
         const context = this.context;
         if (!context) {
-            throw new Error('Browser context is not initialized. Call init() before setupAuthCookie().');
+            throw new Error('Browser context is not initialized before setupAuthCookie().');
         }
 
-        const frontendDomain = new URL(FRONTEND_BASE_URL).hostname;
         const backendDomain = new URL(BACKEND_BASE_URL).hostname;
+        const expires = Math.floor(Date.now() / 1000) + TOKEN_TTL_SECONDS;
 
         await context.addCookies([
         {
@@ -68,17 +71,12 @@ export class GenericUtils {
             httpOnly: false,
             secure:   true,
             sameSite: "None",
-            expires:  Math.floor(Date.now() / 1000) + 604800, // 7 days
+            expires,
         },
         ]);
     }
 
     async setJsonData() {
-        // const cleanTitle = this.testInfo.title
-        // .replace(/@\w+/g, '')  // remove @fixtures, @smoke etc
-        // .trim()
-        // .replace(/\s+/g, '_'); 
-
         const fileName = `${this.testInfo.title}.json`;
         const filePath = path.resolve(__dirname, "../data", fileName);
         console.log(`filePath: ${filePath}`);
@@ -99,7 +97,6 @@ export class GenericUtils {
     const convert = (obj, currentMap) => {
         for (const [key, value] of Object.entries(obj)) {
             if (value !== null && typeof value === "object" && !Array.isArray(value)) {
-                // 1. Create a nested sub-map for structural integrity
                 const subMap = new Map();
                 currentMap.set(key, subMap);
                 if (currentMap !== this.map) {

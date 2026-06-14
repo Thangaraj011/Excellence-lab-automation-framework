@@ -1,7 +1,7 @@
 
-const LP_NAME = 'Test sample Learning path Magic 2026';
-const CONTENT = 'Confusion magic sample test 2026';
-const ENT_LP_NAME = 'Test sample learning 28723';
+const LP_NAME = 'New Magic Learning path 2026 99';
+const CONTENT = 'Magic entertainment new 2026';
+const ENT_LP_NAME = 'Typewriting Skills Learning 2026';
 const STATUS_COMPLETED = 'Completed';
 
 

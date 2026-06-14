@@ -1,0 +1,1 @@
+auth/admin.json: no file/token → regenerate

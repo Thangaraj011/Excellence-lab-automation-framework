@@ -18,7 +18,11 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 2 : 4,
   timeout: 30000,
-  reporter: [['html', { open: 'never' }],['allure-playwright', { outputFolder: 'allure-results' }], ['list'],],
+  reporter: [
+    ['html', { open: 'never' }],
+    ['allure-playwright', { outputFolder: 'allure-results' }], 
+    ['list'],
+  ],
   use: {
     baseURL:             process.env.BASE_URL,
     trace:               'on-first-retry',
@@ -32,7 +36,7 @@ export default defineConfig({
   projects: [
     {
       name: 'setup',
-      testMatch: /auth\.setup\.js/,
+      testMatch: /token-generator\.js/,
     },
     {
       name: 'chromium',
@@ -42,8 +46,34 @@ export default defineConfig({
       },
       dependencies: ['setup'],
     },
-    { name: 'dev',     
-      use: { baseURL: process.env.BASE_URL } },
+    
+    {
+      name: 'manager-indirect',
+      testMatch: /.*\.managerindirect\.spec\.js/,
+      use: { ...devices['Desktop Chrome'], storageState: 'auth/managerindirect.json' },
+      dependencies: ['setup'],
+    },
+
+    {
+      name: 'manager-direct',
+      testMatch: /.*\.managerdirect\.spec\.js/,
+      use: { ...devices['Desktop Chrome'], storageState: 'auth/managerdirect.json' },
+      dependencies: ['setup'],
+    },
+
+    {
+      name: 'admin',
+      testMatch: /.*\.admin\.spec\.js/,
+      use: { ...devices['Desktop Chrome'], storageState: 'auth/admin.json' },
+      dependencies: ['setup'],
+    },
+    
+    {
+      name: 'admin-manager',
+      testMatch: /.*\.adminmanager\.spec\.js/,
+      use: { ...devices['Desktop Chrome'], storageState: 'auth/adminmanager.json' },
+      dependencies: ['setup'],
+    },
   ],
 
 });

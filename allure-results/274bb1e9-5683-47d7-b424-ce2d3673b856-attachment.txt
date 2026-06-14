@@ -1,0 +1,1 @@
+auth/user.json: valid for ~10053 min → reuse

@@ -1,0 +1,1 @@
+auth/managerindirect.json: no file/token → regenerate

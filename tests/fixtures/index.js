@@ -5,49 +5,55 @@ import { ContentCataloguePage } from '../../page_objects/ContentCataloguePage.js
 import { GenericUtils }        from '../utils/GenericUtils.js';
 
 
-async function launchBrowser() {
+async function launchBrowser(storageStatePath) {
   const launchers = { chromium, firefox, webkit };
   const launcher  = launchers[process.env.BROWSER_TYPE || 'chromium'];
   if (!launcher) throw new Error(`Unsupported BROWSER_TYPE: "${process.env.BROWSER_TYPE}"`);
+
   const browser = await launcher.launch({
     headless: process.env.CI ? true : false,
-    slowMo:   process.env.SLOW_MO ? parseInt(process.env.SLOW_MO) : 0,
+    slowMo:   process.env.SLOW_MO ? parseInt(process.env.SLOW_MO, 10) : 0,
   });
+
   const context = await browser.newContext({
-    baseURL: process.env.BASE_URL, locale: 'en-US', timezoneId: 'America/New_York',
+    baseURL: process.env.BASE_URL, 
+    locale: 'en-US', 
+    timezoneId: 'America/New_York',
+    ...(storageStatePath ? { storageState: storageStatePath } : {}),
   });
+
   return { browser, context };
 }
 
 export const test = base.extend({
 
-  authPage: async ({}, use, testInfo) => {
-    const {browser,context} = await launchBrowser();
-    const page = await context.newPage();
-    await page.goto(process.env.BASE_URL);
-
-    const utils = new GenericUtils(context, testInfo);
-    const token = await utils.generateJWT(process.env.EMP_USER);
-    await utils.setupAuthCookie(token);
-    await page.reload();
-    await page.waitForLoadState('domcontentloaded');
-    await page.context().storageState({ path: 'auth/user.json' });
-    await use(page);
-
+  context: async ({}, use) => {
+    const { browser, context } = await launchBrowser();
+    await use(context);
     await context.close();
     await browser.close();
   },
 
-
-  plainPage: async ({}, use) => {
-    const {browser, context} = await launchBrowser();
-    const page = await context.newPage();
-    await page.goto(process.env.BASE_URL);
-
-    await use(page);
-
+  authContext: async ({}, use) => {
+    const statePath = process.env.AUTH_STATE_FILE || 'auth/user.json';
+    const { browser, context } = await launchBrowser(statePath);
+    await use(context);
     await context.close();
     await browser.close();
+  },
+
+  authPage: async ({authContext}, use) => {
+    const page = await authContext.newPage();
+    await page.goto(process.env.BASE_URL);
+    await page.waitForLoadState('domcontentloaded');
+    await use(page);
+  },
+
+
+  plainPage: async ({context}, use) => {
+    const page = await context.newPage();
+    await page.goto(process.env.BASE_URL);
+    await use(page);
   },
 
 
@@ -63,8 +69,8 @@ export const test = base.extend({
     await use(new ContentCataloguePage(authPage));
   },
 
-  genericUtils: async ({ authPage }, use, testInfo) => {
-    await use(new GenericUtils(authPage.context(), testInfo));
+  genericUtils: async ({ context }, use, testInfo) => {
+    await use(new GenericUtils(context, testInfo));
   },
 
 

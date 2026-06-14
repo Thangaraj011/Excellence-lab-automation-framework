@@ -90,6 +90,7 @@ export class HomePage {
     this.learningPathProgressLocator = this.page.locator(
       '[class*="_pathProgressPercent_"]',
     );
+
   }
 
   async verifyHomepageLoaded() {
@@ -129,7 +130,7 @@ export class HomePage {
   }
 
   async verifyContentVisible(contentName) {
-    const content = this.page.getByText(contentName, { exact: true });
+    const content = this.page.getByText(contentName);
     await content.scrollIntoViewIfNeeded();
     await expect(content).toBeVisible();
   }
@@ -433,7 +434,7 @@ export class HomePage {
 
   async getContentProgressButton(contentName) {
     const btn = this.page.locator(
-      `//span[text()='${contentName}']/following::button[1]`,
+      `//span[text()='${contentName}']/ancestor::div[@class='ant-card-body'][1]//button`,
     );
     await btn.scrollIntoViewIfNeeded();
     await btn.waitFor({ state: "visible" });
@@ -459,7 +460,7 @@ export class HomePage {
   async markAllIndividualContentsToCompleteStatus(contentNames) {
     for (const contentName of contentNames) {
       const progressButton = this.page.locator(
-        `//span[text()='${contentName}']/following::button[1]`,
+        `//span[text()='${contentName}']/ancestor::div[@class='ant-card-body'][1]//button`,
       );
 
       if ((await progressButton.count()) === 0) {

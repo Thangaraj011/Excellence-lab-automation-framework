@@ -1,0 +1,15 @@
+{
+  "cookies": [
+    {
+      "name": "token",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRkMWIyNTVjLTA1YmUtNDliYi04YzFlLTAzMzIxMmQxMmQ5MyIsImVtYWlsIjoiamFuYWtqaXQuc2V0aGlAc2VhcmNlLmNvbSIsIm5hbWUiOiJKYW5ha2ppdCBTaW5naCBTZXRoaSIsInJvbGVfdHlwZSI6Ik1BTkFHRVIiLCJzeXN0ZW1fcm9sZSI6IkFETUlOIiwiZXhwIjoxNzgyMDY3OTM3fQ.UioIOzwzGvS0j-vszunXxGdlAuLAD7ICHLtxH4U_zHk",
+      "domain": "learning-buddy-dev-backend-service-346514237201.us-central1.run.app",
+      "path": "/",
+      "expires": 1782067937,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    }
+  ],
+  "origins": []
+}
