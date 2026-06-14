@@ -1,5 +1,6 @@
 import { HomePage } from './HomePage.js';
 import { LearningRecordsPage } from './LearningRecordsPage.js';
+import { ContentCataloguePage } from './ContentCataloguePage.js';
 
 export class POManager {
 
@@ -17,5 +18,6 @@ export class POManager {
   
   get homePage()            { return this._get('homePage', HomePage); }
   get learningRecordsPage() { return this._get('learningRecordsPage', LearningRecordsPage); }
+  get contentCataloguePage() { return this._get('contentCataloguePage', ContentCataloguePage); }
 
 }

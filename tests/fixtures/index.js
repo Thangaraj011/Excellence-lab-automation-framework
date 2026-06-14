@@ -1,6 +1,7 @@
 import { test as base, chromium, firefox, webkit } from '@playwright/test';
 import { HomePage }            from '../../page_objects/HomePage.js';
 import { LearningRecordsPage } from '../../page_objects/LearningRecordsPage.js';
+import { ContentCataloguePage } from '../../page_objects/ContentCataloguePage.js';
 import { GenericUtils }        from '../utils/GenericUtils.js';
 
 
@@ -30,7 +31,7 @@ export const test = base.extend({
     await utils.setupAuthCookie(token);
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
-
+    await page.context().storageState({ path: 'auth/user.json' });
     await use(page);
 
     await context.close();
@@ -56,6 +57,10 @@ export const test = base.extend({
 
   learningRecordsPage: async ({ authPage }, use) => {
     await use(new LearningRecordsPage(authPage));
+  },
+
+  contentCataloguePage: async ({ authPage }, use) => {
+    await use(new ContentCataloguePage(authPage));
   },
 
   genericUtils: async ({ authPage }, use, testInfo) => {

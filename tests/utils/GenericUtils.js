@@ -12,6 +12,7 @@ const users   = require('../data/users.json');
 
 const SECRET = "j4dFtlJH68pdc9A4";
 const FRONTEND_BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
+const BACKEND_BASE_URL = process.env.BASE_BE_URL || 'http://localhost:3001';
 
 export class GenericUtils {
     constructor(context, testInfo) {
@@ -55,11 +56,14 @@ export class GenericUtils {
             throw new Error('Browser context is not initialized. Call init() before setupAuthCookie().');
         }
 
+        const frontendDomain = new URL(FRONTEND_BASE_URL).hostname;
+        const backendDomain = new URL(BACKEND_BASE_URL).hostname;
+
         await context.addCookies([
         {
             name:     "token",
             value:    token,
-            domain:   "learning-buddy-dev-backend-service-346514237201.us-central1.run.app",
+            domain:   backendDomain,
             path:     "/",
             httpOnly: false,
             secure:   true,

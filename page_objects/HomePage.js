@@ -59,10 +59,10 @@ export class HomePage {
     );
 
     this.managerAssignedContentTitles = page.locator(
-      `//span[normalize-space()='Assigned By Manager']/ancestor::div[contains(@class,'ant-card')][1]/following-sibling::div[contains(@class,'ant-card-body')]//div[contains(@class,'_listHeadingWrap_')]`,
+      `//span[normalize-space()='Assigned By Manager']/ancestor::div[contains(@class,'ant-card-bordered')][1]/div[contains(@class,'ant-card-body')]//div[contains(@class,'_listHeadingWrap_')]`,
     );
     this.adminAssignedContentTitles = page.locator(
-      `//span[normalize-space()='Assigned By Admin']/ancestor::div[contains(@class,'ant-card')][1]/following-sibling::div[contains(@class,'ant-card-body')]//div[contains(@class,'_listHeadingWrap_')]`,
+      `//span[normalize-space()='Assigned By Admin']/ancestor::div[contains(@class,'ant-card-bordered')][1]/div[contains(@class,'ant-card-body')]//div[contains(@class,'_listHeadingWrap_')]`,
     );
 
     this.assignedTooltip = page.getByRole("tooltip", {
