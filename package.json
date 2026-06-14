@@ -28,6 +28,7 @@
     "prettier": "^3.0.0"
   },
   "dependencies": {
+    "@playwright/cli": "^0.1.14",
     "exceljs": "^4.4.0",
     "playwright": "^1.60.0"
   },
