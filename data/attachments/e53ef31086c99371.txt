@@ -1,2 +1,0 @@
-Consulting & Business Development Initiatives
-Pill[0] text = "Consulting & Business Development Initiatives"

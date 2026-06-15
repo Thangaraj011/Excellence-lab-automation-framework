@@ -1,6 +1,0 @@
-Pill[0] text = "Optional"
-Test sample learning 28723 has priority Level as Optional
-Pill[1] text = "Optional"
-Global security measures 2026 has priority Level as Optional
-Pill[2] text = "Optional"
-Master Control Override Horizon Zero Dawn has priority Level as Optional
