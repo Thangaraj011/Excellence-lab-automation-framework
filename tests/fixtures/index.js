@@ -2,6 +2,7 @@ import { test as base, chromium, firefox, webkit } from '@playwright/test';
 import { HomePage }            from '../../page_objects/HomePage.js';
 import { LearningRecordsPage } from '../../page_objects/LearningRecordsPage.js';
 import { ContentCataloguePage } from '../../page_objects/ContentCataloguePage.js';
+import { TeamDashboardPage }   from '../../page_objects/TeamDashboardPage.js';
 import { GenericUtils }        from '../utils/GenericUtils.js';
 
 
@@ -63,6 +64,10 @@ export const test = base.extend({
 
   learningRecordsPage: async ({ authPage }, use) => {
     await use(new LearningRecordsPage(authPage));
+  },
+
+  teamDashboardPage: async ({ authPage }, use) => {
+    await use(new TeamDashboardPage(authPage));
   },
 
   contentCataloguePage: async ({ authPage }, use) => {

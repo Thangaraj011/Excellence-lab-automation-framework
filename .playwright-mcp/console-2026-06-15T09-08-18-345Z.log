@@ -1,0 +1,7 @@
+[   15617ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://learning-buddy-dev-backend-service-346514237201.us-central1.run.app/auth/verify:0
+[   15896ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://learning-buddy-dev-backend-service-346514237201.us-central1.run.app/auth/verify:0
+[   16526ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://learning-buddy-dev-backend-service-346514237201.us-central1.run.app/auth/verify:0
+[   85652ms] [WARNING] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(120) or use aspect(undefined) to control the
+       height and width. @ https://learning-buddy-dev-frontend-service-346514237201.us-central1.run.app/assets/vendor-CzECgRbD.js:409

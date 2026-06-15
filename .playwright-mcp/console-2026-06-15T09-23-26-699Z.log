@@ -1,0 +1,2 @@
+[    2546ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://learning-buddy-dev-backend-service-346514237201.us-central1.run.app/auth/verify:0
+[    3145ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://learning-buddy-dev-backend-service-346514237201.us-central1.run.app/auth/verify:0

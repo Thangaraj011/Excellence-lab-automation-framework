@@ -4,7 +4,7 @@ const SEARCH_TERM = 'Gemini';
 const TYPE_FILTER = 'Article';
 
 test.describe.serial('Content Catalogue filter validation', () => {
-  test('should validate homepage, search catalogue and filter by type', async ({ homePage, contentCataloguePage }) => {
+  test('search content catalogue Individual content and filter by type', async ({ homePage, contentCataloguePage }) => {
     await homePage.verifyHomepageLoaded();
     await homePage.verifyManagerAndAdminSections();
 
