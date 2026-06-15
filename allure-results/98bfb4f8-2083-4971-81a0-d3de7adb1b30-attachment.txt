@@ -1,5 +1,0 @@
-[]
-[
-  'Thangaraj Testing sample 1',
-  'Test sample Learning path Magic 2026'
-]

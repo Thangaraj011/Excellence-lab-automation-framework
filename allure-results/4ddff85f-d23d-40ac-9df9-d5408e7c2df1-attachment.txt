@@ -1,3 +1,0 @@
-filePath: /Users/thangaraj.r/Documents/playwright-pom-framework/tests/data/Learning path specific individual content status update to Inprogress validation.json
-0%
-[]
