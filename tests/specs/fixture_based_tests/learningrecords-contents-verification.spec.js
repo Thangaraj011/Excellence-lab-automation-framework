@@ -12,12 +12,12 @@ test.describe.serial('Learning records Individual contents details verification'
         await learningRecordsPage.screenTitleCheck();
     })
 
-    test('Multiple Individual contents learning recods details validation', {tag: "@learningRecords"}, async({authPage, homePage, learningRecordsPage, genericUtils}) =>{
+    test('Multiple Individual contents learning recods details validation', {tag: ["@learningRecords", "@demo2"]}, async({authPage, homePage, learningRecordsPage, genericUtils}) =>{
         await learningRecordsPage.setTenContentperPage();
         await learningRecordsPage.findTitlesAcrossPages(data.contentTitles);
     });
 
-    test('Single Individual contents learning recods details validation', {tag: "@learningRecords"}, async({authPage, homePage, learningRecordsPage, genericUtils}) =>{
+    test('Single Individual contents learning records details validation', {tag: ["@learningRecords", "@demo2"]}, async({authPage, homePage, learningRecordsPage, genericUtils}) =>{
         const data = learningRecordsData.singleContent;
         const expectedData = {
         source: data.contentSource,
@@ -29,7 +29,7 @@ test.describe.serial('Learning records Individual contents details verification'
         await learningRecordsPage.findTitlesAcrossPages(data.contentTitle, expectedData);
     });
 
-    test.only('AI Recommended contents learning recods Edit details validation', {tag: "@learningRecords"}, async({authPage, homePage, learningRecordsPage, genericUtils}) =>{
+    test.only('AI Recommended contents learning recods Edit details validation', {tag: ["@learningRecords", "@demo2"]}, async({authPage, homePage, learningRecordsPage, genericUtils}) =>{
         const data = learningRecordsData.singleContent;
         await learningRecordsPage.setTenContentperPage();
         const rowElement = await learningRecordsPage.findContentAndInitiateActions(data.contentTitle, data.contentSource);

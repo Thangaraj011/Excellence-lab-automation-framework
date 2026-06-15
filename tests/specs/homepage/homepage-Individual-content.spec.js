@@ -4,7 +4,7 @@ import { TestContextSetup } from "../../context/TestContextSetup";
 test.describe
   .serial("Homepage Individual Content Status Update Validation", () => {
   test(
-    "Individual Content update status to Inprogress",{ tag: "@smoke" },async ({}, testInfo) => {
+    "Individual Content update status to Inprogress",{ tag: ["@smoke", "@demo1"] },async ({}, testInfo) => {
       const contextSetup = new TestContextSetup(testInfo);
       const page = await contextSetup.init(`${process.env.BASE_URL}`,`${process.env.BROWSER_TYPE}`);
       const token = await contextSetup.genericUtils.generateJWT(process.env.EMP_USER);
@@ -32,7 +32,7 @@ test.describe
   );
 
   test.only(
-    "Individual Content update status to Complete", { tag: "@smoke" }, async ({}, testInfo) => {
+    "Individual Content update status to Complete", { tag: ["@smoke", "@demo1"] }, async ({}, testInfo) => {
       const contextSetup = new TestContextSetup(testInfo);
       const page = await contextSetup.init(`${process.env.BASE_URL}`,"chromium");
       const token = await contextSetup.genericUtils.generateJWT(process.env.EMP_USER);
