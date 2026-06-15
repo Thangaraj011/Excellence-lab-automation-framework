@@ -1,0 +1,1 @@
+auth/admin.json: valid for ~8819 min → reuse

@@ -1,0 +1,7 @@
+Running Project [e2e-dynamic-runtime] with state: auth/admin.json
+"Conceptual understanding of Subnets, Regions, AZ" already complete (no button) — skipping
+"IAM Overview" already complete (no button) — skipping
+"Create IAM Roles and Service Accounts" already complete (no button) — skipping
+"What is BigQuery?" already complete (no button) — skipping
+"BiqQuery Architecture" already complete (no button) — skipping
+"Region and Multi-Region concept" already complete (no button) — skipping

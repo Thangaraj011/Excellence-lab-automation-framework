@@ -35,8 +35,11 @@ export const test = base.extend({
     await browser.close();
   },
 
-  authContext: async ({}, use) => {
-    const statePath = process.env.AUTH_STATE_FILE || 'auth/user.json';
+  authContext: async ({}, use, testInfo) => {
+    const projectStorageState = testInfo.project.use?.storageState;
+    const statePath = projectStorageState || process.env.AUTH_STATE_FILE || 'auth/user.json';
+    console.log(`Running Project [${testInfo.project.name}] with state: ${statePath}`);
+    
     const { browser, context } = await launchBrowser(statePath);
     await use(context);
     await context.close();

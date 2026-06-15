@@ -5,18 +5,34 @@ import dotenv from 'dotenv';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const environment = process.env.ENV || 'dev';
+const match = `/token-generator\.js/`;
 
 dotenv.config({
   path: path.resolve(__dirname, `tests/configs/.env.${environment}`),
   override: true
 });
 
+
+const PROFILE_REGISTRY = {
+  'employee':        'auth/user.json',
+  'managerindirect': 'auth/managerindirect.json',
+  'managerdirect':   'auth/managerdirect.json',
+  'admin':           'auth/admin.json',
+  'adminmanager':    'auth/adminmanager.json',
+};
+
+const activeProfileKey = (process.env.AUTH_PROFILES || 'employee').trim().toLowerCase();
+const selectedStorageState = PROFILE_REGISTRY[activeProfileKey] || PROFILE_REGISTRY['employee'];
+
+console.log(` Playwright Runtime: [Profile: ${activeProfileKey}] -> [Using State: ${selectedStorageState}]`);
+
+
 export default defineConfig({
   testDir: './tests/specs',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 2 : 4,
+  workers: process.env.CI ? 2 : 1,
   timeout: 30000,
   reporter: [
     ['html', { open: 'never' }],
@@ -39,39 +55,12 @@ export default defineConfig({
       testMatch: /token-generator\.js/,
     },
     {
-      name: 'chromium',
+      name: 'e2e-dynamic-runtime',
+      testMatch: /.*\.spec\.js/, // Now matches ALL your spec files cleanly
       use: {
         ...devices['Desktop Chrome'],
-        storageState: 'auth/user.json',
+        storageState: selectedStorageState, // Dynamically set by your .env file
       },
-      dependencies: ['setup'],
-    },
-    
-    {
-      name: 'manager-indirect',
-      testMatch: /.*\.managerindirect\.spec\.js/,
-      use: { ...devices['Desktop Chrome'], storageState: 'auth/managerindirect.json' },
-      dependencies: ['setup'],
-    },
-
-    {
-      name: 'manager-direct',
-      testMatch: /.*\.managerdirect\.spec\.js/,
-      use: { ...devices['Desktop Chrome'], storageState: 'auth/managerdirect.json' },
-      dependencies: ['setup'],
-    },
-
-    {
-      name: 'admin',
-      testMatch: /.*\.admin\.spec\.js/,
-      use: { ...devices['Desktop Chrome'], storageState: 'auth/admin.json' },
-      dependencies: ['setup'],
-    },
-    
-    {
-      name: 'admin-manager',
-      testMatch: /.*\.adminmanager\.spec\.js/,
-      use: { ...devices['Desktop Chrome'], storageState: 'auth/adminmanager.json' },
       dependencies: ['setup'],
     },
   ],

@@ -15,12 +15,9 @@ const ALL_PROFILES = [
     { name: 'Manager-Admin',    envUser: 'ADMIN_MANAGER_USER', file: 'auth/adminmanager.json',    key: 'adminmanager' },
 ];
 
-const wanted = (process.env.AUTH_PROFILES || '')
-  .split(',').map(s => s.trim()).filter(Boolean);
+const targetProfileKey = (process.env.AUTH_PROFILE || 'employee').trim().toLowerCase();
 
-const profiles = wanted.length
-  ? ALL_PROFILES.filter(p => wanted.includes(p.key))
-  : ALL_PROFILES;
+const profiles = ALL_PROFILES.filter(p => p.key === targetProfileKey);
 
 test.describe('Generate and set token for local storage', ()=>{
     for(const profile of profiles){

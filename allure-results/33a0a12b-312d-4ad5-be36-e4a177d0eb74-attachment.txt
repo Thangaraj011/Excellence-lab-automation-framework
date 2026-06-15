@@ -1,0 +1,2 @@
+Running Project [e2e-dynamic-runtime] with state: auth/admin.json
+"Conceptual understanding of Subnets, Regions, AZ" already complete (no button) — skipping

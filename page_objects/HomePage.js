@@ -123,7 +123,7 @@ export class HomePage {
   }
 
   async verifyConfirmCompletionDialog(contentName) {
-    await expect(this.page.getByText("Confirm completion")).toBeVisible();
+    await expect(this.page.getByText("Confirm completion").last()).toBeVisible();
     await expect(
       this.page.getByLabel("Confirm completion").getByText(contentName),
     ).toBeVisible();
@@ -500,7 +500,7 @@ export class HomePage {
     await this.verifyConfirmCompletionDialog(contentName);
     await this.yesMarkCompleteButton.click();
     await this.verifyMarkCompleteToast();
-    await this.markCompleteToast.waitFor({ state: "hidden" });
+    await this.markCompleteToast.waitFor({ state: "hidden", timeout: 6000 });
   }
 
   async expectProgressChanged(previousProgress) {
