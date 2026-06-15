@@ -5,7 +5,6 @@ import dotenv from 'dotenv';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const environment = process.env.ENV || 'dev';
-const match = `/token-generator\.js/`;
 
 dotenv.config({
   path: path.resolve(__dirname, `tests/configs/.env.${environment}`),
@@ -21,11 +20,8 @@ const PROFILE_REGISTRY = {
   'adminmanager':    'auth/adminmanager.json',
 };
 
-const activeProfileKey = (process.env.AUTH_PROFILES || 'employee').trim().toLowerCase();
-const selectedStorageState = PROFILE_REGISTRY[activeProfileKey] || PROFILE_REGISTRY['employee'];
-
-console.log(` Playwright Runtime: [Profile: ${activeProfileKey}] -> [Using State: ${selectedStorageState}]`);
-
+const rawProfiles = process.env.AUTH_PROFILES || 'employee';
+const enabledProfileKeys = rawProfiles.split(',').map(p => p.trim().toLowerCase());
 
 export default defineConfig({
   testDir: './tests/specs',
@@ -54,15 +50,17 @@ export default defineConfig({
       name: 'setup',
       testMatch: /token-generator\.js/,
     },
-    {
-      name: 'e2e-dynamic-runtime',
-      testMatch: /.*\.spec\.js/, // Now matches ALL your spec files cleanly
-      use: {
-        ...devices['Desktop Chrome'],
-        storageState: selectedStorageState, // Dynamically set by your .env file
-      },
-      dependencies: ['setup'],
+    ...Object.entries(PROFILE_REGISTRY)
+    .filter(([roleName]) => enabledProfileKeys.includes(roleName))
+    .map(([roleName, storagePath]) => ({
+    name: `e2e-${roleName}`,
+    testMatch: /.*\.spec\.js/,
+    use: {
+      ...devices['Desktop Chrome'],
+      storageState: storagePath, 
     },
+    dependencies: ['setup'],
+  })),
   ],
 
 });

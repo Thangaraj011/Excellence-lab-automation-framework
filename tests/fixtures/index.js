@@ -5,6 +5,13 @@ import { ContentCataloguePage } from '../../page_objects/ContentCataloguePage.js
 import { TeamDashboardPage }   from '../../page_objects/TeamDashboardPage.js';
 import { GenericUtils }        from '../utils/GenericUtils.js';
 
+const PROFILE_REGISTRY = {
+  'employee':        'auth/user.json',
+  'managerindirect': 'auth/managerindirect.json',
+  'managerdirect':   'auth/managerdirect.json',
+  'admin':           'auth/admin.json',
+  'adminmanager':    'auth/adminmanager.json',
+};
 
 async function launchBrowser(storageStatePath) {
   const launchers = { chromium, firefox, webkit };
@@ -58,6 +65,51 @@ export const test = base.extend({
     const page = await context.newPage();
     await page.goto(process.env.BASE_URL);
     await use(page);
+  },
+
+  employeePage: async ({}, use) => {
+    const { browser, context } = await launchBrowser(PROFILE_REGISTRY['employee']);
+    const page = await context.newPage();
+    await page.goto(process.env.BASE_URL);
+    await use(page);
+    await context.close();
+    await browser.close();
+  },
+
+  managerDirPage: async ({}, use) => {
+    const { browser, context } = await launchBrowser(PROFILE_REGISTRY['managerdirect']);
+    const page = await context.newPage();
+    await page.goto(process.env.BASE_URL);
+    await use(page);
+    await context.close();
+    await browser.close();
+  },
+
+  managerIndPage: async ({}, use) => {
+    const { browser, context } = await launchBrowser(PROFILE_REGISTRY['managerindirect']);
+    const page = await context.newPage();
+    await page.goto(process.env.BASE_URL);
+    await use(page);
+    await context.close();
+    await browser.close();
+  },
+
+  adminPage: async ({}, use) => {
+    const { browser, context } = await launchBrowser(PROFILE_REGISTRY['admin']);
+    const page = await context.newPage();
+    await page.goto(process.env.BASE_URL);
+    await use(page);
+    await context.close();
+    await browser.close();
+  },
+
+  adminmanagerPage: async ({}, use) => {
+    const { browser, context } = await launchBrowser(PROFILE_REGISTRY['adminmanager']);
+    const page = await context.newPage();
+    await page.goto(process.env.BASE_URL);
+    await use(page);
+    await context.close();
+    await browser.close();
   },
 
 
