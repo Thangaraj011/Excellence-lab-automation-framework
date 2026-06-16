@@ -10,6 +10,7 @@ test.describe('User Login Successful Tests', () => {
     await contextSetup.genericUtils.setupAuthCookie(token);
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
+    await expect(contextSetup.poManager.homePage.profileName).toHaveText('Thangaraj R');
     await contextSetup.poManager.homePage.verifyHomepageLoaded();
     await contextSetup.poManager.homePage.verifyManagerAndAdminSections();
   });
@@ -21,6 +22,7 @@ test.describe('User Login Successful Tests', () => {
     await contextSetup.genericUtils.setupAuthCookie(token);
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
+    await expect(contextSetup.poManager.homePage.profileName).toHaveText('Tarun Sareen');
     await contextSetup.poManager.homePage.verifyHomepageLoaded();
     await contextSetup.poManager.homePage.verifyManagerAndAdminSections();
   });
@@ -32,6 +34,7 @@ test.describe('User Login Successful Tests', () => {
     await contextSetup.genericUtils.setupAuthCookie(token);
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
+    await expect(contextSetup.poManager.homePage.profileName).toHaveText('Vinay Kumar Singh');
     await contextSetup.poManager.homePage.verifyHomepageLoaded();
     await contextSetup.poManager.homePage.verifyManagerAndAdminSections();
   });
@@ -43,6 +46,7 @@ test.describe('User Login Successful Tests', () => {
     await contextSetup.genericUtils.setupAuthCookie(token);
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
+    await expect(contextSetup.poManager.homePage.profileName).toHaveText('Janakjit Singh Sethi');
     await contextSetup.poManager.homePage.verifyHomepageLoaded();
     await contextSetup.poManager.homePage.verifyManagerAndAdminSections();
   });
@@ -55,6 +59,7 @@ test.describe('User Login Successful Tests', () => {
     await contextSetup.genericUtils.setupAuthCookie(token);
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
+    await expect(contextSetup.poManager.homePage.profileName).toHaveText('Sameer Kumar');
     await contextSetup.poManager.homePage.verifyHomepageLoaded();
     await contextSetup.poManager.homePage.verifyManagerAndAdminSections();
   });

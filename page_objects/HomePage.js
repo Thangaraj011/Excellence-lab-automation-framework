@@ -91,6 +91,8 @@ export class HomePage {
       '[class*="_pathProgressPercent_"]',
     );
 
+    this.profileName = page.locator(`//span[contains(@class,'_userName_')]`);
+
   }
 
   async verifyHomepageLoaded() {
