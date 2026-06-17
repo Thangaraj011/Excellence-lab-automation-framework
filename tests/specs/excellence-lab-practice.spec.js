@@ -1,6 +1,6 @@
-import { test, expect } from '../../fixtures/index.js';
-import { BasicComponents } from '../../utils/BasicComponents.js';
-import { learningPathData } from '../../data/homepage-learning-path-sample.data.js';
+import { test, expect } from '../fixtures/index.js';
+import { BasicComponents } from '../utils/BasicComponents.js';
+import { learningPathData } from '../data/homepage-learning-path-sample.data.js';
 
 test.describe.serial('Homepage Learning path status update validation', () => {
   let todaysDate;

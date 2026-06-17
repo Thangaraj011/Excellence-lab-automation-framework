@@ -1,0 +1,2 @@
+Running Project [dev] with state: auth/user.json
+filePath: /Users/thangaraj.r/Documents/playwright-pom-framework/tests/data/Individual Content update status to Inprogress with custom fixture sample.json
